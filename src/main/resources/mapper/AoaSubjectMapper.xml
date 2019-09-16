@@ -6,5 +6,5 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
   </resultMap>
-  <select id="asdasd"></select>
+
 </mapper>
