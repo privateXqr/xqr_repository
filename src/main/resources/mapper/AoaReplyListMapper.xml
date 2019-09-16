@@ -3,12 +3,10 @@
 <mapper namespace="com.hr.mapper.AoaReplyListMapper">
   <resultMap id="BaseResultMap" type="com.hr.entity.AoaReplyList">
     <id column="reply_id" jdbcType="BIGINT" property="replyId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="replay_time" jdbcType="TIMESTAMP" property="replayTime" />
     <result column="discuss_id" jdbcType="BIGINT" property="discussId" />
     <result column="reply_user_id" jdbcType="BIGINT" property="replyUserId" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hr.entity.AoaReplyList">
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
 
 </mapper>

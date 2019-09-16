@@ -1,6 +1,6 @@
 package com.hr.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class AoaProcessList {
     private Long processId;
@@ -10,6 +10,8 @@ public class AoaProcessList {
     private Long deeplyId;
 
     private Date endTime;
+
+    private String processDes;
 
     private String processName;
 
@@ -28,8 +30,6 @@ public class AoaProcessList {
     private Long processUserId;
 
     private String shenuser;
-
-    private String processDes;
 
     public Long getProcessId() {
         return processId;
@@ -61,6 +61,14 @@ public class AoaProcessList {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public String getProcessDes() {
+        return processDes;
+    }
+
+    public void setProcessDes(String processDes) {
+        this.processDes = processDes == null ? null : processDes.trim();
     }
 
     public String getProcessName() {
@@ -133,13 +141,5 @@ public class AoaProcessList {
 
     public void setShenuser(String shenuser) {
         this.shenuser = shenuser == null ? null : shenuser.trim();
-    }
-
-    public String getProcessDes() {
-        return processDes;
-    }
-
-    public void setProcessDes(String processDes) {
-        this.processDes = processDes == null ? null : processDes.trim();
     }
 }

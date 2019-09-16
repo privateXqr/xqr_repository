@@ -1,9 +1,11 @@
 package com.hr.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class AoaNotepaper {
     private Long notepaperId;
+
+    private String concent;
 
     private Date createTime;
 
@@ -11,14 +13,20 @@ public class AoaNotepaper {
 
     private Long notepaperUserId;
 
-    private String concent;
-
     public Long getNotepaperId() {
         return notepaperId;
     }
 
     public void setNotepaperId(Long notepaperId) {
         this.notepaperId = notepaperId;
+    }
+
+    public String getConcent() {
+        return concent;
+    }
+
+    public void setConcent(String concent) {
+        this.concent = concent == null ? null : concent.trim();
     }
 
     public Date getCreateTime() {
@@ -43,13 +51,5 @@ public class AoaNotepaper {
 
     public void setNotepaperUserId(Long notepaperUserId) {
         this.notepaperUserId = notepaperUserId;
-    }
-
-    public String getConcent() {
-        return concent;
-    }
-
-    public void setConcent(String concent) {
-        this.concent = concent == null ? null : concent.trim();
     }
 }

@@ -1,9 +1,11 @@
 package com.hr.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class AoaInMailList {
     private Long mailId;
+
+    private String mailContent;
 
     private Date mailCreateTime;
 
@@ -27,14 +29,20 @@ public class AoaInMailList {
 
     private Integer mailStar;
 
-    private String mailContent;
-
     public Long getMailId() {
         return mailId;
     }
 
     public void setMailId(Long mailId) {
         this.mailId = mailId;
+    }
+
+    public String getMailContent() {
+        return mailContent;
+    }
+
+    public void setMailContent(String mailContent) {
+        this.mailContent = mailContent == null ? null : mailContent.trim();
     }
 
     public Date getMailCreateTime() {
@@ -123,13 +131,5 @@ public class AoaInMailList {
 
     public void setMailStar(Integer mailStar) {
         this.mailStar = mailStar;
-    }
-
-    public String getMailContent() {
-        return mailContent;
-    }
-
-    public void setMailContent(String mailContent) {
-        this.mailContent = mailContent == null ? null : mailContent.trim();
     }
 }

@@ -1,11 +1,13 @@
 package com.hr.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class AoaDiscussList {
     private Long discussId;
 
     private Integer attachmentId;
+
+    private String content;
 
     private Date createTime;
 
@@ -23,8 +25,6 @@ public class AoaDiscussList {
 
     private Date modifyTime;
 
-    private String content;
-
     public Long getDiscussId() {
         return discussId;
     }
@@ -39,6 +39,14 @@ public class AoaDiscussList {
 
     public void setAttachmentId(Integer attachmentId) {
         this.attachmentId = attachmentId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     public Date getCreateTime() {
@@ -103,13 +111,5 @@ public class AoaDiscussList {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 }

@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.hr.entity.AoaDiscussList">
     <id column="discuss_id" jdbcType="BIGINT" property="discussId" />
     <result column="attachment_id" jdbcType="INTEGER" property="attachmentId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="status_id" jdbcType="BIGINT" property="statusId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
@@ -12,9 +13,6 @@
     <result column="discuss_user_id" jdbcType="BIGINT" property="discussUserId" />
     <result column="vote_id" jdbcType="BIGINT" property="voteId" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hr.entity.AoaDiscussList">
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
 
 </mapper>

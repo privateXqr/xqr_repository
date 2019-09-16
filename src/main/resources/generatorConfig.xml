@@ -43,58 +43,7 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <table schema="" tableName="aoa_attachment_list"></table>
-        <table schema="" tableName="aoa_attends_list"></table>
-        <table schema="" tableName="aoa_bursement"></table>
-        <table schema="" tableName="aoa_catalog"></table>
-        <table schema="" tableName="aoa_comment_list"></table>
-        <table schema="" tableName="aoa_dept"></table>
-        <table schema="" tableName="aoa_detailsburse"></table>
-        <table schema="" tableName="aoa_director"></table>
-        <table schema="" tableName="aoa_director_users"></table>
-        <table schema="" tableName="aoa_discuss_list"></table>
-        <table schema="" tableName="aoa_evection"></table>
-        <table schema="" tableName="aoa_evectionmoney"></table>
-        <table schema="" tableName="aoa_file_list"></table>
-        <table schema="" tableName="aoa_file_path"></table>
-        <table schema="" tableName="aoa_holiday"></table>
-        <table schema="" tableName="aoa_in_mail_list"></table>
-        <table schema="" tableName="aoa_love_discuss_user"></table>
-        <table schema="" tableName="aoa_love_user"></table>
-        <table schema="" tableName="aoa_mail_reciver"></table>
-        <table schema="" tableName="aoa_mailnumber"></table>
-        <table schema="" tableName="aoa_note_list"></table>
-        <table schema="" tableName="aoa_notepaper"></table>
-        <table schema="" tableName="aoa_notice_list"></table>
-        <table schema="" tableName="aoa_notice_user_relation"></table>
-        <table schema="" tableName="aoa_overtime"></table>
-        <table schema="" tableName="aoa_plan_list"></table>
-        <table schema="" tableName="aoa_position"></table>
-        <table schema="" tableName="aoa_process_list"></table>
-        <table schema="" tableName="aoa_receiver_note"></table>
-        <table schema="" tableName="aoa_regular"></table>
         <table schema="" tableName="aoa_reply_list"></table>
-        <table schema="" tableName="aoa_resign"></table>
-        <table schema="" tableName="aoa_reviewed"></table>
-        <table schema="" tableName="aoa_role_"></table>
-        <table schema="" tableName="aoa_role_power_list"></table>
-        <table schema="" tableName="aoa_schedule_list"></table>
-        <table schema="" tableName="aoa_schedule_user"></table>
-        <table schema="" tableName="aoa_status_list"></table>
-        <table schema="" tableName="aoa_stay"></table>
-        <table schema="" tableName="aoa_subject"></table>
-        <table schema="" tableName="aoa_sys_menu"></table>
-        <table schema="" tableName="aoa_task_list"></table>
-        <table schema="" tableName="aoa_task_logger"></table>
-        <table schema="" tableName="aoa_task_user"></table>
-        <table schema="" tableName="aoa_traffic"></table>
-        <table schema="" tableName="aoa_type_list"></table>
-        <table schema="" tableName="aoa_user"></table>
-        <table schema="" tableName="aoa_user_log"></table>
-        <table schema="" tableName="aoa_user_login_record"></table>
-        <table schema="" tableName="aoa_vote_list"></table>
-        <table schema="" tableName="aoa_vote_title_user"></table>
-        <table schema="" tableName="aoa_vote_titles"></table>
 
         <!-- 有些表的字段需要指定java类型
          <table schema="" tableName="">

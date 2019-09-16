@@ -1,9 +1,11 @@
 package com.hr.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class AoaReplyList {
     private Long replyId;
+
+    private String content;
 
     private Date replayTime;
 
@@ -11,14 +13,20 @@ public class AoaReplyList {
 
     private Long replyUserId;
 
-    private String content;
-
     public Long getReplyId() {
         return replyId;
     }
 
     public void setReplyId(Long replyId) {
         this.replyId = replyId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     public Date getReplayTime() {
@@ -43,13 +51,5 @@ public class AoaReplyList {
 
     public void setReplyUserId(Long replyUserId) {
         this.replyUserId = replyUserId;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 }
