@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hr.mapper.AoaUserMapper">
-  <resultMap id="BaseResultMap" type="com.hr.entity.AoaUser">
-    <id column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="bank" jdbcType="VARCHAR" property="bank" />
-    <result column="birth" jdbcType="TIMESTAMP" property="birth" />
-    <result column="eamil" jdbcType="VARCHAR" property="eamil" />
-    <result column="father_id" jdbcType="BIGINT" property="fatherId" />
-    <result column="hire_time" jdbcType="TIMESTAMP" property="hireTime" />
-    <result column="user_idcard" jdbcType="VARCHAR" property="userIdcard" />
-    <result column="img_path" jdbcType="VARCHAR" property="imgPath" />
-    <result column="is_lock" jdbcType="INTEGER" property="isLock" />
-    <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
-    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
-    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="salary" jdbcType="REAL" property="salary" />
-    <result column="user_school" jdbcType="VARCHAR" property="userSchool" />
-    <result column="sex" jdbcType="VARCHAR" property="sex" />
-    <result column="theme_skin" jdbcType="VARCHAR" property="themeSkin" />
-    <result column="user_edu" jdbcType="VARCHAR" property="userEdu" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="user_sign" jdbcType="VARCHAR" property="userSign" />
-    <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
-    <result column="dept_id" jdbcType="BIGINT" property="deptId" />
-    <result column="position_id" jdbcType="BIGINT" property="positionId" />
-    <result column="role_id" jdbcType="BIGINT" property="roleId" />
-    <result column="superman" jdbcType="INTEGER" property="superman" />
-    <result column="holiday" jdbcType="INTEGER" property="holiday" />
-    <result column="pinyin" jdbcType="VARCHAR" property="pinyin" />
-  </resultMap>
+<mapper namespace="com.hr.mapper.IAoaUserMapper">
+    <resultMap id="BaseResultMap" type="com.hr.entity.AoaUser">
+        <id column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="bank" jdbcType="VARCHAR" property="bank"/>
+        <result column="birth" jdbcType="TIMESTAMP" property="birth"/>
+        <result column="eamil" jdbcType="VARCHAR" property="eamil"/>
+        <result column="father_id" jdbcType="BIGINT" property="fatherId"/>
+        <result column="hire_time" jdbcType="TIMESTAMP" property="hireTime"/>
+        <result column="user_idcard" jdbcType="VARCHAR" property="userIdcard"/>
+        <result column="img_path" jdbcType="VARCHAR" property="imgPath"/>
+        <result column="is_lock" jdbcType="INTEGER" property="isLock"/>
+        <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp"/>
+        <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="salary" jdbcType="REAL" property="salary"/>
+        <result column="user_school" jdbcType="VARCHAR" property="userSchool"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="theme_skin" jdbcType="VARCHAR" property="themeSkin"/>
+        <result column="user_edu" jdbcType="VARCHAR" property="userEdu"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_sign" jdbcType="VARCHAR" property="userSign"/>
+        <result column="user_tel" jdbcType="VARCHAR" property="userTel"/>
+        <result column="dept_id" jdbcType="BIGINT" property="deptId"/>
+        <result column="position_id" jdbcType="BIGINT" property="positionId"/>
+        <result column="role_id" jdbcType="BIGINT" property="roleId"/>
+        <result column="superman" jdbcType="INTEGER" property="superman"/>
+        <result column="holiday" jdbcType="INTEGER" property="holiday"/>
+        <result column="pinyin" jdbcType="VARCHAR" property="pinyin"/>
+    </resultMap>
+
+    <select id="login" resultType="com.hr.entity.AoaUser" >
+
+        SELECT * FROM aoa_user WHERE
+        <if test="userName != '' and userName != null">
+            user_name = #{userName}
+        </if>
+        <if test="userName == '' or userName == null">
+            user_tel = #{userName}
+        </if>
+        AND password = #{password}
+
+    </select>
 
 </mapper>

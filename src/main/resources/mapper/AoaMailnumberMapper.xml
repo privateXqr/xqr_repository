@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hr.mapper.AoaMailnumberMapper">
+<mapper namespace="com.hr.mapper.IAoaMailnumberMapper">
   <resultMap id="BaseResultMap" type="com.hr.entity.AoaMailnumber">
     <id column="mail_number_id" jdbcType="BIGINT" property="mailNumberId" />
     <result column="mail_account" jdbcType="VARCHAR" property="mailAccount" />

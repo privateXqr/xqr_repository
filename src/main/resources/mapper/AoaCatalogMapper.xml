@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hr.mapper.AoaCatalogMapper">
+<mapper namespace="com.hr.mapper.IAoaCatalogMapper">
   <resultMap id="BaseResultMap" type="com.hr.entity.AoaCatalog">
     <id column="catalog_id" jdbcType="BIGINT" property="catalogId" />
     <result column="catalog_name" jdbcType="VARCHAR" property="catalogName" />

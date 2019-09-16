@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hr.mapper.AoaNoteListMapper">
+<mapper namespace="com.hr.mapper.IAoaNoteListMapper">
   <resultMap id="BaseResultMap" type="com.hr.entity.AoaNoteList">
     <id column="note_id" jdbcType="BIGINT" property="noteId" />
     <result column="content" jdbcType="VARCHAR" property="content" />

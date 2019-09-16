@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hr.mapper.AoaCommentListMapper">
+<mapper namespace="com.hr.mapper.IAoaCommentListMapper">
   <resultMap id="BaseResultMap" type="com.hr.entity.AoaCommentList">
     <id column="comment_id" jdbcType="BIGINT" property="commentId" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />

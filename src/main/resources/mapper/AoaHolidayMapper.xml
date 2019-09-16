@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hr.mapper.AoaHolidayMapper">
+<mapper namespace="com.hr.mapper.IAoaHolidayMapper">
   <resultMap id="BaseResultMap" type="com.hr.entity.AoaHoliday">
     <id column="holiday_id" jdbcType="BIGINT" property="holidayId" />
     <result column="leave_days" jdbcType="INTEGER" property="leaveDays" />

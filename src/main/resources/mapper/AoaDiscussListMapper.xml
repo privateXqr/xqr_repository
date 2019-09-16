@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hr.mapper.AoaDiscussListMapper">
+<mapper namespace="com.hr.mapper.IAoaDiscussListMapper">
   <resultMap id="BaseResultMap" type="com.hr.entity.AoaDiscussList">
     <id column="discuss_id" jdbcType="BIGINT" property="discussId" />
     <result column="attachment_id" jdbcType="INTEGER" property="attachmentId" />
