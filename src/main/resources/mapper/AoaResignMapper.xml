@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaResignMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaResign">
+    <id column="resign_id" jdbcType="BIGINT" property="resignId" />
+    <result column="financial_advice" jdbcType="VARCHAR" property="financialAdvice" />
+    <result column="is_finish" jdbcType="BIT" property="isFinish" />
+    <result column="nofinish" jdbcType="VARCHAR" property="nofinish" />
+    <result column="personnel_advice" jdbcType="VARCHAR" property="personnelAdvice" />
+    <result column="suggest" jdbcType="VARCHAR" property="suggest" />
+    <result column="hand_user" jdbcType="BIGINT" property="handUser" />
+    <result column="pro_id" jdbcType="BIGINT" property="proId" />
+    <result column="manager_advice" jdbcType="VARCHAR" property="managerAdvice" />
+  </resultMap>
+
+</mapper>

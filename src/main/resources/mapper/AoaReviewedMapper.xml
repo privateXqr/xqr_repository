@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaReviewedMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaReviewed">
+    <id column="reviewed_id" jdbcType="BIGINT" property="reviewedId" />
+    <result column="advice" jdbcType="VARCHAR" property="advice" />
+    <result column="reviewed_time" jdbcType="TIMESTAMP" property="reviewedTime" />
+    <result column="status_id" jdbcType="BIGINT" property="statusId" />
+    <result column="pro_id" jdbcType="BIGINT" property="proId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="del" jdbcType="INTEGER" property="del" />
+  </resultMap>
+
+</mapper>

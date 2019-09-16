@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaTrafficMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaTraffic">
+    <id column="traffic_id" jdbcType="BIGINT" property="trafficId" />
+    <result column="depart_name" jdbcType="VARCHAR" property="departName" />
+    <result column="depart_time" jdbcType="TIMESTAMP" property="departTime" />
+    <result column="reach_name" jdbcType="VARCHAR" property="reachName" />
+    <result column="seat_type" jdbcType="VARCHAR" property="seatType" />
+    <result column="traffic_money" jdbcType="DOUBLE" property="trafficMoney" />
+    <result column="traffic_name" jdbcType="VARCHAR" property="trafficName" />
+    <result column="evection_id" jdbcType="BIGINT" property="evectionId" />
+    <result column="user_name" jdbcType="BIGINT" property="userName" />
+  </resultMap>
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaDirectorMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaDirector">
+    <id column="director_id" jdbcType="BIGINT" property="directorId" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="company_number" jdbcType="VARCHAR" property="companyNumber" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="image_path" jdbcType="INTEGER" property="imagePath" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="pinyin" jdbcType="VARCHAR" property="pinyin" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="companyname" jdbcType="VARCHAR" property="companyname" />
+  </resultMap>
+
+</mapper>

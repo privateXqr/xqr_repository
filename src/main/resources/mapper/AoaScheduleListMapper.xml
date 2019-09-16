@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaScheduleListMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaScheduleList">
+    <id column="rc_id" jdbcType="BIGINT" property="rcId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="filedescribe" jdbcType="VARCHAR" property="filedescribe" />
+    <result column="is_remind" jdbcType="INTEGER" property="isRemind" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="status_id" jdbcType="BIGINT" property="statusId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type_id" jdbcType="BIGINT" property="typeId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="miaoshu" jdbcType="VARCHAR" property="miaoshu" />
+    <result column="isreminded" jdbcType="INTEGER" property="isreminded" />
+  </resultMap>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaInMailListMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaInMailList">
+    <id column="mail_id" jdbcType="BIGINT" property="mailId" />
+    <result column="mail_create_time" jdbcType="TIMESTAMP" property="mailCreateTime" />
+    <result column="mail_file_id" jdbcType="BIGINT" property="mailFileId" />
+    <result column="mail_title" jdbcType="VARCHAR" property="mailTitle" />
+    <result column="mail_type" jdbcType="BIGINT" property="mailType" />
+    <result column="mail_in_push_user_id" jdbcType="BIGINT" property="mailInPushUserId" />
+    <result column="in_receiver" jdbcType="VARCHAR" property="inReceiver" />
+    <result column="mail_status_id" jdbcType="BIGINT" property="mailStatusId" />
+    <result column="mail_number_id" jdbcType="BIGINT" property="mailNumberId" />
+    <result column="mail_del" jdbcType="INTEGER" property="mailDel" />
+    <result column="mail_push" jdbcType="INTEGER" property="mailPush" />
+    <result column="mail_star" jdbcType="INTEGER" property="mailStar" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hr.entity.AoaInMailList">
+    <result column="mail_content" jdbcType="LONGVARCHAR" property="mailContent" />
+  </resultMap>
+
+</mapper>

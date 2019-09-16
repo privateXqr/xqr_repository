@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaDeptMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaDept">
+    <id column="dept_id" jdbcType="BIGINT" property="deptId" />
+    <result column="dept_addr" jdbcType="VARCHAR" property="deptAddr" />
+    <result column="dept_fax" jdbcType="VARCHAR" property="deptFax" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="dept_tel" jdbcType="VARCHAR" property="deptTel" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="deptmanager" jdbcType="BIGINT" property="deptmanager" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+  </resultMap>
+
+</mapper>

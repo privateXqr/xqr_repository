@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaStayMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaStay">
+    <id column="stay_id" jdbcType="BIGINT" property="stayId" />
+    <result column="day" jdbcType="INTEGER" property="day" />
+    <result column="hotel_name" jdbcType="VARCHAR" property="hotelName" />
+    <result column="leave_time" jdbcType="TIMESTAMP" property="leaveTime" />
+    <result column="stay_city" jdbcType="VARCHAR" property="stayCity" />
+    <result column="stay_money" jdbcType="DOUBLE" property="stayMoney" />
+    <result column="stay_time" jdbcType="TIMESTAMP" property="stayTime" />
+    <result column="evemoney_id" jdbcType="BIGINT" property="evemoneyId" />
+    <result column="user_name" jdbcType="BIGINT" property="userName" />
+  </resultMap>
+
+</mapper>

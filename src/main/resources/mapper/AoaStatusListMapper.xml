@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaStatusListMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaStatusList">
+    <id column="status_id" jdbcType="BIGINT" property="statusId" />
+    <result column="status_color" jdbcType="VARCHAR" property="statusColor" />
+    <result column="status_model" jdbcType="VARCHAR" property="statusModel" />
+    <result column="status_name" jdbcType="VARCHAR" property="statusName" />
+    <result column="sort_value" jdbcType="INTEGER" property="sortValue" />
+    <result column="sort_precent" jdbcType="VARCHAR" property="sortPrecent" />
+  </resultMap>
+
+</mapper>

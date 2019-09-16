@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaPlanListMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaPlanList">
+    <id column="plan_id" jdbcType="BIGINT" property="planId" />
+    <id column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="plan_comment" jdbcType="VARCHAR" property="planComment" />
+    <result column="plan_content" jdbcType="VARCHAR" property="planContent" />
+    <result column="plan_summary" jdbcType="VARCHAR" property="planSummary" />
+    <result column="status_id" jdbcType="BIGINT" property="statusId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type_id" jdbcType="BIGINT" property="typeId" />
+    <result column="plan_user_id" jdbcType="BIGINT" property="planUserId" />
+    <result column="attach_id" jdbcType="BIGINT" property="attachId" />
+  </resultMap>
+
+</mapper>

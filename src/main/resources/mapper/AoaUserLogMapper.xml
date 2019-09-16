@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaUserLogMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaUserLog">
+    <id column="log_id" jdbcType="BIGINT" property="logId" />
+    <result column="ip_addr" jdbcType="VARCHAR" property="ipAddr" />
+    <result column="log_time" jdbcType="TIMESTAMP" property="logTime" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+  </resultMap>
+
+</mapper>

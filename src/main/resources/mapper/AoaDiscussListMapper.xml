@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaDiscussListMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaDiscussList">
+    <id column="discuss_id" jdbcType="BIGINT" property="discussId" />
+    <result column="attachment_id" jdbcType="INTEGER" property="attachmentId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status_id" jdbcType="BIGINT" property="statusId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type_id" jdbcType="BIGINT" property="typeId" />
+    <result column="visit_num" jdbcType="INTEGER" property="visitNum" />
+    <result column="discuss_user_id" jdbcType="BIGINT" property="discussUserId" />
+    <result column="vote_id" jdbcType="BIGINT" property="voteId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hr.entity.AoaDiscussList">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+
+</mapper>

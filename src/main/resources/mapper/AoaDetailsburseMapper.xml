@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaDetailsburseMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaDetailsburse">
+    <id column="detailsburse_id" jdbcType="BIGINT" property="detailsburseId" />
+    <result column="descript" jdbcType="VARCHAR" property="descript" />
+    <result column="detailmoney" jdbcType="DOUBLE" property="detailmoney" />
+    <result column="invoices" jdbcType="INTEGER" property="invoices" />
+    <result column="produce_time" jdbcType="TIMESTAMP" property="produceTime" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="bursment_id" jdbcType="BIGINT" property="bursmentId" />
+  </resultMap>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaProcessListMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaProcessList">
+    <id column="process_id" jdbcType="BIGINT" property="processId" />
+    <result column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+    <result column="deeply_id" jdbcType="BIGINT" property="deeplyId" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="process_name" jdbcType="VARCHAR" property="processName" />
+    <result column="procsee_days" jdbcType="INTEGER" property="procseeDays" />
+    <result column="is_checked" jdbcType="INTEGER" property="isChecked" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="status_id" jdbcType="BIGINT" property="statusId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="pro_file_id" jdbcType="BIGINT" property="proFileId" />
+    <result column="process_user_id" jdbcType="BIGINT" property="processUserId" />
+    <result column="shenuser" jdbcType="VARCHAR" property="shenuser" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hr.entity.AoaProcessList">
+    <result column="process_des" jdbcType="LONGVARCHAR" property="processDes" />
+  </resultMap>
+
+</mapper>

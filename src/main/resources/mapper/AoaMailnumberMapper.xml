@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaMailnumberMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaMailnumber">
+    <id column="mail_number_id" jdbcType="BIGINT" property="mailNumberId" />
+    <result column="mail_account" jdbcType="VARCHAR" property="mailAccount" />
+    <result column="mail_create_time" jdbcType="TIMESTAMP" property="mailCreateTime" />
+    <result column="mail_des" jdbcType="VARCHAR" property="mailDes" />
+    <result column="mail_type" jdbcType="BIGINT" property="mailType" />
+    <result column="mail_user_name" jdbcType="VARCHAR" property="mailUserName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="status" jdbcType="BIGINT" property="status" />
+    <result column="mail_num_user_id" jdbcType="BIGINT" property="mailNumUserId" />
+  </resultMap>
+
+</mapper>

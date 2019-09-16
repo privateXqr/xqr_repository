@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaEvectionmoneyMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaEvectionmoney">
+    <id column="evectionmoney_id" jdbcType="BIGINT" property="evectionmoneyId" />
+    <result column="financial_advice" jdbcType="VARCHAR" property="financialAdvice" />
+    <result column="manager_advice" jdbcType="VARCHAR" property="managerAdvice" />
+    <result column="money" jdbcType="DOUBLE" property="money" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="pro_id" jdbcType="BIGINT" property="proId" />
+    <result column="pro" jdbcType="INTEGER" property="pro" />
+  </resultMap>
+
+</mapper>

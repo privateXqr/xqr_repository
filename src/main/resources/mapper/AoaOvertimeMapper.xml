@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaOvertimeMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaOvertime">
+    <id column="overtime_id" jdbcType="BIGINT" property="overtimeId" />
+    <result column="type_id" jdbcType="BIGINT" property="typeId" />
+    <result column="pro_id" jdbcType="BIGINT" property="proId" />
+    <result column="personnel_advice" jdbcType="VARCHAR" property="personnelAdvice" />
+    <result column="manager_advice" jdbcType="VARCHAR" property="managerAdvice" />
+  </resultMap>
+
+</mapper>

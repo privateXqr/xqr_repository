@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaNoteListMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaNoteList">
+    <id column="note_id" jdbcType="BIGINT" property="noteId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status_id" jdbcType="BIGINT" property="statusId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type_id" jdbcType="BIGINT" property="typeId" />
+    <result column="catalog_id" jdbcType="BIGINT" property="catalogId" />
+    <result column="attach_id" jdbcType="BIGINT" property="attachId" />
+    <result column="is_collected" jdbcType="BIGINT" property="isCollected" />
+    <result column="createman_id" jdbcType="BIGINT" property="createmanId" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+  </resultMap>
+
+</mapper>

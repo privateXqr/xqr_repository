@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.AoaAttendsListMapper">
+  <resultMap id="BaseResultMap" type="com.hr.entity.AoaAttendsList">
+    <id column="attends_id" jdbcType="BIGINT" property="attendsId" />
+    <result column="attends_ip" jdbcType="VARCHAR" property="attendsIp" />
+    <result column="attends_remark" jdbcType="VARCHAR" property="attendsRemark" />
+    <result column="attends_time" jdbcType="TIMESTAMP" property="attendsTime" />
+    <result column="status_id" jdbcType="BIGINT" property="statusId" />
+    <result column="type_id" jdbcType="BIGINT" property="typeId" />
+    <result column="attends_user_id" jdbcType="BIGINT" property="attendsUserId" />
+    <result column="attend_hmtime" jdbcType="VARCHAR" property="attendHmtime" />
+    <result column="week_ofday" jdbcType="VARCHAR" property="weekOfday" />
+    <result column="holiday_days" jdbcType="DOUBLE" property="holidayDays" />
+    <result column="holiday_start" jdbcType="DATE" property="holidayStart" />
+  </resultMap>
+
+</mapper>
