@@ -1,6 +1,6 @@
 package com.hr.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class AoaProcessList {
     private Long processId;

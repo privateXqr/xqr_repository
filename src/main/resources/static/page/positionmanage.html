@@ -1,0 +1,367 @@
+
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common/box.css" />
+<link rel="stylesheet" type="text/css" href="css/common/checkbox.css" />
+<style type="text/css">
+#thismodal .modal-dialog {
+	width: 500px;
+	top:20%;
+}
+
+#thismodal .modal-body .icon {
+	height: 80px;
+	width: 80px;
+	margin: 20px auto;
+	border-radius: 50%;
+	color: #aad6aa;
+	border: 3px solid #d9ead9;
+	text-align: center;
+	font-size: 44px;
+}
+
+#thismodal .modal-body .icon .glyphicon {
+	font-size: 46px;
+	top: 14px;
+}
+
+#thismodal .modal-p {
+	margin: 20px auto;
+}
+
+#thismodal .modal-body .modal-p h2 {
+	text-align: center;
+}
+
+#thismodal .modal-body .modal-p p {
+	text-align: center;
+	color: #666;
+	font-size: 16px;
+	padding-top: 8px;
+	font-weight: 300;
+}
+
+#thismodal .modal-p .btn {
+	margin-left: 40%;
+	width: 100px;
+	height: 40px;
+}
+
+#thismodal .modal-error .icon {
+	color: #f27474;
+	border: 3px solid #f27474;
+}
+</style>
+
+<div class="modal fade in" id="thismodal" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body modal-success" style="display: none;">
+				<div class="icon">
+					<span class="glyphicon glyphicon-ok"></span>
+				</div>
+				<div class="modal-p">
+					<h2>操作成功</h2>
+					<!--<p style="">已回复</p>-->
+					<div class="modal-p">
+						<button type="button" class="btn btn-primary successToUrl" data-dismiss="modal">确定</button>
+					</div>
+				</div>
+			</div>
+			<div class="modal-body modal-error" style="display: none;">
+				<div class="icon">
+					<span class="glyphicon glyphicon-remove"></span>
+				</div>
+				<div class="modal-p">
+					<h2 style="text-align: center;">错误信息</h2>
+					<p class="modal-error-mess">此处将显示弹出框的错误提示信息</p>
+					<div class="modal-p">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+
+<!-- /.modal -->
+<script type="text/javascript" src="js/modalTip.js" ></script>
+
+
+<!-- 这里是执行返回失败的参数，并显示详细的信息； -->
+<style type="text/css">
+a {
+	color: black;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.bgc-w {
+	background-color: #fff;
+}
+</style>
+
+<div class="row" style="padding-top: 10px;">
+	<div class="col-md-2">
+		<h1 style="font-size: 24px; margin: 0;" class="">职位管理</h1>
+	</div>
+	<div class="col-md-10 text-right">
+		<a href="##"><span class="glyphicon glyphicon-home"></span> 首页</a> > <a
+			disabled="disabled">职位管理</a>
+	</div>
+</div>
+<div class="row" style="padding-top: 15px;">
+	<div class="col-md-12">
+		<!--id="container"-->
+		<div class="bgc-w box box-primary">
+			<!--盒子头-->
+			<div class="box-header">
+				<h3 class="box-title">
+					<a href="positionadd.html" class="label label-success" style="padding: 5px;">
+						<span class="glyphicon glyphicon-plus"></span> 新增
+					</a>
+				</h3>
+				<!-- <div class="box-tools">
+					<div class="input-group" style="width: 150px;">
+						<input type="text" class="form-control input-sm"
+							placeholder="查找..." />
+						<div class="input-group-btn">
+							<a class="btn btn-sm btn-default"><span
+								class="glyphicon glyphicon-search"></span></a>
+						</div>
+					</div>
+				</div> -->
+			</div>
+			<!--盒子身体-->
+			<div class="box-body no-padding">
+				<div class="table-responsive">
+					<table class="table table-hover table-striped">
+						<tr>
+							
+							<th scope="col">名称</th>
+							<th scope="col">层级</th>
+							<th scope="col">描述</th>
+							<th scope="col">操作</th>
+						</tr>
+							<tr>
+								<td><span>超级管理员</span></td>
+								<td><span>1</span></td>
+								<td><span>管理系统最高权限</span></td>
+								<td><a  href="positionedit.html?positionid=1" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>CEO</span></td>
+								<td><span>2</span></td>
+								<td><span>CEO类！~</span></td>
+								<td><a  href="positionedit.html?positionid=2" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>总经理</span></td>
+								<td><span>3</span></td>
+								<td><span>总经理类！~</span></td>
+								<td><a  href="positionedit.html?positionid=3" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>研发部经理</span></td>
+								<td><span>4</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=4" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>财务部经理</span></td>
+								<td><span>5</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=5" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>市场部经理</span></td>
+								<td><span>6</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=6" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>人事部经理</span></td>
+								<td><span>7</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=7" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>人事专员</span></td>
+								<td><span>8</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=8" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>劳资专员</span></td>
+								<td><span>9</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=9" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>程序员</span></td>
+								<td><span>10</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=10" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>初级工程师</span></td>
+								<td><span>11</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=11" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>中级工程师</span></td>
+								<td><span>12</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=12" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>高级工程师</span></td>
+								<td><span>13</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=13" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>系统架构师</span></td>
+								<td><span>14</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=14" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>需求分析师</span></td>
+								<td><span>15</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=15" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>调查专员</span></td>
+								<td><span>16</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=16" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>企业推广员</span></td>
+								<td><span>17</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=17" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>平面设计师</span></td>
+								<td><span>18</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=18" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>培训专员</span></td>
+								<td><span>19</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=19" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>市场督导员</span></td>
+								<td><span>20</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=20" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>核算会计</span></td>
+								<td><span>21</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=21" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>税务会计</span></td>
+								<td><span>22</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=22" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>出纳员</span></td>
+								<td><span>23</span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=23" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>测试岗位！~</span></td>
+								<td><span>2,222</span></td>
+								<td><span>emmm！~~</span></td>
+								<td><a  href="positionedit.html?positionid=25" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>测试职位1</span></td>
+								<td><span>1</span></td>
+								<td><span>啊实打实的</span></td>
+								<td><a  href="positionedit.html?positionid=26" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>经理</span></td>
+								<td><span></span></td>
+								<td><span></span></td>
+								<td><a  href="positionedit.html?positionid=27" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>文员</span></td>
+								<td><span></span></td>
+								<td><span>文员</span></td>
+								<td><a  href="positionedit.html?positionid=28" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>测试员</span></td>
+								<td><span>25</span></td>
+								<td><span>测试员</span></td>
+								<td><a  href="positionedit.html?positionid=29" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>测试经理</span></td>
+								<td><span>24</span></td>
+								<td><span>测试经理</span></td>
+								<td><a  href="positionedit.html?positionid=30" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+							<tr>
+								<td><span>测试组长</span></td>
+								<td><span></span></td>
+								<td><span>测试组长</span></td>
+								<td><a  href="positionedit.html?positionid=31" class="label xiugai"><span
+										class="glyphicon glyphicon-edit"></span> 修改</a> 
+							</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

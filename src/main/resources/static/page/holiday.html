@@ -1,0 +1,651 @@
+
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common/box.css" />
+<link rel="stylesheet" type="text/css" href="css/common/checkbox.css" />
+<link rel="stylesheet" href="css/common/tanchuang.css" />
+<style>
+.modal-open {
+    overflow: auto;
+}
+.box-header{
+  text-align: center;
+  border-bottom: 0px solid #f4f4f4;
+}
+.title{
+	text-align: center;
+}
+
+.inpu{
+ margin-top: -6px;
+
+}
+
+.control-label{
+	display:inline-block;
+	font-weight: 400;
+}
+.bo{
+	margin: 0px auto;
+	width: 80%;
+}
+
+
+.table th,.chebox,.table>tbody>tr>td{
+font-weight: 400;
+ text-align: center;
+}
+.inside{
+width: 100%;
+}
+.inside thead{
+background-color: rgba(76, 175, 95, 0.06);
+}
+.inside>tbody>tr>td{
+ border-top: 0px solid #ddd;
+}
+.inside>tbody>tr>td{
+border-bottom: 1px solid #ddd;
+border-left: 1px solid #ddd;
+}
+.tdrig{
+border-right: 1px solid #ddd;
+}
+.bo>tbody>tr>td,.inside>thead>tr>th {
+    border-top: 0px solid #ddd;
+    border-bottom: 0px solid #ddd;
+    border-left: 0px solid #ddd;
+}
+.text {
+	min-height: 100px;
+}
+.shuoming{
+min-height: 120px;
+}
+.reciver{
+	position: relative;
+    float: right;
+    margin-top: -28px;
+    right: 5px;
+    cursor: pointer;
+}
+</style>
+<div class="row" style="padding-top: 10px;">
+	<div class="col-md-2">
+		<h1 style="font-size: 24px; margin: 0;" class="">请假申请</h1>
+	</div>
+	<div class="col-md-10 text-right">
+		<a href="##"><span class="glyphicon glyphicon-home"></span> 首页</a> > <a
+			disabled="disabled">请假申请</a>
+	</div>
+</div>
+<div class="row" style="padding-top: 15px;">
+	<div class="col-md-12">
+		
+		<div class="bgc-w box">
+			<form action="holi" enctype="multipart/form-data" method="post" onsubmit="return check();" >
+			<div class="box-header">
+				<table class="bo table ">
+			
+				<tr >
+					<td colspan="14" class="title"><h2>请假申请单</h2></td>
+			
+				</tr>
+				<tr style="opacity: 0;">
+					<td colspan="14">11</td>
+				</tr>
+				<tr >
+					<td colspan="14" style="text-align: left;">
+						<!--錯誤信息提示  -->
+					<div class="alert alert-danger alert-dismissable" style="display:none;" role="alert">
+						错误信息:<button class="thisclose close" type="button">&times;</button>
+						<span class="error-mess"></span>
+					</div>
+					</td>
+				</tr>
+					<tr >
+					<td class="title"><label class="control-label">请假说明</label></td>
+					<td  colspan="13">
+						<textarea class="form-control shuoming" readonly="readonly" style="background-color:#fff;">
+员工因临时或突发情况无法到岗，未能提前请病假或事假的，则应用电话通知直接上级批准后，短信通知人事行政部，说明请假事由，并在上班后第一时间补办请假手续，如在2个工作日内未提交请假流程，超过2个工作日补流程无效，均视为旷工，扣除当日双倍工资。  
+1、年假：工作满一年以上每年可享受带薪年假，当年的年假使用期至次年3月1日止；未经用人单位批准，员工不得自行休假。
+2、事假：按照平均工作日扣发薪资（包含工资及各类补贴福利）；单次事假原则上不应超过3天，当年累计事假超过15天的视为主动放弃继续履行岗位职责的权利，特殊情况除外。  
+3、病假：两天及以上病假必须持工作地二级甲等以上医院相关病假证明单或就医记录证明，否则无法享受病假工资；单次病假超过5天，应当持有工作所在地三级甲等医院提供的病假证明单。原则上当年累计病假超过15天应视为不具备继续履行岗位职责身体条件，特殊情况除外。  
+5、产假及哺乳假：按国家及地方法律法规执行，包含休息日与法定节假日；  
+6、陪产假：泛微正式男性员工在工作期间配偶生育的，可凭子女出生证明，享受十个自然日陪产假。  
+7、丧假：直系亲属：配偶、子女、父母可享受三天，岳父母、祖父母、外祖父母可享受一天
+						</textarea>
+					</td>
+				</tr>
+				<tr >
+					<td class="title"><label class="control-label">标题</label></td>
+					<td  colspan="6"><input type="text" class="form-control inpu" name="proId.processName"/></td>
+					
+					<td class="title"><span >紧急程度</span></td>
+					<td colspan="6">
+						<select class="form-control inpu" name="proId.deeply">
+							<option value="22">正常</option>
+							<option value="23">重要</option>
+							<option value="24">紧急</option>
+						</select>
+					</td>
+					
+				</tr>
+				<tr >
+					<td class="title" ><label class="control-label">申请人</label></td>
+					<td  colspan="6"><input type="text" class="form-control inpu"
+					readonly="readonly" style="background-color:#fff;" value="罗密欧"/></td>
+					<td class="title" ><label class="control-label">请假类型</label></td>
+					<td colspan="6">
+						<select class="form-control inpu" name="typeId">
+							<option value="37">年假</option>
+							<option value="38">事假</option>
+							<option value="39">病假</option>
+							<option value="41">产假及哺乳假</option>
+							<option value="42">陪产假</option>
+							<option value="43">丧假</option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr >
+					<td class="title" ><label class="control-label">开始日期</label></td>
+					<td  colspan="6"><input type="text" class="form-control inpu holistart"  name="proId.startTime"/></td>
+					<td class="title" ><label class="control-label">结束日期</label></td>
+					<td  colspan="6"><input type="text" class="form-control inpu holiend" name="proId.endTime"/></td>
+				</tr>
+					<tr >
+					<td class="title" ><label class="control-label">请假天数</label></td>
+					<td  colspan="6"><input type="text" class="form-control inpu days" name="leaveDays"
+					readonly="readonly" style="background-color:#fff;"/></td>
+					<td class="title" ><label class="control-label">审核人员</label></td>
+					<td  colspan="6"><input name="nameuser" type="text" id="recive_list"
+								class="form-control " readonly="readonly" style="background-color:#fff;"/>
+							<div class="reciver">
+								<span class="label label-success glyphicon glyphicon-plus"
+									data-toggle="modal" data-target="#myModal">通讯录</span>
+							</div>
+					</td>
+				</tr>
+				
+				<tr >
+					<td class="title" ><label class="control-label">相关资料</label></td>
+					<td  colspan="6">
+						<div class="btn btn-default"style="position: relative; overflow: hidden;width: 100%;
+    							margin-top: -6px;">
+							<i class="glyphicon glyphicon-open"></i> 上传资料
+							<input type="file" name="filePath" style="opacity: 0; position: absolute;
+								 top: 12px; right: 0; " class='inpu'>
+						</div>
+					</td>
+					<td class="title" ><label class="control-label">请假原因</label></td>
+					<td  colspan="6"><textarea class="form-control text"  name="proId.processDescribe"></textarea></td>
+				</tr>
+				<tr >
+
+					<td colspan="14" style="text-align: right;" >
+					<input   type="text" class="day" name="proId.procseeDays" hidden="hidden"/>
+					<input   type="text" value="请假申请" name="val" hidden="hidden"/>
+						<input class="btn btn-primary" id="save" type="submit" value="保存" />
+						<input class="btn btn-default" id="cancel" type="button" value="取消"
+						onclick="window.history.back();" />
+					</td>
+					
+				</tr>
+				</table>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+
+	$(function(){
+		$(".days").focus(function(){
+			var $star=new Date($(".holistart").val());
+			var $end=new Date($(".holiend").val());
+			tt=$end.getTime()-$star.getTime();
+			$(".days").val(Math.ceil(tt/ (24*60*60*1000)));
+			$(".day").val(Math.ceil(tt/ (24*60*60*1000)));
+		});
+	})
+
+//表单提交前执行的onsubmit()方法；返回false时，执行相应的提示信息；返回true就提交表单到后台校验与执行
+function check() {
+	console.log("开始进入了");
+	//提示框可能在提交之前是block状态，所以在这之前要设置成none
+	$('.alert-danger').css('display', 'none');
+	var isRight = 1;
+	$('.form-control').each(function(index) {
+		// 如果在这些input框中，判断是否能够为空
+		if ($(this).val() == "") {
+			if($(this).hasClass("cha")){
+				return true;
+			}
+			// 排除哪些字段是可以为空的，在这里排除
+			/* if (index == 5||index == 6) {
+				return true;
+			}  */
+			
+			// 获取到input框的兄弟的文本信息，并对应提醒；
+			console.log(index);
+			var errorMess = "红色提示框不能为空!";
+			// 对齐设置错误信息提醒；红色边框
+			$(this).parent().addClass("has-error has-feedback");
+			$('.alert-danger').css('display', 'block');
+			// 提示框的错误信息显示
+			$('.error-mess').text(errorMess);
+			
+			isRight = 0;
+			return false;
+			
+		} else {
+			return true;
+		}
+	});
+	
+	if (isRight == 0) {
+		//modalShow(0);
+		 return false;
+	} else if (isRight == 1) {
+		//modalShow(1);
+		 return true;
+	}
+//	return false;
+}
+</script>
+<style>
+ .table-r{
+ overflow: scroll;
+ height:245px;
+ }
+</style>
+<!-- 接收人弹窗-->
+				<div class="modal fade " id="myModal" tabindex="-1">
+
+					<!--第二步，窗口声明-->
+					<div class="modal-dialog modal-lg ">
+						<!--第三步、内容区的声明-->
+						<div class="modal-content" style="background: #F9F9F9;">
+							<div class="modal-1">
+
+								<div class="modal-2">
+
+									<div class="modal-header" style="margin:10px;margin-top: -20px;">
+										<button class="close" data-dismiss="modal" style="display: block;margin: -52px -78px 0 0;;border-radius: 60%;">
+											<span class="glyphicon glyphicon-remove-circle"style="color:white;font-size: 30px;" ></span>
+										</button>
+										<div class="row">
+											<div class="col-xs-12" style="height:30px;margin:10px 0px;">
+
+												<h4 style="float:left;">
+                      			<a class="btn btn-success glyphicon glyphicon-plus btn-sm"  href="##" onclick="addvalue()"> 新增接收人</a>
+                      			<a class="btn btn-success glyphicon glyphicon-plus btn-sm"  href="##" onclick="addvalue2()"> 
+                      				追加接收人</a>
+                  			</h4>
+
+												<div class="input-group">
+													<input type="text" class="form-control input-sm pull-right cha" placeholder="查找..." />
+													<div class="input-group-btn chazhao" style="top:-1px;">
+														<a class="btn btn-sm btn-default glyphicon glyphicon-search" style="height: 30px;" href="##"></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-body thistable" style="margin:10px;">
+									
+									<div class="table-r">
+										<table class="table  table-hover  container-fluid ">
+										<thead>
+											<tr class="row">
+												<th class=" col-xs-1">
+													<span class="labels"  style="display:none;"><label><input id="checkedAll" type="checkbox"><i>✓</i></label></span>
+												</th>
+												<th class=" col-xs-1">
+													<span class="labels"  style="display:block;"></span>
+												</th>
+												<th class=" col-xs-2 b">部门</th>
+												<th class=" col-xs-2 b">真实姓名 </th>
+												<th class="col-xs-2 b">用户名</th>
+												<th class="col-xs-2 b">职位</th>
+												<th class=" col-xs-2">电话</th>
+											</tr>
+										</thead>
+										<tbody>
+																						<tr class="row">
+												<td class=" col-xs-1">
+													<span class="labels"><label><input name="id" type="checkbox"><i>✓</i></label></span>
+												</td>
+												<td class=" col-xs-1">
+													<span class="imgs center-block">
+														<img style="width: 30px;height: 30px;"
+															class="profile-user-img img-responsive img-circle"
+															src="/image//647cbde6-3fba-4d8c-a50f-1a07f9bee417.jpg" />
+															</span>
+												</td>
+												<td class="col-xs-2">总经办</td>
+												<td class=" col-xs-2">小明 </td>
+												<td class="col-xs-2 na">罗密欧</td>
+												<td class=" col-xs-2">超级管理员</td>
+												<td class=" col-xs-2">13272143450</td>
+
+											</tr>
+											<tr class="row">
+												<td class=" col-xs-1">
+													<span class="labels"><label><input name="id" type="checkbox"><i>✓</i></label></span>
+												</td>
+												<td class=" col-xs-1">
+													<span class="imgs center-block">
+														<img style="width: 30px;height: 30px;"
+															class="profile-user-img img-responsive img-circle"
+															src="/image/handsome.JPG" />
+															</span>
+												</td>
+												<td class="col-xs-2">总经办</td>
+												<td class=" col-xs-2">小梅 </td>
+												<td class="col-xs-2 na">朱丽叶</td>
+												<td class=" col-xs-2">CEO</td>
+												<td class=" col-xs-2">13203318185</td>
+
+											</tr>
+											<tr class="row">
+												<td class=" col-xs-1">
+													<span class="labels"><label><input name="id" type="checkbox"><i>✓</i></label></span>
+												</td>
+												<td class=" col-xs-1">
+													<span class="imgs center-block">
+														<img style="width: 30px;height: 30px;"
+															class="profile-user-img img-responsive img-circle"
+															src="/image/eightman.jpeg" />
+															</span>
+												</td>
+												<td class="col-xs-2">总经办</td>
+												<td class=" col-xs-2">芳芳 </td>
+												<td class="col-xs-2 na">伊丽莎白</td>
+												<td class=" col-xs-2">总经理</td>
+												<td class=" col-xs-2">18683688154</td>
+
+											</tr>
+											<tr class="row">
+												<td class=" col-xs-1">
+													<span class="labels"><label><input name="id" type="checkbox"><i>✓</i></label></span>
+												</td>
+												<td class=" col-xs-1">
+													<span class="imgs center-block">
+														<img style="width: 30px;height: 30px;"
+															class="profile-user-img img-responsive img-circle"
+															src="/image/fiveman.jpeg" />
+															</span>
+												</td>
+												<td class="col-xs-2">研发部</td>
+												<td class=" col-xs-2">李明 </td>
+												<td class="col-xs-2 na">小李父斯基</td>
+												<td class=" col-xs-2">研发部经理</td>
+												<td class=" col-xs-2">18173328888</td>
+
+											</tr>
+											<tr class="row">
+												<td class=" col-xs-1">
+													<span class="labels"><label><input name="id" type="checkbox"><i>✓</i></label></span>
+												</td>
+												<td class=" col-xs-1">
+													<span class="imgs center-block">
+														<img style="width: 30px;height: 30px;"
+															class="profile-user-img img-responsive img-circle"
+															src="/image/fourman.jpeg" />
+															</span>
+												</td>
+												<td class="col-xs-2">财务部</td>
+												<td class=" col-xs-2">小罗 </td>
+												<td class="col-xs-2 na">soli</td>
+												<td class=" col-xs-2">财务部经理</td>
+												<td class=" col-xs-2">18173328976</td>
+
+											</tr>
+											<tr class="row">
+												<td class=" col-xs-1">
+													<span class="labels"><label><input name="id" type="checkbox"><i>✓</i></label></span>
+												</td>
+												<td class=" col-xs-1">
+													<span class="imgs center-block">
+														<img style="width: 30px;height: 30px;"
+															class="profile-user-img img-responsive img-circle"
+															src="/image/nineman.jpeg" />
+															</span>
+												</td>
+												<td class="col-xs-2">市场部</td>
+												<td class=" col-xs-2">小红 </td>
+												<td class="col-xs-2 na">红之花</td>
+												<td class=" col-xs-2">市场部经理</td>
+												<td class=" col-xs-2">18868688866</td>
+
+											</tr>
+											<tr class="row">
+												<td class=" col-xs-1">
+													<span class="labels"><label><input name="id" type="checkbox"><i>✓</i></label></span>
+												</td>
+												<td class=" col-xs-1">
+													<span class="imgs center-block">
+														<img style="width: 30px;height: 30px;"
+															class="profile-user-img img-responsive img-circle"
+															src="/image/oneman.jpeg" />
+															</span>
+												</td>
+												<td class="col-xs-2">人事部</td>
+												<td class=" col-xs-2">小喻 </td>
+												<td class="col-xs-2 na">甄姬</td>
+												<td class=" col-xs-2">人事部经理</td>
+												<td class=" col-xs-2">13117336953</td>
+
+											</tr>
+											<tr class="row">
+												<td class=" col-xs-1">
+													<span class="labels"><label><input name="id" type="checkbox"><i>✓</i></label></span>
+												</td>
+												<td class=" col-xs-1">
+													<span class="imgs center-block">
+														<img style="width: 30px;height: 30px;"
+															class="profile-user-img img-responsive img-circle"
+															src="/image/sevenman.jpeg" />
+															</span>
+												</td>
+												<td class="col-xs-2">研发部</td>
+												<td class=" col-xs-2">小费 </td>
+												<td class="col-xs-2 na">甄姬2</td>
+												<td class=" col-xs-2">程序员</td>
+												<td class=" col-xs-2">13117336954</td>
+
+											</tr>
+											<tr class="row">
+												<td class=" col-xs-1">
+													<span class="labels"><label><input name="id" type="checkbox"><i>✓</i></label></span>
+												</td>
+												<td class=" col-xs-1">
+													<span class="imgs center-block">
+														<img style="width: 30px;height: 30px;"
+															class="profile-user-img img-responsive img-circle"
+															src="/image/twoman.jpeg" />
+															</span>
+												</td>
+												<td class="col-xs-2">研发部</td>
+												<td class=" col-xs-2">小花 </td>
+												<td class="col-xs-2 na">甄嬛</td>
+												<td class=" col-xs-2">初级工程师</td>
+												<td class=" col-xs-2">13034507214</td>
+
+											</tr>
+											<tr class="row">
+												<td class=" col-xs-1">
+													<span class="labels"><label><input name="id" type="checkbox"><i>✓</i></label></span>
+												</td>
+												<td class=" col-xs-1">
+													<span class="imgs center-block">
+														<img style="width: 30px;height: 30px;"
+															class="profile-user-img img-responsive img-circle"
+															src="/image/handsome.JPG" />
+															</span>
+												</td>
+												<td class="col-xs-2">研发部</td>
+												<td class=" col-xs-2">花红 </td>
+												<td class="col-xs-2 na">无双</td>
+												<td class=" col-xs-2">中级工程师</td>
+												<td class=" col-xs-2">13117336954</td>
+
+											</tr>
+											</tbody>
+										</table>
+										</div>
+
+<div class="box-footer no-padding" style="margin-top: -20px;">
+	<div style="padding: 5px;">
+		<div id="page"
+			style="background: #fff; border: 0px; margin-top: 0px; padding: 2px; height: 25px;">
+			<div style="width: 40%; float: left;">
+				<div class="pageInfo" style="margin-left: 5px;">
+					共<span>31</span>条 | 每页<span>10</span>条
+					| 共<span>4</span>页
+				</div>
+			</div>
+			<div style="width: 60%; float: left;">
+				<div class="pageOperation">
+				<!--判断是否是第一页  -->
+					<a class="btn btn-sm btn-default no-padding tablefirst" disabled="disabled"	style="width: 30px; height: 20px;"> <span
+						class="glyphicon glyphicon-backward"></span></a> 
+					<a class="btn btn-sm btn-default no-padding tableup"  disabled="disabled" 	style="width: 30px; height: 20px;"> <span
+						class="glyphicon glyphicon-triangle-left"></span></a> 
+				<a disabled="disabled" class="btn btn-default no-padding" style="width: 30px; height: 20px;">
+						1
+				</a>
+				<!--判断是否是最后一页  -->
+					<a class="btn btn-sm btn-default no-padding tabledown" style="width: 30px; height: 20px;"> <span
+						class="glyphicon glyphicon-triangle-right"></span></a> 
+					<a class="btn btn-sm btn-default no-padding tablelast" style="width: 30px; height: 20px;"> <span
+						class="glyphicon glyphicon-forward"></span></a> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+		/* 分页插件按钮的点击事件 */
+		/* url是从后台接收过来的链接，sort是记录排序规则 */
+		$('.tablefirst').on('click',function(){
+			 if(true==false){
+				 $('.thistable').load('names?page=0');
+			 }
+		});
+		$('.tableup').on('click',function(){
+			 if(true==false){
+				 $('.thistable').load('names?page=-1');
+			 }
+		});
+		$('.tabledown').on('click',function(){
+			if(false==false){
+				$('.thistable').load('names?page=1');
+			 }
+		});
+		$('.tablelast').on('click',function(){
+			if(false==false){
+				$('.thistable').load('names?page=3');
+			 }
+			
+		});
+		
+		/*类型、状态、时间的排序  */
+		$('.thistype').on('click', function() {
+			if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+				$('.thistable').load('names?type=0&icon=glyphicon-triangle-top');
+			} else {
+				$('.thistable').load('names?type=1&icon=glyphicon-triangle-bottom');
+			}
+		});
+		$('.thisstatus').on('click', function() {
+			if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+				$('.thistable').load('names?status=0&icon=glyphicon-triangle-top');
+			} else {
+				$('.thistable').load('names?status=1&icon=glyphicon-triangle-bottom');
+			}
+		});
+		$('.thistime').on('click', function() {
+			if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+				$('.thistable').load('names?time=0&icon=glyphicon-triangle-top');
+			} else {
+				$('.thistable').load('names?time=1&icon=glyphicon-triangle-bottom');
+			}
+		});
+		$('.thisvisit').on('click', function() {
+			if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+				$('.thistable').load('names?visitnum=0&icon=glyphicon-triangle-top');
+			} else {
+				$('.thistable').load('names?visitnum=1&icon=glyphicon-triangle-bottom');
+			}
+		});
+		/* 查找 */
+		$('.baseKetsubmit').on('click', function() {
+			var baseKey = $('.baseKey').val();
+			console.log(baseKey);
+			$('.thistable').load('names?baseKey='+baseKey+'');
+		});
+</script>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2 class="mi" style="display:none;"></h2>
+<script>
+$(function(){
+	
+	/* 分页插件按钮的点击事件 */
+	
+	$('.baseKetsubmit').on('click',function(){
+		var baseKey=$('.baseKey').val();
+		$('#myModal .thistable').load('names?baseKey=baseKey');
+	});
+	$(".chazhao").click(function() {
+		var $qufen=$(".mi").text();
+		var con = $(".cha").val();
+		$("#myModal .thistable").load("names",{title:con,qufen:$qufen});
+	});
+});
+function addvalue(){
+	
+	var id_array=new Array();
+	$('input[name="id"]:checked').each(function(){
+	
+		var $name=$(this).parents(".col-xs-1").siblings(".na").text();
+		console.log($name);
+		id_array.push($name);//向数组中添加元素
+		var idstr=id_array.join(';');//将数组元素连接起来以构建一个字符串
+		$("#recive_list").val(idstr);
+		$(".recive_list").val(idstr);
+		$(".recive_list").change();
+	})
+	
+	$(".fade").css("display","none");
+	
+}
+/*追加到联系人*/
+function addvalue2(){
+	
+	var id_array=new Array();
+	
+	var  idstr=null;
+
+	$('input[name="id"]:checked').each(function(){
+		var $name=$(this).parents(".col-xs-1").siblings(".na").text();
+		id_array.push($name);
+		idstr=id_array.join(';');
+	})
+	
+	var org=$("#recive_list").val();
+	$("#recive_list").val(org+';'+idstr);	
+	$(".fade").css("display","none");
+	
+}
+</script><script type="text/javascript" src="js/common/data.js"></script>
+<script type="text/javascript" src="plugins/My97DatePicker/WdatePicker.js"></script>

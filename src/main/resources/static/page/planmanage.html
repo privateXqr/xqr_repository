@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common/box.css" />
+<link rel="stylesheet" type="text/css" href="css/common/checkbox.css" />
+<link href="css/common/checkbox.css" rel="stylesheet"/>
+	<link href="css/common/box.css" rel="stylesheet" />
+	<link href="css/common/iconfont.css"  rel="stylesheet"/>
+	
+	<script type="text/javascript" src="easyui/jquery.min.js" ></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="js/iconfont.js"></script>
+<script type="text/javascript" src="plugins/My97DatePicker/WdatePicker.js"></script>
+	
+	<style type="text/css">
+			a {
+				color: black;
+			}
+			
+			a:hover {
+				text-decoration: none;
+			}
+			.box-body{
+				cursor: pointer;
+			}
+			.table{
+			padding: 0 0 0 0 !important;
+			}
+			.table tr{
+				background-color: white !important;
+				border-bottom: 1px solid dashed !important;
+			}
+			.table .table-header{
+				border-bottom: 1px solid dashed !important;
+			}
+			.box-header b:hover{
+				background-color: #E7E7E7;
+			}
+			.box-header{
+				border-bottom: 1px solid dashed !important;
+			}
+			 .box-header a{
+			 	padding: 5px;
+			 }
+			 .box-body{
+				padding: 0 0 0 0 !important;
+				cursor: pointer;
+			}
+			.active{
+				color: #000000;
+				
+			}
+			.box{
+      margin-top: 10px !important;
+  }
+		</style>
+		
+	</head>
+
+<body style="background-color: #ecf0f5;">
+			<div class="">
+				<div class="row" style="padding-top:10px">
+					<div class="col-md-2">
+						<h1 style="font-size:24px;margin: 0;" class="">计划管理</h1>
+					</div>
+					<div class="col-md-10 text-right">
+						<a href="##"><span class="glyphicon glyphicon-home"></span> 首页</a>
+						>
+						<a disabled="disabled">计划管理</a>
+					</div>
+				</div>
+				
+				<div class="row">
+			<div class="col-md-12 thistable">
+<div class="bgc-w box box-primary">
+					<div class="box-header">
+						<a class="label label-success" href="planadd.html"><span class="glyphicon glyphicon-plus"></span>
+							新增
+						</a>
+						
+						<div class="input-group" style="width:150px;float:right;top:-5px">
+											<input type="text" class="form-control input-sm pull-right baseKey" value="" placeholder="查找..." />
+											<div class="input-group-btn" style="top:-1px;">
+												<a class="btn btn-sm btn-default glyphicon glyphicon-search btn-change baseKetsubmit"></a>
+											</div>
+										</div>
+
+					</div>
+					<div class="box-body">
+				<div class="table" style="padding-top: 15px;">
+						<div class="table-responsive">
+										<table class="table table-hover table-striped">
+											<tr class="table-header">
+												<th scope="col" class="paixu thistype" style="color:blue;">类型
+									</th>
+												<th scope="col">标题</th>
+												<th scope="col"><span class="paixu thistime" style="color:blue;">发布时间
+						</span></th>
+												<th scope="col">发布人</th>
+												<th scope="col">部门</th>
+												<th scope="col"><span class="paixu thisstatus" style="color:blue;">状态
+						</span></th>
+												<th scope="col">附件</th>
+												<th scope="col">操作</th>
+											</tr>
+											
+													<tr>
+														<td>
+																
+																
+																月计划
+														</td>
+														
+														<td >
+															【报表】统计报表3
+														</td>
+														<td>
+															2019-1-13 2:11:02
+														</td>
+														<td>
+															Jack
+														</td>
+														<td>
+															研发部
+														</td>
+														<td>
+																<span class="label label-warning">未完成</span>
+																
+																
+														</td>
+														<td>
+														</td>
+														<td>
+															<a  href="planedit.html?pid=59" class="label xiugai"><span class="glyphicon glyphicon-edit"></span> 修改</a>
+															<a onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};" href="plandelete?pid=59" class="label shanchu"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+														</td>
+											       </tr>
+													<tr>
+														<td>
+																
+																周计划
+																
+														</td>
+														
+														<td >
+															【报表】统计报表2
+														</td>
+														<td>
+															2019-1-13 2:09:38
+														</td>
+														<td>
+															Jack
+														</td>
+														<td>
+															研发部
+														</td>
+														<td>
+																<span class="label label-warning">未完成</span>
+																
+																
+														</td>
+														<td>
+														</td>
+														<td>
+															<a  href="planedit.html?pid=58" class="label xiugai"><span class="glyphicon glyphicon-edit"></span> 修改</a>
+															<a onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};" href="plandelete?pid=58" class="label shanchu"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+														</td>
+											       </tr>
+													<tr>
+														<td>
+																日计划
+																
+																
+														</td>
+														
+														<td >
+															【报表1】完成报表1
+														</td>
+														<td>
+															2019-1-13 2:04:33
+														</td>
+														<td>
+															Jack
+														</td>
+														<td>
+															研发部
+														</td>
+														<td>
+																
+																<span class="label label-success">已完成</span>
+																
+														</td>
+														<td>
+																<a style="color:#337ab7;"href="down?paid=94">
+																<span class="glyphicon glyphicon-paperclip"></span>
+														</td>
+														<td>
+															<a  href="planedit.html?pid=57" class="label xiugai"><span class="glyphicon glyphicon-edit"></span> 修改</a>
+															<a onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};" href="plandelete?pid=57" class="label shanchu"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+														</td>
+											       </tr>
+											
+										</table>
+									</div>
+								</div>
+								</div>
+				
+								
+<div class="box-footer no-padding" style="margin-top: -20px;">
+	<div style="padding: 5px;">
+		<div id="page"
+			style="background: #fff; border: 0px; margin-top: 0px; padding: 2px; height: 25px;">
+			<div style="width: 40%; float: left;">
+				<div class="pageInfo" style="margin-left: 5px;">
+					共<span>3</span>条 | 每页<span>10</span>条
+					| 共<span>1</span>页
+				</div>
+			</div>
+			<div style="width: 60%; float: left;">
+				<div class="pageOperation">
+				<!--判断是否是第一页  -->
+					<a class="btn btn-sm btn-default no-padding tablefirst" disabled="disabled"	style="width: 30px; height: 20px;"> <span
+						class="glyphicon glyphicon-backward"></span></a> 
+					<a class="btn btn-sm btn-default no-padding tableup"  disabled="disabled" 	style="width: 30px; height: 20px;"> <span
+						class="glyphicon glyphicon-triangle-left"></span></a> 
+				<a disabled="disabled" class="btn btn-default no-padding" style="width: 30px; height: 20px;">
+						1
+				</a>
+				<!--判断是否是最后一页  -->
+					<a class="btn btn-sm btn-default no-padding tabledown"  disabled="disabled" style="width: 30px; height: 20px;"> <span
+						class="glyphicon glyphicon-triangle-right"></span></a> 
+					<a class="btn btn-sm btn-default no-padding tablelast" disabled="disabled" style="width: 30px; height: 20px;"> <span
+						class="glyphicon glyphicon-forward"></span></a> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+		/* 分页插件按钮的点击事件 */
+		/* url是从后台接收过来的链接，sort是记录排序规则 */
+		$('.tablefirst').on('click',function(){
+			 if(true==false){
+				 $('.thistable').load('planviewtable?page=0');
+			 }
+		});
+		$('.tableup').on('click',function(){
+			 if(true==false){
+				 $('.thistable').load('planviewtable?page=-1');
+			 }
+		});
+		$('.tabledown').on('click',function(){
+			if(true==false){
+				$('.thistable').load('planviewtable?page=1');
+			 }
+		});
+		$('.tablelast').on('click',function(){
+			if(true==false){
+				$('.thistable').load('planviewtable?page=0');
+			 }
+			
+		});
+		
+		/*类型、状态、时间的排序  */
+		$('.thistype').on('click', function() {
+			if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+				$('.thistable').load('planviewtable?type=0&icon=glyphicon-triangle-top');
+			} else {
+				$('.thistable').load('planviewtable?type=1&icon=glyphicon-triangle-bottom');
+			}
+		});
+		$('.thisstatus').on('click', function() {
+			if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+				$('.thistable').load('planviewtable?status=0&icon=glyphicon-triangle-top');
+			} else {
+				$('.thistable').load('planviewtable?status=1&icon=glyphicon-triangle-bottom');
+			}
+		});
+		$('.thistime').on('click', function() {
+			if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+				$('.thistable').load('planviewtable?time=0&icon=glyphicon-triangle-top');
+			} else {
+				$('.thistable').load('planviewtable?time=1&icon=glyphicon-triangle-bottom');
+			}
+		});
+		$('.thisvisit').on('click', function() {
+			if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+				$('.thistable').load('planviewtable?visitnum=0&icon=glyphicon-triangle-top');
+			} else {
+				$('.thistable').load('planviewtable?visitnum=1&icon=glyphicon-triangle-bottom');
+			}
+		});
+		/* 查找 */
+		$('.baseKetsubmit').on('click', function() {
+			var baseKey = $('.baseKey').val();
+			console.log(baseKey);
+			$('.thistable').load('planviewtable?baseKey='+baseKey+'');
+		});
+</script>								
+							</div>			</div>
+								</div>
+							</div>
+					
+	</body>
+	
+	
+	
+
+</html>

@@ -1,0 +1,457 @@
+
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common/box.css" />
+<link rel="stylesheet" type="text/css" href="css/common/checkbox.css" />
+<style type="text/css">
+a {
+	color: black;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.bgc-w {
+	background-color: #fff;
+}
+</style>
+
+	<div class="row" style="padding-top: 10px;">
+		<div class="col-md-2">
+			<h1 style="font-size: 24px; margin: 0;" class="">状态管理</h1>
+		</div>
+		<div class="col-md-10 text-right">
+			<a href="index"><span class="glyphicon glyphicon-home"></span> 首页</a> >
+			<a disabled="disabled">状态管理</a>
+		</div>
+	</div>
+
+	<div class="row" style="padding-top: 15px;">
+		<div class="col-md-12">
+			<!--id="container"-->
+			<div class="bgc-w box box-primary">
+				<!--盒子头-->
+				<div class="box-header">
+					<h3 class="box-title">
+						<a href="statusadd.html" class="label label-success" style="padding: 5px;">
+							<span class="glyphicon glyphicon-plus"></span> 新增
+						</a>
+						<a href="" class="label label-success" style="padding: 5px;margin-left:5px;">
+							<span class="glyphicon glyphicon-refresh"></span> 刷新
+						</a>
+					</h3>
+					<div class="box-tools">
+						<div class="input-group" style="width: 150px;">
+							<input type="text" class="form-control input-sm baseKey"
+								placeholder="按名称/模块查找" />
+							<div class="input-group-btn">
+								<a class="btn btn-sm btn-default baseKeySubmit"><span
+									class="glyphicon glyphicon-search"></span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--盒子身体-->
+				<div class="box-body no-padding thistable">
+
+<div class="table-responsive">
+	<table class="table table-hover">
+		<tr>
+			<th scope="col">模块</th>
+			<th scope="col">状态</th>
+			<th scope="col">排序值</th>
+			<th scope="col">颜色</th>
+			<th scope="col">操作</th>
+		</tr>
+				<tr>
+			<td><span>aoa_mailnumber</span></td>
+			<td><span>有效</span></td>
+			<td><span>0</span></td>
+			<td><span>label-success</span></td>
+			<td><a href="statusedit.html?statusid=1"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=1" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_mailnumber</span></td>
+			<td><span>无效</span></td>
+			<td><span>1</span></td>
+			<td><span>label-default</span></td>
+			<td><a href="statusedit.html?statusid=2"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=2" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_task_list</span></td>
+			<td><span>新任务</span></td>
+			<td><span>0</span></td>
+			<td><span>label-warning</span></td>
+			<td><a href="statusedit.html?statusid=3"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=3" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_task_list</span></td>
+			<td><span>已接收</span></td>
+			<td><span>1</span></td>
+			<td><span>label-info</span></td>
+			<td><a href="statusedit.html?statusid=4"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=4" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_task_list</span></td>
+			<td><span>进行中</span></td>
+			<td><span>2</span></td>
+			<td><span>label-primary</span></td>
+			<td><a href="statusedit.html?statusid=5"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=5" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_task_list</span></td>
+			<td><span>已提交</span></td>
+			<td><span>3</span></td>
+			<td><span>label-danger</span></td>
+			<td><a href="statusedit.html?statusid=6"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=6" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_task_list</span></td>
+			<td><span>已完成</span></td>
+			<td><span>4</span></td>
+			<td><span>label-success</span></td>
+			<td><a href="statusedit.html?statusid=7"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=7" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_note_list</span></td>
+			<td><span>一般</span></td>
+			<td><span>0</span></td>
+			<td><span>label-info</span></td>
+			<td><a href="statusedit.html?statusid=8"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=8" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_note_list</span></td>
+			<td><span>重要</span></td>
+			<td><span>1</span></td>
+			<td><span>label-danger</span></td>
+			<td><a href="statusedit.html?statusid=9"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=9" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_attends_list</span></td>
+			<td><span>正常</span></td>
+			<td><span>0</span></td>
+			<td><span>label-info</span></td>
+			<td><a href="statusedit.html?statusid=10"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=10" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_attends_list</span></td>
+			<td><span>迟到</span></td>
+			<td><span>1</span></td>
+			<td><span>label-warning</span></td>
+			<td><a href="statusedit.html?statusid=11"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=11" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_attends_list</span></td>
+			<td><span>早退</span></td>
+			<td><span>2</span></td>
+			<td><span>label-danger</span></td>
+			<td><a href="statusedit.html?statusid=12"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=12" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>a</span></td>
+			<td><span>旷工</span></td>
+			<td><span>3</span></td>
+			<td><span>label-danger</span></td>
+			<td><a href="statusedit.html?statusid=13"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=13" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>inform</span></td>
+			<td><span>一般</span></td>
+			<td><span>0</span></td>
+			<td><span>label-primary</span></td>
+			<td><a href="statusedit.html?statusid=14"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=14" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>inform</span></td>
+			<td><span>重要</span></td>
+			<td><span>1</span></td>
+			<td><span>label-warning</span></td>
+			<td><a href="statusedit.html?statusid=15"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=15" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>inform</span></td>
+			<td><span>紧急</span></td>
+			<td><span>2</span></td>
+			<td><span>label-danger</span></td>
+			<td><a href="statusedit.html?statusid=16"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=16" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_plan_list</span></td>
+			<td><span>未完成</span></td>
+			<td><span>0</span></td>
+			<td><span>label-warning</span></td>
+			<td><a href="statusedit.html?statusid=17"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=17" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_plan_list</span></td>
+			<td><span>已完成</span></td>
+			<td><span>1</span></td>
+			<td><span>label-success</span></td>
+			<td><a href="statusedit.html?statusid=18"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=18" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_plan_list</span></td>
+			<td><span>已取消</span></td>
+			<td><span>2</span></td>
+			<td><span>label-info</span></td>
+			<td><a href="statusedit.html?statusid=19"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=19" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_in_mail_list</span></td>
+			<td><span>一般</span></td>
+			<td><span>0</span></td>
+			<td><span>label-primary</span></td>
+			<td><a href="statusedit.html?statusid=20"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=20" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_in_mail_list</span></td>
+			<td><span>重要</span></td>
+			<td><span>1</span></td>
+			<td><span>label-warning</span></td>
+			<td><a href="statusedit.html?statusid=21"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=21" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_in_mail_list</span></td>
+			<td><span>紧急</span></td>
+			<td><span>2</span></td>
+			<td><span>label-danger</span></td>
+			<td><a href="statusedit.html?statusid=22"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=22" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_process_list</span></td>
+			<td><span>未处理</span></td>
+			<td><span>0</span></td>
+			<td><span>label-info</span></td>
+			<td><a href="statusedit.html?statusid=23"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=23" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_process_list</span></td>
+			<td><span>处理中</span></td>
+			<td><span>1</span></td>
+			<td><span>label-primary</span></td>
+			<td><a href="statusedit.html?statusid=24"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=24" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_process_list</span></td>
+			<td><span>已批准</span></td>
+			<td><span>2</span></td>
+			<td><span>label-success</span></td>
+			<td><a href="statusedit.html?statusid=25"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=25" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_process_list</span></td>
+			<td><span>未通过</span></td>
+			<td><span>3</span></td>
+			<td><span>label-danger</span></td>
+			<td><a href="statusedit.html?statusid=26"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=26" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_schedule_list</span></td>
+			<td><span>一般</span></td>
+			<td><span>0</span></td>
+			<td><span>label-primary</span></td>
+			<td><a href="statusedit.html?statusid=27"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=27" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_schedule_list</span></td>
+			<td><span>重要</span></td>
+			<td><span>1</span></td>
+			<td><span>label-warning</span></td>
+			<td><a href="statusedit.html?statusid=28"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=28" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+		<tr>
+			<td><span>aoa_schedule_list</span></td>
+			<td><span>紧急</span></td>
+			<td><span>2</span></td>
+			<td><span>label-danger</span></td>
+			<td><a href="statusedit.html?statusid=29"
+				class="label xiugai"><span class="glyphicon glyphicon-edit"></span>
+					修改</a> <a href="##" class="label xiugai"><span
+					class="glyphicon glyphicon-search"></span> 查看</a> <a
+				onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"
+				href="deletestatus?id=29" class="label shanchu"><span
+					class="glyphicon glyphicon-remove"></span> 删除</a></td>
+		</tr>
+	</table>
+</div>
+				</div>	
+				<!--盒子尾-->
+			</div>
+		</div>
+	</div>
+<script>
+	$('.baseKeySubmit').on('click',function(){
+		var name=$('.baseKey').val();
+		$('.thistable').load("statustable?name="+name);
+	});
+</script>

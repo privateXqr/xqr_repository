@@ -1,0 +1,332 @@
+
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common/box.css" />
+<link rel="stylesheet" type="text/css" href="css/common/checkbox.css" />
+<style type="text/css">
+a {
+	color: black;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.bgc-w {
+	background-color: #fff;
+}
+</style>
+
+	<div class="row" style="padding-top: 10px;">
+		<div class="col-md-2">
+			<h1 style="font-size: 24px; margin: 0;" class="">流程审核</h1>
+		</div>
+		<div class="col-md-10 text-right">
+			<a href="index"><span class="glyphicon glyphicon-home"></span> 首页</a> >
+			<a disabled="disabled">流程审核</a>
+		</div>
+	</div>
+
+	<div class="row" style="padding-top: 15px;">
+		<div class="col-md-12 thistable">
+			<!--id="container"-->
+<div class="bgc-w box box-primary">
+				<!--盒子头-->
+				<div class="box-header">
+					<h3 class="box-title">
+						<a href="" class="label label-success" style="padding: 5px;">
+							<span class="glyphicon glyphicon-refresh"></span> 刷新
+						</a> 
+					</h3>
+					<div class="box-tools">
+						<div class="input-group" style="width: 220px;">
+							<input type="text" class="form-control input-sm cha"
+								placeholder="标题，申请人，类型，状态查询" />
+							<div class="input-group-btn chazhao">
+								<a class="btn btn-sm btn-default"><span
+									class="glyphicon glyphicon-search"></span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+							<!--盒子身体-->
+				<div class="box-body no-padding">
+					<div class="table-responsive">
+						<table class="table table-hover">
+						<tr>
+							<th scope="col">类型</th>
+							<th scope="col">标题</th>
+							<th scope="col">申请人</th>
+							<th scope="col">申请时间</th>
+							<th scope="col">紧急程度</th>
+							<th scope="col">状态</th>
+							<th scope="col">操作</th>
+						</tr>
+												<tr>
+							
+							<td>请假申请</td>
+							<td><span>产假</span></td>
+							<td><span>Jack</span></td>
+							<td><span>2019-1-6 9:52:27</span></td>
+							<td><span>正常</span></td>
+							<td><span class="label label-info">未处理</span></td>
+							<td> <a href="audetail2.html" class="label sheding"><span
+									class="glyphicon glyphicon-zoom-in"></span> 审核</a> 
+								 <a href="holiserch.html" class="label xiugai"><span
+									class="glyphicon glyphicon-search"></span> 查看</a> 
+									</td>
+						</tr>
+						<tr>
+							
+							<td>请假申请</td>
+							<td><span>年假申请</span></td>
+							<td><span>Jack</span></td>
+							<td><span>2019-1-6 9:27:08</span></td>
+							<td><span>正常</span></td>
+							<td><span class="label label-info">未处理</span></td>
+							<td> <a href="audetail2.html" class="label sheding"><span
+									class="glyphicon glyphicon-zoom-in"></span> 审核</a> 
+								 <a href="holiserch.html" class="label xiugai"><span
+									class="glyphicon glyphicon-search"></span> 查看</a> 
+									</td>
+						</tr>
+						<tr>
+							
+							<td>转正申请</td>
+							<td><span>申请转正</span></td>
+							<td><span>测试小张</span></td>
+							<td><span>2019-1-6 8:56:20</span></td>
+							<td><span>正常</span></td>
+							<td><span class="label label-info">未处理</span></td>
+							<td> <a href="audetail2.html" class="label sheding"><span
+									class="glyphicon glyphicon-zoom-in"></span> 审核</a> 
+								 <a href="reguserch.html" class="label xiugai"><span
+									class="glyphicon glyphicon-search"></span> 查看</a> 
+									</td>
+						</tr>
+						<tr>
+							
+							<td>出差费用</td>
+							<td><span>岳阳出差费用报销</span></td>
+							<td><span>Jack</span></td>
+							<td><span>2019-1-5 23:48:11</span></td>
+							<td><span>正常</span></td>
+							<td><span class="label label-info">未处理</span></td>
+							<td> <a href="audetail2.html" class="label sheding"><span
+									class="glyphicon glyphicon-zoom-in"></span> 审核</a> 
+								 <a href="evemonserch.html" class="label xiugai"><span
+									class="glyphicon glyphicon-search"></span> 查看</a> 
+									</td>
+						</tr>
+						<tr>
+							
+							<td>离职申请</td>
+							<td><span>离职</span></td>
+							<td><span>测试小张</span></td>
+							<td><span>2019-1-6 10:24:10</span></td>
+							<td><span>正常</span></td>
+							<td><span class="label label-success">已批准</span></td>
+							<td> <a href="audetail.html" class="label sheding"><span
+									class="glyphicon glyphicon-zoom-in"></span> 审核</a> 
+								 <a href="resserch.html" class="label xiugai"><span
+									class="glyphicon glyphicon-search"></span> 查看</a> 
+								 <a href="sdelete?id=47" onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};" class="label shanchu">
+								 	<span class="glyphicon glyphicon-remove"></span> 删除</a>	
+									</td>
+						</tr>
+						<tr>
+							
+							<td>离职申请</td>
+							<td><span>离职申请</span></td>
+							<td><span>Jack</span></td>
+							<td><span>2019-1-6 10:22:26</span></td>
+							<td><span>正常</span></td>
+							<td><span class="label label-success">已批准</span></td>
+							<td> <a href="audetail.html" class="label sheding"><span
+									class="glyphicon glyphicon-zoom-in"></span> 审核</a> 
+								 <a href="resserch.html" class="label xiugai"><span
+									class="glyphicon glyphicon-search"></span> 查看</a> 
+								 <a href="sdelete?id=46" onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};" class="label shanchu">
+								 	<span class="glyphicon glyphicon-remove"></span> 删除</a>	
+									</td>
+						</tr>
+						<tr>
+							
+							<td>加班申请</td>
+							<td><span>周日加班</span></td>
+							<td><span>Jack</span></td>
+							<td><span>2019-1-6 0:32:24</span></td>
+							<td><span>正常</span></td>
+							<td><span class="label label-success">已批准</span></td>
+							<td> <a href="audetail.html" class="label sheding"><span
+									class="glyphicon glyphicon-zoom-in"></span> 审核</a> 
+								 <a href="overserch.html" class="label xiugai"><span
+									class="glyphicon glyphicon-search"></span> 查看</a> 
+								 <a href="sdelete?id=38" onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};" class="label shanchu">
+								 	<span class="glyphicon glyphicon-remove"></span> 删除</a>	
+									</td>
+						</tr>
+						<tr>
+							
+							<td>费用报销</td>
+							<td><span>的士费报销</span></td>
+							<td><span>Jack</span></td>
+							<td><span>2019-1-5 23:23:22</span></td>
+							<td><span>正常</span></td>
+							<td><span class="label label-success">已批准</span></td>
+							<td> <a href="audetail.html" class="label sheding"><span
+									class="glyphicon glyphicon-zoom-in"></span> 审核</a> 
+								 <a href="serch.html" class="label xiugai"><span
+									class="glyphicon glyphicon-search"></span> 查看</a> 
+								 <a href="sdelete?id=33" onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};" class="label shanchu">
+								 	<span class="glyphicon glyphicon-remove"></span> 删除</a>	
+									</td>
+						</tr>
+						<tr>
+							
+							<td>出差申请</td>
+							<td><span>到岳阳出差</span></td>
+							<td><span>Jack</span></td>
+							<td><span>2019-1-5 22:52:46</span></td>
+							<td><span>正常</span></td>
+							<td><span class="label label-success">已批准</span></td>
+							<td> <a href="audetail.html" class="label sheding"><span
+									class="glyphicon glyphicon-zoom-in"></span> 审核</a> 
+								 <a href="eveserach.html" class="label xiugai"><span
+									class="glyphicon glyphicon-search"></span> 查看</a> 
+								 <a href="sdelete?id=32" onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};" class="label shanchu">
+								 	<span class="glyphicon glyphicon-remove"></span> 删除</a>	
+									</td>
+						</tr>
+						<tr>
+							
+							<td>请假申请</td>
+							<td><span>年假</span></td>
+							<td><span>Jack</span></td>
+							<td><span>2019-1-6 9:51:40</span></td>
+							<td><span>正常</span></td>
+							<td><span class="label label-danger">未通过</span></td>
+							<td> <a href="audetail.html" class="label sheding"><span
+									class="glyphicon glyphicon-zoom-in"></span> 审核</a> 
+								 <a href="particular?id=43&typename=请假申请" class="label xiugai"><span
+									class="glyphicon glyphicon-search"></span> 查看</a> 
+								 <a href="sdelete?id=43" onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};" class="label shanchu">
+								 	<span class="glyphicon glyphicon-remove"></span> 删除</a>	
+									</td>
+						</tr>
+					</table>
+					</div>
+				</div>
+				<!--盒子尾-->
+<div class="box-footer no-padding" style="margin-top: -20px;">
+	<div style="padding: 5px;">
+		<div id="page"
+			style="background: #fff; border: 0px; margin-top: 0px; padding: 2px; height: 25px;">
+			<div style="width: 40%; float: left;">
+				<div class="pageInfo" style="margin-left: 5px;">
+					共<span>14</span>条 | 每页<span>10</span>条
+					| 共<span>2</span>页
+				</div>
+			</div>
+			<div style="width: 60%; float: left;">
+				<div class="pageOperation">
+				<!--判断是否是第一页  -->
+					<a class="btn btn-sm btn-default no-padding tablefirst" disabled="disabled"	style="width: 30px; height: 20px;"> <span
+						class="glyphicon glyphicon-backward"></span></a> 
+					<a class="btn btn-sm btn-default no-padding tableup"  disabled="disabled" 	style="width: 30px; height: 20px;"> <span
+						class="glyphicon glyphicon-triangle-left"></span></a> 
+				<a disabled="disabled" class="btn btn-default no-padding" style="width: 30px; height: 20px;">
+						1
+				</a>
+				<!--判断是否是最后一页  -->
+					<a class="btn btn-sm btn-default no-padding tabledown" style="width: 30px; height: 20px;"> <span
+						class="glyphicon glyphicon-triangle-right"></span></a> 
+					<a class="btn btn-sm btn-default no-padding tablelast" style="width: 30px; height: 20px;"> <span
+						class="glyphicon glyphicon-forward"></span></a> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+		/* 分页插件按钮的点击事件 */
+		/* url是从后台接收过来的链接，sort是记录排序规则 */
+		$('.tablefirst').on('click',function(){
+			 if(true==false){
+				 $('.thistable').load('serch?page=0');
+			 }
+		});
+		$('.tableup').on('click',function(){
+			 if(true==false){
+				 $('.thistable').load('serch?page=-1');
+			 }
+		});
+		$('.tabledown').on('click',function(){
+			if(false==false){
+				$('.thistable').load('serch?page=1');
+			 }
+		});
+		$('.tablelast').on('click',function(){
+			if(false==false){
+				$('.thistable').load('serch?page=1');
+			 }
+			
+		});
+		
+		/*类型、状态、时间的排序  */
+		$('.thistype').on('click', function() {
+			if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+				$('.thistable').load('serch?type=0&icon=glyphicon-triangle-top');
+			} else {
+				$('.thistable').load('serch?type=1&icon=glyphicon-triangle-bottom');
+			}
+		});
+		$('.thisstatus').on('click', function() {
+			if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+				$('.thistable').load('serch?status=0&icon=glyphicon-triangle-top');
+			} else {
+				$('.thistable').load('serch?status=1&icon=glyphicon-triangle-bottom');
+			}
+		});
+		$('.thistime').on('click', function() {
+			if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+				$('.thistable').load('serch?time=0&icon=glyphicon-triangle-top');
+			} else {
+				$('.thistable').load('serch?time=1&icon=glyphicon-triangle-bottom');
+			}
+		});
+		$('.thisvisit').on('click', function() {
+			if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+				$('.thistable').load('serch?visitnum=0&icon=glyphicon-triangle-top');
+			} else {
+				$('.thistable').load('serch?visitnum=1&icon=glyphicon-triangle-bottom');
+			}
+		});
+		/* 查找 */
+		$('.baseKetsubmit').on('click', function() {
+			var baseKey = $('.baseKey').val();
+			console.log(baseKey);
+			$('.thistable').load('serch?baseKey='+baseKey+'');
+		});
+</script>			</div>
+			
+<script>
+		/* 分页插件按钮的点击事件 */
+		
+		$('.baseKetsubmit').on('click',function(){
+			var baseKey=$('.baseKey').val();
+			$('.thistable').load('serch?baseKey=baseKey');
+		});
+		
+
+		   $(function(){
+			   $(".chazhao").click(function(){
+				   var con=$(".cha").val();
+				   $(".thistable").load("serch",{val:con});
+			   });
+		});
+	
+		
+</script>		</div>
+	</div>
