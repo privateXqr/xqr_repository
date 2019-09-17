@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hr.mapper.IAoaSysMenuMapper">
-  <resultMap id="BaseResultMap" type="com.hr.entity.AoaSysMenu">
-    <id column="menu_id" jdbcType="BIGINT" property="menuId" />
-    <result column="is_show" jdbcType="INTEGER" property="isShow" />
-    <result column="menu_grade" jdbcType="INTEGER" property="menuGrade" />
-    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
-    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
-    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
-    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
-    <result column="sort_id" jdbcType="INTEGER" property="sortId" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.hr.entity.AoaSysMenu">
+        <id column="menu_id" jdbcType="BIGINT" property="menuId"/>
+        <result column="is_show" jdbcType="INTEGER" property="isShow"/>
+        <result column="menu_grade" jdbcType="INTEGER" property="menuGrade"/>
+        <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon"/>
+        <result column="menu_name" jdbcType="VARCHAR" property="menuName"/>
+        <result column="menu_url" jdbcType="VARCHAR" property="menuUrl"/>
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+        <result column="sort_id" jdbcType="INTEGER" property="sortId"/>
+    </resultMap>
+
+    <select id="queryAoaSysMenu" resultMap="BaseResultMap" parameterType="java.lang.Long">
+
+        select asm.*
+        from aoa_role_power_list arpl
+        left join aoa_sys_menu asm
+        on arpl.menu_id = asm.menu_id
+        where arpl.role_id = #{roleId}
+
+  </select>
 
 </mapper>

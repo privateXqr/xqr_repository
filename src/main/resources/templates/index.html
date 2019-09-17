@@ -99,7 +99,6 @@ maximum-scale=1, user-scalable=no">
     <script type="text/javascript" th:src="@{/js/prefixfree.min.js}"></script>
 </head>
 <body>
-
 <div class="main">
     <div class="container-fluid">
         <div class="row">
@@ -151,7 +150,7 @@ maximum-scale=1, user-scalable=no">
                  style="padding: 0; margin: 0; display: block;">
                 <div class="col-md-12 green-g">
                     <a href="index.html" class="navbar-brand" style="padding: 8px 40px;"><img
-                            th:src="@{images/logo.png}"/></a>
+                            th:src="@{/images/logo.png}"/></a>
                 </div>
                 <div class="col-md-12 list-left"
                      style="background: #222d32; height: 845px">
@@ -181,345 +180,25 @@ maximum-scale=1, user-scalable=no">
                         <div class="panel-group" id="accordion"
                              style="margin-top: 10px; margin-left: -12px;">
 
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse1" data-toggle="collapse"
+                            <div class="panel panel-default" th:each="aoaSysMenuParent:${listAoaSysUser}">
+
+                                <div class="panel-heading" th:if="${aoaSysMenuParent.parentId eq 0}">
+                                    <a class="open-menu green-left" th:href="'#'+${aoaSysMenuParent.menuId}"
+                                       data-toggle="collapse"
                                        data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-cog"></span> <span>系统管理</span> <span
+                                            class="glyphicon glyphicon-cog"></span> <span
+                                            th:text="${aoaSysMenuParent.menuName}"></span> <span
                                             class="glyphicon glyphicon-menu-left pull-right"></span>
                                     </a>
                                 </div>
-                                <div id="collapse1" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
+                                <div th:id="${aoaSysMenuParent.menuId}" class="panel-collapse collapse ">
+                                    <ul th:each="aoaSysMenuChild:${listAoaSysUser}">
+                                        <li th:if="${aoaSysMenuChild.parentId eq aoaSysMenuParent.menuId}">
                                             <a href="javascript:changepath('typemanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>类型管理</span>
+                                                    class="glyphicon glyphicon-record"></span> <span
+                                                    th:text="${aoaSysMenuChild.menuName}"></span>
                                             </a>
                                         </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('menumanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>菜单管理</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('statusmanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>状态管理</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse2" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-education"></span> <span>用户管理</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse2" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('deptmanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>部门管理</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('userlogrecordmanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>在线用户</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('positionmanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>职位管理</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('usermanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>用户管理</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse3" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-user"></span> <span>角色列表</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse3" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('rolemanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>角色列表</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse4" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-time"></span> <span>考勤管理</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse4" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('attendceview.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>考勤管理</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('attendceweektable.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>考勤周报表</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('attendcemonthtable.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>考勤月报表</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('attendcelist.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>考勤列表</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse5" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-hourglass"></span> <span>流程管理</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse5" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('procedure.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>新建流程</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('flowmanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>我的申请</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('auditing.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>流程审核</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse6" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-bell"></span> <span>公告管理</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse6" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('informmanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>通知管理</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('informlist.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>通知列表</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse7" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-envelope"></span> <span>邮件管理</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse7" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('mailmanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>账号管理</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('mail.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>邮件管理</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse8" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-flag"></span> <span>任务管理</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse8" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('taskmanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>任务管理</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('mytask.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>我的任务</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse9" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-calendar"></span> <span>日程管理</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse9" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('daymanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>日程管理</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('daycalendar.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>我的日历</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse10" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-plane"></span> <span>工作计划</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse10" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('planmanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>计划管理</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('plantable.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>计划报表</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse11" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-folder-open"></span> <span>文件管理</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse11" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('filemanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>文件管理</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse12" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-edit"></span> <span>笔记管理</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse12" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('notemanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>笔记管理</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse39" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-earphone"></span> <span>通讯录</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse39" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('addrmanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>通讯录</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="panel-heading">
-                                    <a class="open-menu green-left" href="#collapse13" data-toggle="collapse"
-                                       data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-comment"></span> <span>讨论区</span> <span
-                                            class="glyphicon glyphicon-menu-left pull-right"></span>
-                                    </a>
-                                </div>
-                                <div id="collapse13" class="panel-collapse collapse ">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:changepath('chatadminmanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>超级管理员</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('chatmymanage.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>我的管理</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="javascript:changepath('chatlist.html');"> <span
-                                                    class="glyphicon glyphicon-record"></span> <span>讨论区列表</span>
-                                            </a>
-                                        </li>
-
                                     </ul>
                                 </div>
                             </div>
@@ -566,7 +245,8 @@ maximum-scale=1, user-scalable=no">
                         <li class="dropdown">
                             <!--设置导航栏头像面板-->
                             <a href="#" class="green-none white" data-toggle="dropdown">
-                                <img th:src="@{/images/647cbde6-3fba-4d8c-a50f-1a07f9bee417.jpg}" class="user-image"/> <span>罗密欧</span>
+                                <img th:src="@{/images/647cbde6-3fba-4d8c-a50f-1a07f9bee417.jpg}" class="user-image"/>
+                                <span>罗密欧</span>
                             </a> <!--设置点击按钮弹出用户面板层-->
                             <ul class="dropdown-menu" style="padding:0;">
                                 <li class="user-header green"><img

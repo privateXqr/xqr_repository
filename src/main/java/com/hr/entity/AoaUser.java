@@ -1,8 +1,9 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class AoaUser {
+public class AoaUser implements Serializable{
     private Long userId;
 
     private String address;

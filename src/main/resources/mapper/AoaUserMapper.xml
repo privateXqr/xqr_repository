@@ -34,9 +34,11 @@
         <result column="pinyin" jdbcType="VARCHAR" property="pinyin"/>
     </resultMap>
 
-    <select id="login" resultType="com.hr.entity.AoaUser" >
+    <select id="login" resultMap="BaseResultMap">
 
-        SELECT * FROM aoa_user WHERE
+        SELECT *
+        FROM aoa_user
+        WHERE
         <if test="userName != '' and userName != null">
             user_name = #{userName}
         </if>
