@@ -18,6 +18,6 @@
   <select id="queryAoaNoticeListAll" resultMap="BaseResultMap">
     SELECT * FROM AoaNoticeList
   </select>
-  
+
 
 </mapper>
