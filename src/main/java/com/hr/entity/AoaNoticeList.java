@@ -23,6 +23,26 @@ public class AoaNoticeList {
 
     private Long userId;
 
+    private AoaUser aoaUser;
+
+    private AoaDept aoaDept;
+
+    public AoaDept getAoaDept() {
+        return aoaDept;
+    }
+
+    public void setAoaDept(AoaDept aoaDept) {
+        this.aoaDept = aoaDept;
+    }
+
+    public AoaUser getAoaUser() {
+        return aoaUser;
+    }
+
+    public void setAoaUser(AoaUser aoaUser) {
+        this.aoaUser = aoaUser;
+    }
+
     public Long getNoticeId() {
         return noticeId;
     }
