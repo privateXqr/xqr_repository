@@ -14,5 +14,10 @@
     <result column="createman_id" jdbcType="BIGINT" property="createmanId" />
     <result column="receiver" jdbcType="VARCHAR" property="receiver" />
   </resultMap>
+  
+  <select id="queryAoaNoticeListAll" resultMap="BaseResultMap">
+    SELECT * FROM AoaNoticeList
+  </select>
+  
 
 </mapper>

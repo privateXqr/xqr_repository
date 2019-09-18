@@ -1,11 +1,10 @@
-package com.hr.mapper;
+package com.hr.service;
 
 import com.hr.entity.AoaNoticeList;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface IAoaNoticeListMapper {
+public interface IAoaNoticeListService {
     //查询通知
     List<AoaNoticeList> queryAoaNoticeListAll();
     //通过ID查询通知对象
