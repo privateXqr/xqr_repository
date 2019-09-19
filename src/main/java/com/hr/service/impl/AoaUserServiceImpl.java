@@ -26,7 +26,8 @@ public class AoaUserServiceImpl implements IAoaUserService {
     }
 
     @Override
-    public List<AoaUser> queryAoaUserByForUnderstrapper(Long position_id) {
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public Long queryAoaUserByForUnderstrapper(Long position_id) {
         return aoaUserMapper.queryAoaUserByForUnderstrapper(position_id);
     }
 }

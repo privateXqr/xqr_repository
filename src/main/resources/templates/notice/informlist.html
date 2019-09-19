@@ -137,119 +137,12 @@
                             <td><a th:href="@{/notice/queryNoticeById(noticeId=${aoaNoticeList.noticeId})}"
                                    class="label xiugai chakan"><span class="glyphicon glyphicon-search"></span>
                                 查看</a>
-                                <a href="forwardother?noticeId=26" onclick="{return confirm('确定转发给自己的下属吗？');};"
+                                <a th:href="@{/notice/forwardUnder(noticeId=${aoaNoticeList.noticeId})}" onclick="{return confirm('确定转发给自己的下属吗？');};"
                                    class="label xinzeng chakan forwardthis"><span
                                         class="glyphicon glyphicon-log-out"></span>
                                     转发</a>
                             </td>
                         </tr>
-
-                        <!--<tr>-->
-
-                        <!--<td>通知</td>-->
-                        <!--<td><span class="label label-warning">重要</span></td>-->
-                        <!--<td class="c"><span>总经办通知-罗密欧</span></td>-->
-                        <!--<td><span>2019-1-9 12:26:38</span></td>-->
-                        <!--<td><span>罗密欧</span></td>-->
-                        <!--<td><span>总经办</span></td>-->
-                        <!--<td><span class="labels"><label><input-->
-                        <!--type="checkbox" checked disabled><i>✓</i></label></span></td>-->
-
-                        <!--<td><span class="glyphicon glyphicon-link"></span></td>-->
-
-                        <!--<td><a href="../../static/page/informshow.html?id=30&read=0&relationid=132"-->
-                        <!--class="label xiugai chakan"><span class="glyphicon glyphicon-search"></span>-->
-                        <!--查看</a>-->
-                        <!--<a href="forwardother?noticeId=30" onclick="{return confirm('确定转发给自己的下属吗？');};"-->
-                        <!--class="label xinzeng chakan forwardthis"><span-->
-                        <!--class="glyphicon glyphicon-log-out"></span>-->
-                        <!--转发</a>-->
-                        <!--</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-
-                        <!--<td>投票</td>-->
-                        <!--<td><span class="label label-primary">一般</span></td>-->
-                        <!--<td class="c"><span>总经办投票-伊丽莎白</span></td>-->
-                        <!--<td><span>2019-1-9 12:53:35</span></td>-->
-                        <!--<td><span>伊丽莎白</span></td>-->
-                        <!--<td><span>总经办</span></td>-->
-                        <!--<td><span class="labels"><label><input-->
-                        <!--type="checkbox" disabled><i>✓</i></label></span></td>-->
-                        <!--<td><span class="labels"></span></td>-->
-                        <!--<td><a href="../../static/page/informshow.html?id=36&read=0&relationid=110"-->
-                        <!--class="label xiugai chakan"><span class="glyphicon glyphicon-search"></span>-->
-                        <!--查看</a>-->
-                        <!--<a href="forwardother?noticeId=36" onclick="{return confirm('确定转发给自己的下属吗？');};"-->
-                        <!--class="label xinzeng chakan forwardthis"><span-->
-                        <!--class="glyphicon glyphicon-log-out"></span>-->
-                        <!--转发</a>-->
-                        <!--</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-
-                        <!--<td>投票</td>-->
-                        <!--<td><span class="label label-primary">一般</span></td>-->
-                        <!--<td class="c"><span>总经办投票-罗密欧</span></td>-->
-                        <!--<td><span>2019-1-9 12:48:35</span></td>-->
-                        <!--<td><span>罗密欧</span></td>-->
-                        <!--<td><span>总经办</span></td>-->
-                        <!--<td><span class="labels"><label><input-->
-                        <!--type="checkbox" disabled><i>✓</i></label></span></td>-->
-                        <!--<td><span class="labels"></span></td>-->
-                        <!--<td><a href="../../static/page/informshow.html?id=34&read=0&relationid=137"-->
-                        <!--class="label xiugai chakan"><span class="glyphicon glyphicon-search"></span>-->
-                        <!--查看</a>-->
-                        <!--<a href="forwardother?noticeId=34" onclick="{return confirm('确定转发给自己的下属吗？');};"-->
-                        <!--class="label xinzeng chakan forwardthis"><span-->
-                        <!--class="glyphicon glyphicon-log-out"></span>-->
-                        <!--转发</a>-->
-                        <!--</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-
-                        <!--<td>通知</td>-->
-                        <!--<td><span class="label label-primary">一般</span></td>-->
-                        <!--<td class="c"><span>总经办通知-伊丽莎白</span></td>-->
-                        <!--<td><span>2019-1-9 12:41:44</span></td>-->
-                        <!--<td><span>伊丽莎白</span></td>-->
-                        <!--<td><span>总经办</span></td>-->
-                        <!--<td><span class="labels"><label><input-->
-                        <!--type="checkbox" disabled><i>✓</i></label></span></td>-->
-                        <!--<td><span class="labels"></span></td>-->
-                        <!--<td><a href="../../static/page/informshow.html?id=32&read=0&relationid=94"-->
-                        <!--class="label xiugai chakan"><span class="glyphicon glyphicon-search"></span>-->
-                        <!--查看</a>-->
-                        <!--<a href="forwardother?noticeId=32" onclick="{return confirm('确定转发给自己的下属吗？');};"-->
-                        <!--class="label xinzeng chakan forwardthis"><span-->
-                        <!--class="glyphicon glyphicon-log-out"></span>-->
-                        <!--转发</a>-->
-                        <!--</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-
-                        <!--<td>公告</td>-->
-                        <!--<td><span class="label label-danger">紧急</span></td>-->
-                        <!--<td><span>总经办公告-伊丽莎白</span></td>-->
-                        <!--<td><span>2019-1-9 12:06:39</span></td>-->
-                        <!--<td><span>伊丽莎白</span></td>-->
-                        <!--<td><span>总经办</span></td>-->
-                        <!--<td><span class="labels"><label><input-->
-                        <!--type="checkbox" disabled><i>✓</i></label></span></td>-->
-                        <!--<td><span class="glyphicon glyphicon-link"></span></td>-->
-
-                        <!--<td><a href="../../static/page/informshow.html?id=27&read=1&relationid=77"-->
-                        <!--class="label xiugai chakan"><span class="glyphicon glyphicon-search"></span>-->
-                        <!--查看</a>-->
-                        <!--<a href="forwardother?noticeId=27" onclick="{return confirm('确定转发给自己的下属吗？');};"-->
-                        <!--class="label xinzeng chakan forwardthis"><span-->
-                        <!--class="glyphicon glyphicon-log-out"></span>-->
-                        <!--转发</a>-->
-                        <!--<a onclick="{return confirm('删除该记录将不能恢复，确定删除吗？');};"-->
-                        <!--href="informlistdelete?id=27" class="label shanchu">-->
-                        <!--<span class="glyphicon glyphicon-remove"></span> 删除-->
-                        <!--</a></td>-->
-                        <!--</tr>-->
                     </table>
                 </div>
             </div>

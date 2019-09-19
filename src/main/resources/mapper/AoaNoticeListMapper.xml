@@ -87,9 +87,7 @@
 
     <select id="queryAoaNoticeListById" resultMap="noticeMap">
 
-        select anl.title,anl.content,
-        anl.url,DATE_FORMAT(anl.notice_time,'%Y-%m-%d %h:%i:%s') as notice_time,
-        au.user_name
+        select anl.*
         from aoa_notice_list anl
         left join aoa_user au
         on anl.user_id = au.user_id

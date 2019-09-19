@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hr.mapper.IAoaNoticeUserRelationMapper">
-  <resultMap id="BaseResultMap" type="com.hr.entity.AoaNoticeUserRelation">
-    <id column="relatin_id" jdbcType="BIGINT" property="relatinId" />
-    <result column="is_read" jdbcType="INTEGER" property="isRead" />
-    <result column="relatin_notice_id" jdbcType="BIGINT" property="relatinNoticeId" />
-    <result column="relatin_user_id" jdbcType="BIGINT" property="relatinUserId" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.hr.entity.AoaNoticeUserRelation">
+        <id column="relatin_id" jdbcType="BIGINT" property="relatinId"/>
+        <result column="is_read" jdbcType="INTEGER" property="isRead"/>
+        <result column="relatin_notice_id" jdbcType="BIGINT" property="relatinNoticeId"/>
+        <result column="relatin_user_id" jdbcType="BIGINT" property="relatinUserId"/>
+    </resultMap>
+
+    <insert id="addAoaNoticeUserRelation">
+
+        insert into aoa_notice_user_relation
+        (is_read,relatin_notice_id,relatin_user_id)
+        values
+        (0,#{noticeId},#{userId})
+
+    </insert>
+
+    <delete id="deleteAoaNoticeUserRelationForNotice">
+
+        delete from aoa_notice_user_relation
+        where relatin_notice_id = #{noticeId}
+        and relatin_user_id = #{userId}
+
+    </delete>
 
 </mapper>

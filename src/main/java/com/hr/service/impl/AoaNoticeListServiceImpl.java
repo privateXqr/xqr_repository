@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public class AoaNoticeListServiceImpl implements IAoaNoticeListService{
+public class AoaNoticeListServiceImpl implements IAoaNoticeListService {
 
     @Autowired
     private IAoaNoticeListMapper aoaNoticeListMapper;
@@ -27,6 +27,7 @@ public class AoaNoticeListServiceImpl implements IAoaNoticeListService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public AoaNoticeList queryByAoaNoticeListId(int id) {
 
         return aoaNoticeListMapper.queryByAoaNoticeListId(id);
@@ -53,23 +54,29 @@ public class AoaNoticeListServiceImpl implements IAoaNoticeListService{
         aoaNoticeListMapper.addiAoaNoticeList(aoaNoticeList);
 
     }
+
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public List<AoaNoticeList> queryAoaNoticeList(Map<String, Object> paramMap) {
         return aoaNoticeListMapper.queryAoaNoticeList(paramMap);
     }
 
     @Override
     public Integer updateAoaNoticeForTop(Long noticeId, Integer isTop) {
-        return aoaNoticeListMapper.updateAoaNoticeForTop(noticeId,isTop);
+        return aoaNoticeListMapper.updateAoaNoticeForTop(noticeId, isTop);
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public Long getNoticeCount(Map<String, Object> paramMap) {
         return aoaNoticeListMapper.getNoticeCount(paramMap);
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public AoaNoticeList queryAoaNoticeListById(Long noticeId) {
         return aoaNoticeListMapper.queryAoaNoticeListById(noticeId);
     }
+
+
 }

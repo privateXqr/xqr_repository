@@ -14,5 +14,5 @@ public interface IAoaUserService {
      * @param position_id
      * @return
      */
-    public List<AoaUser> queryAoaUserByForUnderstrapper(Long position_id);
+    public Long queryAoaUserByForUnderstrapper(Long position_id);
 }

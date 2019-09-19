@@ -27,6 +27,7 @@ public interface IAoaNoticeListMapper {
 
     //新增通知
     void addiAoaNoticeList(AoaNoticeList aoaNoticeList);
+
     /**
      * 根据用户ID 查询其通知内容
      *
@@ -57,6 +58,8 @@ public interface IAoaNoticeListMapper {
      * @return
      */
     public AoaNoticeList queryAoaNoticeListById(Long noticeId);
+
+
 
 
 }

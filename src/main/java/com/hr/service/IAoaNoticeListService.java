@@ -1,6 +1,7 @@
 package com.hr.service;
 
 import com.hr.entity.AoaNoticeList;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -44,5 +45,6 @@ public interface IAoaNoticeListService {
      * @return
      */
     public AoaNoticeList queryAoaNoticeListById(Long noticeId);
+
 
 }

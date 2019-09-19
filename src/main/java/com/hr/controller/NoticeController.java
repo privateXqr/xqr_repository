@@ -2,6 +2,7 @@ package com.hr.controller;
 
 import com.hr.entity.AoaNoticeList;
 import com.hr.entity.AoaUser;
+import com.hr.mapper.IAoaNoticeUserRelationMapper;
 import com.hr.service.IAoaNoticeListService;
 import com.hr.service.IAoaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class NoticeController {
 
     @Autowired
     private IAoaUserService aoaUserService;
+
+    @Autowired
+    private IAoaNoticeUserRelationMapper aoaNoticeUserRelationMapper;
 
     private Integer firstResult = 1;
 
@@ -102,7 +106,7 @@ public class NoticeController {
      * @return
      */
     @RequestMapping("queryNoticeById")
-    public String queryNoticeById(ModelMap map, Long noticeId)  {
+    public String queryNoticeById(ModelMap map, Long noticeId) {
 
         String url = "/notice/informshow";
 
@@ -116,21 +120,26 @@ public class NoticeController {
 
     /**
      * 将公告(通知)转发给其下属处理
+     *
      * @param session
      * @param noticeId
      * @return
      */
     @RequestMapping("forwardUnder")
-    public String forwardUnderstrapper(HttpSession session,Integer noticeId){
+    public String forwardUnderstrapper(HttpSession session, Long noticeId) {
 
         String url = "redirect:queryNoticeByUser";
 
         AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
 
-        //查询所属部门所有下属
-        List<AoaUser> listUnderUser = aoaUserService.queryAoaUserByForUnderstrapper(aoaUser.getPositionId());
+        //查询其直属下属ID
+        Long userId = aoaUserService.queryAoaUserByForUnderstrapper(aoaUser.getPositionId());
 
-
+        //转发通知
+        //修改中间表 为下属与通知 建立新关系
+//        aoaNoticeUserRelationMapper.addAoaNoticeUserRelation(noticeId, userId);
+//
+//        aoaNoticeUserRelationMapper.deleteAoaNoticeUserRelationForNotice(noticeId,userId);
 
         return url;
     }
