@@ -13,5 +13,18 @@
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
   </resultMap>
+<!--  <resultMap id="BaseResultMap2" type="com.hr.entity.AoaNoticeList" extends="BaseResultMap">
+    <association property="configfilefirstkind" column="firstkindid" javaType="com.hr.entity.Configfilefirstkind">
+      <id  property="firstkindid" column="firstkindid"/>
+      <result property="firstkindname" column="firstkindname"/>
+    </association>
+    <association property="configfilesecondkind" column="secondkindid" javaType="com.hr.entity.Configfilesecondkind">
+      <id  property="secondkindid" column="secondkindid"/>
+      <result property="secondkindname" column="secondkindname"/>
+    </association>
+  </resultMap>-->
+  <select id="queryAoaNoticeListAll" resultMap="BaseResultMap">
+    SELECT * FROM aoa_notice_list
+  </select>
 
 </mapper>

@@ -9,47 +9,67 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class AoaNoticeListServiceImpl implements IAoaNoticeListService{
 
     @Autowired
-    private IAoaNoticeListMapper iAoaNoticeListMapper;
+    private IAoaNoticeListMapper aoaNoticeListMapper;
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<AoaNoticeList> queryAoaNoticeListAll() {
 
-        return iAoaNoticeListMapper.queryAoaNoticeListAll();
+        return aoaNoticeListMapper.queryAoaNoticeListAll();
 
     }
 
     @Override
     public AoaNoticeList queryByAoaNoticeListId(int id) {
 
-        return iAoaNoticeListMapper.queryByAoaNoticeListId(id);
+        return aoaNoticeListMapper.queryByAoaNoticeListId(id);
 
     }
 
     @Override
     public void updateAoaNoticeList(AoaNoticeList aoaNoticeList) {
 
-        iAoaNoticeListMapper.updateAoaNoticeList(aoaNoticeList);
+        aoaNoticeListMapper.updateAoaNoticeList(aoaNoticeList);
 
     }
 
     @Override
     public void delAoaNoticeList(int id) {
 
-        iAoaNoticeListMapper.delAoaNoticeList(id);
+        aoaNoticeListMapper.delAoaNoticeList(id);
 
     }
 
     @Override
     public void addiAoaNoticeList(AoaNoticeList aoaNoticeList) {
 
-        iAoaNoticeListMapper.addiAoaNoticeList(aoaNoticeList);
+        aoaNoticeListMapper.addiAoaNoticeList(aoaNoticeList);
 
+    }
+    @Override
+    public List<AoaNoticeList> queryAoaNoticeList(Map<String, Object> paramMap) {
+        return aoaNoticeListMapper.queryAoaNoticeList(paramMap);
+    }
+
+    @Override
+    public Integer updateAoaNoticeForTop(Long noticeId, Integer isTop) {
+        return aoaNoticeListMapper.updateAoaNoticeForTop(noticeId,isTop);
+    }
+
+    @Override
+    public Long getNoticeCount(Map<String, Object> paramMap) {
+        return aoaNoticeListMapper.getNoticeCount(paramMap);
+    }
+
+    @Override
+    public AoaNoticeList queryAoaNoticeListById(Long noticeId) {
+        return aoaNoticeListMapper.queryAoaNoticeListById(noticeId);
     }
 }

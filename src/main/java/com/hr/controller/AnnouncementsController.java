@@ -1,8 +1,6 @@
-﻿package com.hr.controller;
-
+package com.hr.controller;
 
 import com.hr.entity.AoaNoticeList;
-import com.hr.mapper.IAoaNoticeListMapper;
 import com.hr.service.IAoaNoticeListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +29,7 @@ public class AnnouncementsController {
 
         map.addAttribute("list",aoaNoticeLists);
 
-        return "";
+        return "informmanage";
     }
 
     @RequestMapping("goUpdateAnnouncements")
@@ -43,6 +41,5 @@ public class AnnouncementsController {
 
         return "";
     }
-
 
 }

@@ -1,10 +1,10 @@
-
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript" src="easyui/jquery.min.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/common/box.css" />
-<link rel="stylesheet" type="text/css" href="css/common/checkbox.css" />
-<style type="text/css">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/common/box.css" />
+<link rel="stylesheet" type="text/css" href="/css/common/checkbox.css" />
+<style  type="text/css">
 
 a:hover {
 	text-decoration: none;
@@ -44,9 +44,9 @@ a:hover {
 			</div>
 			<form action="informcheck" method="post" id="thisForm" onsubmit="return check();">
 				<!--盒子身体-->
-				<div class="box-body no-padding">
+				<div  class="box-body no-padding" >
 					<div class="box-body">
-						<div class="alert alert-danger alert-dismissable" role="alert"
+						<div  class="alert alert-danger alert-dismissable" role="alert"
 							style="display: none;">
 							错误信息:<button class="close" type="button">&times;</button>
 							<span class="error-mess"></span>
@@ -56,9 +56,7 @@ a:hover {
 								<label class="control-label"><span>类型</span></label> 
 								<select class="form-control" name="typeId">
 									<option value="10">公告</option>
-										<option value="10">公告</option>
-										<option value="11">通知</option>
-										<option value="12">投票</option>
+										<option value="12" ></option>
 								</select>
 							</div>
 							<div class="col-md-6 form-group">
@@ -239,3 +237,4 @@ function check() {
 //	return false;
 }
 </script>
+</html>
