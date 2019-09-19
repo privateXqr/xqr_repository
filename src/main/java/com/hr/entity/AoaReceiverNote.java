@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaReceiverNote {
+import java.io.Serializable;
+
+public class AoaReceiverNote implements Serializable {
     private Integer id;
 
     private Long noteId;

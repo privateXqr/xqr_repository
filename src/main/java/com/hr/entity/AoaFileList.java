@@ -1,8 +1,10 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaFileList {
+public class AoaFileList implements Serializable {
     private Long fileId;
 
     private String fileName;
@@ -19,7 +21,7 @@ public class AoaFileList {
 
     private Long size;
 
-    private Date uploadTime;
+    private Timestamp uploadTime;
 
     private Long fileUserId;
 
@@ -91,11 +93,11 @@ public class AoaFileList {
         this.size = size;
     }
 
-    public Date getUploadTime() {
+    public Timestamp getUploadTime() {
         return uploadTime;
     }
 
-    public void setUploadTime(Date uploadTime) {
+    public void setUploadTime(Timestamp uploadTime) {
         this.uploadTime = uploadTime;
     }
 

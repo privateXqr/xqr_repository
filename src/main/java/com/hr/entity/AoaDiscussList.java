@@ -1,15 +1,17 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaDiscussList {
+public class AoaDiscussList implements Serializable {
     private Long discussId;
 
     private Integer attachmentId;
 
     private String content;
 
-    private Date createTime;
+    private Timestamp createTime;
 
     private Long statusId;
 
@@ -23,7 +25,7 @@ public class AoaDiscussList {
 
     private Long voteId;
 
-    private Date modifyTime;
+    private Timestamp modifyTime;
 
     public Long getDiscussId() {
         return discussId;
@@ -49,11 +51,11 @@ public class AoaDiscussList {
         this.content = content == null ? null : content.trim();
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
@@ -105,11 +107,11 @@ public class AoaDiscussList {
         this.voteId = voteId;
     }
 
-    public Date getModifyTime() {
+    public Timestamp getModifyTime() {
         return modifyTime;
     }
 
-    public void setModifyTime(Date modifyTime) {
+    public void setModifyTime(Timestamp modifyTime) {
         this.modifyTime = modifyTime;
     }
 }

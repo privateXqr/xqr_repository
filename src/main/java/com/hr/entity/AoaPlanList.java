@@ -1,11 +1,13 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaPlanList extends AoaPlanListKey {
-    private Date createTime;
+public class AoaPlanList implements Serializable {
+    private Timestamp createTime;
 
-    private Date endTime;
+    private Timestamp endTime;
 
     private String label;
 
@@ -25,21 +27,45 @@ public class AoaPlanList extends AoaPlanListKey {
 
     private Long attachId;
 
-    public Date getCreateTime() {
+    private Long planId;
+
+    private Timestamp startTime;
+
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public Timestamp getStartTime() {
+        return startTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
+
+
+    public Long getPlanId() {
+        return planId;
+    }
+
+
+    public void setPlanId(Long planId) {
+        this.planId = planId;
+    }
+
+
+    public void setStartTime(Timestamp startTime) {
+        this.startTime = startTime;
+    }
+
 
     public String getLabel() {
         return label;

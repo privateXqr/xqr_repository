@@ -1,13 +1,15 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaNotepaper {
+public class AoaNotepaper  implements Serializable {
     private Long notepaperId;
 
     private String concent;
 
-    private Date createTime;
+    private Timestamp createTime;
 
     private String title;
 
@@ -29,11 +31,11 @@ public class AoaNotepaper {
         this.concent = concent == null ? null : concent.trim();
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

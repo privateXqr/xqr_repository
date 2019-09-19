@@ -1,21 +1,23 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaStay {
+public class AoaStay implements Serializable {
     private Long stayId;
 
     private Integer day;
 
     private String hotelName;
 
-    private Date leaveTime;
+    private Timestamp leaveTime;
 
     private String stayCity;
 
     private Double stayMoney;
 
-    private Date stayTime;
+    private Timestamp stayTime;
 
     private Long evemoneyId;
 
@@ -45,11 +47,11 @@ public class AoaStay {
         this.hotelName = hotelName == null ? null : hotelName.trim();
     }
 
-    public Date getLeaveTime() {
+    public Timestamp getLeaveTime() {
         return leaveTime;
     }
 
-    public void setLeaveTime(Date leaveTime) {
+    public void setLeaveTime(Timestamp leaveTime) {
         this.leaveTime = leaveTime;
     }
 
@@ -69,11 +71,11 @@ public class AoaStay {
         this.stayMoney = stayMoney;
     }
 
-    public Date getStayTime() {
+    public Timestamp getStayTime() {
         return stayTime;
     }
 
-    public void setStayTime(Date stayTime) {
+    public void setStayTime(Timestamp stayTime) {
         this.stayTime = stayTime;
     }
 

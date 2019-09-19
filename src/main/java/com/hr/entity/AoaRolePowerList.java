@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaRolePowerList {
+import java.io.Serializable;
+
+public class AoaRolePowerList implements Serializable {
     private Long pkId;
 
     private Integer isShow;

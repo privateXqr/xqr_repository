@@ -1,15 +1,17 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaProcessList {
+public class AoaProcessList implements Serializable {
     private Long processId;
 
-    private Date applyTime;
+    private Timestamp applyTime;
 
     private Long deeplyId;
 
-    private Date endTime;
+    private Timestamp endTime;
 
     private String processDes;
 
@@ -19,7 +21,7 @@ public class AoaProcessList {
 
     private Integer isChecked;
 
-    private Date startTime;
+    private Timestamp startTime;
 
     private Long statusId;
 
@@ -39,11 +41,11 @@ public class AoaProcessList {
         this.processId = processId;
     }
 
-    public Date getApplyTime() {
+    public Timestamp getApplyTime() {
         return applyTime;
     }
 
-    public void setApplyTime(Date applyTime) {
+    public void setApplyTime(Timestamp applyTime) {
         this.applyTime = applyTime;
     }
 
@@ -55,11 +57,11 @@ public class AoaProcessList {
         this.deeplyId = deeplyId;
     }
 
-    public Date getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 
@@ -95,11 +97,11 @@ public class AoaProcessList {
         this.isChecked = isChecked;
     }
 
-    public Date getStartTime() {
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 

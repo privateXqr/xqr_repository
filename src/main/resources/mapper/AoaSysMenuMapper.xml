@@ -18,8 +18,25 @@
         from aoa_role_power_list arpl
         left join aoa_sys_menu asm
         on arpl.menu_id = asm.menu_id
-        where arpl.role_id = #{roleId}
+        <where>
+            <if test="menuName != '' and menuName != null">
 
-  </select>
+                and menu_name like "%"#{menuName}"%" and parent_id = 0
+
+            </if>
+            <if test="roleId != null">
+
+                and arpl.role_id = #{roleId}
+
+            </if>
+            <if test="parent_id != null">
+
+                and parent_id = #{parent_id}
+
+            </if>
+
+        </where>
+
+    </select>
 
 </mapper>

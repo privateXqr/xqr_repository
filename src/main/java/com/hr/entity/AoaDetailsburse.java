@@ -1,8 +1,11 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
-public class AoaDetailsburse {
+public class AoaDetailsburse implements Serializable {
     private Long detailsburseId;
 
     private String descript;
@@ -11,7 +14,7 @@ public class AoaDetailsburse {
 
     private Integer invoices;
 
-    private Date produceTime;
+    private Timestamp produceTime;
 
     private String subject;
 
@@ -49,11 +52,11 @@ public class AoaDetailsburse {
         this.invoices = invoices;
     }
 
-    public Date getProduceTime() {
+    public Timestamp getProduceTime() {
         return produceTime;
     }
 
-    public void setProduceTime(Date produceTime) {
+    public void setProduceTime(Timestamp produceTime) {
         this.produceTime = produceTime;
     }
 

@@ -1,11 +1,13 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaTaskLogger {
+public class AoaTaskLogger  implements Serializable {
     private Long loggerId;
 
-    private Date createTime;
+    private Timestamp createTime;
 
     private String loggerTicking;
 
@@ -23,11 +25,11 @@ public class AoaTaskLogger {
         this.loggerId = loggerId;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

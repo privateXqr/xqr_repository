@@ -1,13 +1,15 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaUserLog {
+public class AoaUserLog implements Serializable {
     private Long logId;
 
     private String ipAddr;
 
-    private Date logTime;
+    private Timestamp logTime;
 
     private String title;
 
@@ -31,11 +33,11 @@ public class AoaUserLog {
         this.ipAddr = ipAddr == null ? null : ipAddr.trim();
     }
 
-    public Date getLogTime() {
+    public Timestamp getLogTime() {
         return logTime;
     }
 
-    public void setLogTime(Date logTime) {
+    public void setLogTime(Timestamp logTime) {
         this.logTime = logTime;
     }
 

@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaRegular {
+import java.io.Serializable;
+
+public class AoaRegular implements Serializable {
     private Long regularId;
 
     private String advice;

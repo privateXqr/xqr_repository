@@ -1,8 +1,11 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
-public class AoaDirectorUsers {
+public class AoaDirectorUsers implements Serializable {
     private Long directorUsersId;
 
     private String catelogName;
@@ -15,7 +18,7 @@ public class AoaDirectorUsers {
 
     private Long shareUserId;
 
-    private Date sharetime;
+    private Timestamp sharetime;
 
     public Long getDirectorUsersId() {
         return directorUsersId;
@@ -65,11 +68,11 @@ public class AoaDirectorUsers {
         this.shareUserId = shareUserId;
     }
 
-    public Date getSharetime() {
+    public Timestamp getSharetime() {
         return sharetime;
     }
 
-    public void setSharetime(Date sharetime) {
+    public void setSharetime(Timestamp sharetime) {
         this.sharetime = sharetime;
     }
 }

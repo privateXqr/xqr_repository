@@ -1,15 +1,17 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaBursement {
+public class AoaBursement implements Serializable {
     private Long bursementId;
 
     private Double allMoney;
 
     private Integer allinvoices;
 
-    private Date burseTime;
+    private Timestamp burseTime;
 
     private String financialAdvice;
 
@@ -49,11 +51,11 @@ public class AoaBursement {
         this.allinvoices = allinvoices;
     }
 
-    public Date getBurseTime() {
+    public Timestamp getBurseTime() {
         return burseTime;
     }
 
-    public void setBurseTime(Date burseTime) {
+    public void setBurseTime(Timestamp burseTime) {
         this.burseTime = burseTime;
     }
 

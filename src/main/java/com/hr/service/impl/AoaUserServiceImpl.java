@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class AoaUserServiceImpl implements IAoaUserService {
@@ -21,5 +23,10 @@ public class AoaUserServiceImpl implements IAoaUserService {
     @Transactional(propagation = Propagation.SUPPORTS)
     public AoaUser login(String userName, String password) {
         return aoaUserMapper.login(userName,password);
+    }
+
+    @Override
+    public List<AoaUser> queryAoaUserByForUnderstrapper(Long position_id) {
+        return aoaUserMapper.queryAoaUserByForUnderstrapper(position_id);
     }
 }

@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaTaskUser {
+import java.io.Serializable;
+
+public class AoaTaskUser implements Serializable {
     private Long pkId;
 
     private Long statusId;

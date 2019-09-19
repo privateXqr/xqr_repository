@@ -1,19 +1,21 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaScheduleList {
+public class AoaScheduleList implements Serializable {
     private Long rcId;
 
-    private Date createTime;
+    private Timestamp createTime;
 
-    private Date endTime;
+    private Timestamp endTime;
 
     private String filedescribe;
 
     private Integer isRemind;
 
-    private Date startTime;
+    private Timestamp startTime;
 
     private Long statusId;
 
@@ -35,19 +37,19 @@ public class AoaScheduleList {
         this.rcId = rcId;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public Date getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 
@@ -67,11 +69,11 @@ public class AoaScheduleList {
         this.isRemind = isRemind;
     }
 
-    public Date getStartTime() {
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 

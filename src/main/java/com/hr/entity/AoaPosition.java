@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaPosition {
+import java.io.Serializable;
+
+public class AoaPosition  implements Serializable {
     private Long positionId;
 
     private Integer level;

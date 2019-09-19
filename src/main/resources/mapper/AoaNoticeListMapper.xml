@@ -1,30 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hr.mapper.IAoaNoticeListMapper">
-  <resultMap id="BaseResultMap" type="com.hr.entity.AoaNoticeList">
-    <id column="notice_id" jdbcType="BIGINT" property="noticeId" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="is_top" jdbcType="INTEGER" property="isTop" />
-    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="notice_time" jdbcType="TIMESTAMP" property="noticeTime" />
-    <result column="status_id" jdbcType="BIGINT" property="statusId" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="type_id" jdbcType="BIGINT" property="typeId" />
-    <result column="url" jdbcType="VARCHAR" property="url" />
-    <result column="user_id" jdbcType="BIGINT" property="userId" />
-  </resultMap>
-<!--  <resultMap id="BaseResultMap2" type="com.hr.entity.AoaNoticeList" extends="BaseResultMap">
-    <association property="configfilefirstkind" column="firstkindid" javaType="com.hr.entity.Configfilefirstkind">
-      <id  property="firstkindid" column="firstkindid"/>
-      <result property="firstkindname" column="firstkindname"/>
-    </association>
-    <association property="configfilesecondkind" column="secondkindid" javaType="com.hr.entity.Configfilesecondkind">
-      <id  property="secondkindid" column="secondkindid"/>
-      <result property="secondkindname" column="secondkindname"/>
-    </association>
-  </resultMap>-->
-  <select id="queryAoaNoticeListAll" resultMap="BaseResultMap">
-    SELECT * FROM aoa_notice_list
-  </select>
+    <resultMap id="BaseResultMap" type="com.hr.entity.AoaNoticeList">
+        <id column="notice_id" jdbcType="BIGINT" property="noticeId"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="is_top" jdbcType="INTEGER" property="isTop"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="notice_time" jdbcType="TIMESTAMP" property="noticeTime"/>
+        <result column="status_id" jdbcType="BIGINT" property="statusId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="type_id" jdbcType="BIGINT" property="typeId"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+    </resultMap>
+
+    <resultMap id="noticeMap" type="com.hr.entity.AoaNoticeList" extends="BaseResultMap">
+
+        <association property="aoaUser" column="user_id" javaType="com.hr.entity.AoaUser">
+            <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        </association>
+
+        <association property="aoaDept" column="dept_id" javaType="com.hr.entity.AoaDept">
+            <result column="dept_name" jdbcType="VARCHAR" property="deptName"/>
+        </association>
+
+    </resultMap>
+
+    <!--主要查询 通知列表 高级查询-->
+    <select id="queryAoaNoticeList" resultMap="noticeMap">
+
+        select anl.*,au.user_name,ad.dept_name
+        from aoa_notice_list anl
+        left join aoa_notice_user_relation anur
+        on anl.notice_id = anur.relatin_notice_id
+        left join aoa_user au
+        on anl.user_id = au.user_id
+        left join aoa_dept ad
+        on au.dept_id = ad.dept_id
+        <where>
+            <if test="userId != null">
+                and relatin_user_id = #{userId}
+            </if>
+            <if test="title != null and title != ''">
+                and anl.title like "%"#{title}"%"
+            </if>
+        </where>
+        order by is_top desc
+        <if test="firstResult != null and maxResult != null">
+            limit #{firstResult},#{maxResult}
+        </if>
+
+    </select>
+
+    <update id="updateAoaNoticeForTop">
+
+        update aoa_notice_list
+        set is_top =
+        <if test="isTop == 0 or isTop == ''">
+            1
+        </if>
+        <if test="isTop == 1">
+            0
+        </if>
+        WHERE notice_id = #{noticeId}
+    </update>
+
+    <select id="getNoticeCount" resultType="java.lang.Long">
+
+        select count(*)
+        from aoa_notice_list anl
+        left join aoa_notice_user_relation anur
+        on anl.notice_id = anur.relatin_notice_id
+        left join aoa_user au
+        on anl.user_id = au.user_id
+        left join aoa_dept ad
+        on au.dept_id = ad.dept_id
+        <where>
+            <if test="userId != null">
+                and relatin_user_id = #{userId}
+            </if>
+            <if test="title != null and title != ''">
+                and anl.title like "%"#{title}"%"
+            </if>
+        </where>
+    </select>
+
+    <select id="queryAoaNoticeListById" resultMap="noticeMap">
+
+        select anl.title,anl.content,
+        anl.url,DATE_FORMAT(anl.notice_time,'%Y-%m-%d %h:%i:%s') as notice_time,
+        au.user_name
+        from aoa_notice_list anl
+        left join aoa_user au
+        on anl.user_id = au.user_id
+        where anl.notice_id = #{noticeId}
+
+    </select>
 
 </mapper>

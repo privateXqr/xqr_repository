@@ -2,6 +2,7 @@ package com.hr.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class AoaUser implements Serializable{
     private Long userId;
@@ -10,13 +11,13 @@ public class AoaUser implements Serializable{
 
     private String bank;
 
-    private Date birth;
+    private Timestamp birth;
 
     private String eamil;
 
     private Long fatherId;
 
-    private Date hireTime;
+    private Timestamp hireTime;
 
     private String userIdcard;
 
@@ -26,9 +27,9 @@ public class AoaUser implements Serializable{
 
     private String lastLoginIp;
 
-    private Date lastLoginTime;
+    private Timestamp lastLoginTime;
 
-    private Date modifyTime;
+    private Timestamp modifyTime;
 
     private Long modifyUserId;
 
@@ -88,11 +89,11 @@ public class AoaUser implements Serializable{
         this.bank = bank == null ? null : bank.trim();
     }
 
-    public Date getBirth() {
+    public Timestamp getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(Timestamp birth) {
         this.birth = birth;
     }
 
@@ -112,11 +113,11 @@ public class AoaUser implements Serializable{
         this.fatherId = fatherId;
     }
 
-    public Date getHireTime() {
+    public Timestamp getHireTime() {
         return hireTime;
     }
 
-    public void setHireTime(Date hireTime) {
+    public void setHireTime(Timestamp hireTime) {
         this.hireTime = hireTime;
     }
 
@@ -152,19 +153,19 @@ public class AoaUser implements Serializable{
         this.lastLoginIp = lastLoginIp == null ? null : lastLoginIp.trim();
     }
 
-    public Date getLastLoginTime() {
+    public Timestamp getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public void setLastLoginTime(Date lastLoginTime) {
+    public void setLastLoginTime(Timestamp lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
 
-    public Date getModifyTime() {
+    public Timestamp getModifyTime() {
         return modifyTime;
     }
 
-    public void setModifyTime(Date modifyTime) {
+    public void setModifyTime(Timestamp modifyTime) {
         this.modifyTime = modifyTime;
     }
 

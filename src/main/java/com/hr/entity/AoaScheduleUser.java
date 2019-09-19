@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaScheduleUser {
+import java.io.Serializable;
+
+public class AoaScheduleUser implements Serializable {
     private Long rcid;
 
     private Long userId;
