@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 /**
  * 通知总表
  */
+@Repository
 public interface IAoaNoticeListMapper {
     //查询通知
     List<AoaNoticeList> queryAoaNoticeListAll();

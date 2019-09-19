@@ -3,6 +3,7 @@ package com.hr.controller;
 import com.hr.entity.AoaNoticeList;
 import com.hr.entity.AoaUser;
 import com.hr.service.IAoaNoticeListService;
+import com.hr.service.IAoaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,6 +24,9 @@ public class NoticeController {
     @Autowired
     private IAoaNoticeListService aoaNoticeListService;
 
+    @Autowired
+    private IAoaUserService aoaUserService;
+
     private Integer firstResult = 1;
 
     private Integer maxResult = 5;
@@ -36,19 +40,6 @@ public class NoticeController {
      * @param firstResult 当前页码
      * @return
      */
-
-
-    //查询所有的通知
-    @RequestMapping("queryAnnouncementsAll")
-    public String queryAnnouncementsAll(ModelMap map){
-
-        List<AoaNoticeList> aoaNoticeLists = aoaNoticeListService.queryAoaNoticeListAll();
-
-        map.addAttribute("list",aoaNoticeLists);
-
-        return "informmanage";
-    }
-
     @RequestMapping("queryNoticeByUser")
     public String queryNoticeByUser(HttpSession session, ModelMap map, String title, Integer firstResult) {
 
@@ -137,6 +128,7 @@ public class NoticeController {
         AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
 
         //查询所属部门所有下属
+        List<AoaUser> listUnderUser = aoaUserService.queryAoaUserByForUnderstrapper(aoaUser.getPositionId());
 
 
 

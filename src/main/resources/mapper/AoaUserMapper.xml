@@ -34,6 +34,8 @@
         <result column="pinyin" jdbcType="VARCHAR" property="pinyin"/>
     </resultMap>
 
+
+
     <select id="login" resultMap="BaseResultMap">
 
         SELECT *
@@ -46,6 +48,17 @@
             user_tel = #{userName}
         </if>
         AND password = #{password}
+
+    </select>
+    
+    <select id="queryAoaUserByForUnderstrapper" resultMap="BaseResultMap">
+
+        select user_id from aoa_user au
+        left join aoa_position ap on au.position_id = ap.position_id
+        left join aoa_dept ad on au.dept_id = ad.dept_id
+        where `level` &lt;
+        (select `level` from aoa_position where position_id =
+        #{positionId})
 
     </select>
 

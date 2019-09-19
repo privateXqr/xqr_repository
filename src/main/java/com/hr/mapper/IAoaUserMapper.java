@@ -27,6 +27,6 @@ public interface IAoaUserMapper {
      * @param position_id
      * @return
      */
-    public List<AoaUser> queryAoaUserByForUnderstrapper(Long position_id);
+    public List<AoaUser> queryAoaUserByForUnderstrapper(@Param("positionId") Long position_id);
 
 }
