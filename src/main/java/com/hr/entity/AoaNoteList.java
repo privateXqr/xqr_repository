@@ -1,13 +1,15 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaNoteList {
+public class AoaNoteList implements Serializable {
     private Long noteId;
 
     private String content;
 
-    private Date createTime;
+    private Timestamp createTime;
 
     private Long statusId;
 
@@ -41,11 +43,11 @@ public class AoaNoteList {
         this.content = content == null ? null : content.trim();
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

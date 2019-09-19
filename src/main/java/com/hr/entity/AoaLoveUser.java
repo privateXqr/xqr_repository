@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaLoveUser {
+import java.io.Serializable;
+
+public class AoaLoveUser implements Serializable {
     private Long replyId;
 
     private Long userId;

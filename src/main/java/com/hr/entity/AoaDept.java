@@ -1,8 +1,10 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaDept {
+public class AoaDept implements Serializable {
     private Long deptId;
 
     private String deptAddr;
@@ -17,9 +19,9 @@ public class AoaDept {
 
     private Long deptmanager;
 
-    private Date endTime;
+    private Timestamp endTime;
 
-    private Date startTime;
+    private Timestamp startTime;
 
     public Long getDeptId() {
         return deptId;
@@ -77,19 +79,19 @@ public class AoaDept {
         this.deptmanager = deptmanager;
     }
 
-    public Date getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 
-    public Date getStartTime() {
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 }

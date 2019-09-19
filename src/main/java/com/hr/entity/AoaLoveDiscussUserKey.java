@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaLoveDiscussUserKey {
+import java.io.Serializable;
+
+public class AoaLoveDiscussUserKey implements Serializable {
     private Long discussId;
 
     private Long userId;

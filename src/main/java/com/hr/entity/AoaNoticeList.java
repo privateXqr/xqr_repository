@@ -1,17 +1,19 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaNoticeList {
+public class AoaNoticeList implements Serializable {
     private Long noticeId;
 
     private String content;
 
     private Integer isTop;
 
-    private Date modifyTime;
+    private Timestamp modifyTime;
 
-    private Date noticeTime;
+    private Timestamp noticeTime;
 
     private Long statusId;
 
@@ -67,19 +69,19 @@ public class AoaNoticeList {
         this.isTop = isTop;
     }
 
-    public Date getModifyTime() {
+    public Timestamp getModifyTime() {
         return modifyTime;
     }
 
-    public void setModifyTime(Date modifyTime) {
+    public void setModifyTime(Timestamp modifyTime) {
         this.modifyTime = modifyTime;
     }
 
-    public Date getNoticeTime() {
+    public Timestamp getNoticeTime() {
         return noticeTime;
     }
 
-    public void setNoticeTime(Date noticeTime) {
+    public void setNoticeTime(Timestamp noticeTime) {
         this.noticeTime = noticeTime;
     }
 

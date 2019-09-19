@@ -29,15 +29,38 @@
 
 <script type="text/javascript">
 
-    function updateTop(noticeId,isTop) {
+    //更改通知置顶
+    function updateTop(noticeId, isTop) {
 
-        $.post("/notice/updateTop",{"noticeId":noticeId,"isTop":isTop},function () {
-            
-        });
+        if (isTop == 0) {
+            $("#isTop" + noticeId).html("✓");
+        } else {
+            $("#isTop" + noticeId).html("");
+        }
+
+        location.href = "/notice/updateTop?noticeId=" + noticeId + "&isTop=" + isTop;
+    }
+
+    function turn_page(noticeUrl) {
+
+        window.parent.location.href = noticeUrl;
 
     }
 
 </script>
+
+<script>
+
+    $(function () {
+
+        $("[name = 'query_notice_btn']").click(function () {
+
+            location.href = "/notice/queryNoticeByUser?title=" + $("#notice_title").val();
+        })
+    })
+
+</script>
+
 
 <div class="row" style="padding-top: 10px;">
     <div class="col-md-2">
@@ -62,10 +85,12 @@
                 </h3>
                 <div class="box-tools">
                     <div class="input-group" style="width: 150px;">
-                        <input type="text" class="form-control input-sm baseKey" placeholder="按标题查找" value=""/>
+                        <input type="text" id="notice_title" th:value="${title}" class="form-control input-sm baseKey"
+                               placeholder="按标题查找"/>
                         <div class="input-group-btn">
-                            <a class="btn btn-sm btn-default baseKetsubmit"><span
-                                    class="glyphicon glyphicon-search"></span></a>
+                            <a class="btn btn-sm btn-default baseKetsubmit">
+                                <span name="query_notice_btn"
+                                      class="glyphicon glyphicon-search"></span></a>
                         </div>
                     </div>
                 </div>
@@ -101,12 +126,15 @@
                             <td><span th:text="${aoaNoticeList.aoaUser.userName}"></span></td>
                             <td><span th:text="${aoaNoticeList.aoaDept.deptName}"></span></td>
                             <td><span class="labels"><label><input
-                                    type="checkbox" checked disabled><i th:text="${aoaNoticeList.isTop == 1 ? '✓' : ''}"
-                                                                        th:onclick="'javascript:updateTop('+${aoaNoticeList.noticeId}+','+${aoaNoticeList.isTop}+')' "></i></label></span></td>
-
-                            <td><span class="glyphicon glyphicon-link"></span></td>
-
-                            <td><a href="../../static/page/informshow.html?id=26&read=0&relationid=127"
+                                    type="checkbox" checked disabled><i th:id="isTop+${aoaNoticeList.noticeId}"
+                                                                        th:text="${aoaNoticeList.isTop == 1 ? '✓' : ''}"
+                                                                        th:onclick="'javascript:updateTop('+${aoaNoticeList.noticeId}+','+${aoaNoticeList.isTop}+')' "></i></label></span>
+                            </td>
+                            <td><span onclick="turn_page(this.getAttribute('data-thing'))"
+                                      th:data-thing="${aoaNoticeList.url}" style="cursor: pointer"
+                                      th:class="${aoaNoticeList.url != '' ? 'glyphicon glyphicon-link' : ''}"></span>
+                            </td>
+                            <td><a th:href="@{/notice/queryNoticeById(noticeId=${aoaNoticeList.noticeId})}"
                                    class="label xiugai chakan"><span class="glyphicon glyphicon-search"></span>
                                 查看</a>
                                 <a href="forwardother?noticeId=26" onclick="{return confirm('确定转发给自己的下属吗？');};"
@@ -232,26 +260,30 @@
                          style="background: #fff; border: 0px; margin-top: 0px; padding: 2px; height: 25px;">
                         <div style="width: 40%; float: left;">
                             <div class="pageInfo" style="margin-left: 5px;">
-                                共<span>6</span>条 | 每页<span>6</span>条
-                                | 共<span>1</span>页
+                                共<span th:text="${count}"></span>条 | 每页<span th:text="${maxResult}"></span>条
+                                | 共<span th:text="${total}">1</span>页
                             </div>
                         </div>
                         <div style="width: 60%; float: left;">
                             <div class="pageOperation">
-                                <a class="btn btn-sm btn-default no-padding tablefirst" disabled="disabled"
+                                <a class="btn btn-sm btn-default no-padding tablefirst"
+                                   th:href="@{/notice/queryNoticeByUser(firstResult=1,title=${title})}"
                                    style="width: 30px; height: 20px;"> <span
                                         class="glyphicon glyphicon-backward"></span></a>
-                                <a class="btn btn-sm btn-default no-padding tableup" disabled="disabled"
+                                <a class="btn btn-sm btn-default no-padding tableup"
+                                   th:href="@{/notice/queryNoticeByUser(firstResult=${firstResult - 1 < 1 ? 1 : firstResult - 1},title=${title})}"
                                    style="width: 30px; height: 20px;"> <span
                                         class="glyphicon glyphicon-triangle-left"></span></a>
-                                <a disabled="disabled" class="btn btn-default no-padding"
-                                   style="width: 30px; height: 20px;"> 1 </a>
+                                <a class="btn btn-default no-padding"
+                                   style="width: 30px; height: 20px;"> <span th:text="${firstResult}"></span> </a>
                                 <!--判断是否是最后一页  -->
-                                <a class="btn btn-sm btn-default no-padding tabledown" disabled="disabled"
-                                   style="width: 30px; height: 20px;"> <span
+                                <a class="btn btn-sm btn-default no-padding tabledown"
+                                   style="width: 30px; height: 20px;"
+                                   th:href="@{/notice/queryNoticeByUser(firstResult=${firstResult + 1 >= total ? total : firstResult + 1},title=${title})}"> <span
                                         class="glyphicon glyphicon-triangle-right"></span></a>
-                                <a class="btn btn-sm btn-default no-padding tablelast" disabled="disabled"
-                                   style="width: 30px; height: 20px;"> <span
+                                <a class="btn btn-sm btn-default no-padding tablelast"
+                                   style="width: 30px; height: 20px;"
+                                   th:href="@{/notice/queryNoticeByUser(firstResult=${total},title=${title})}"> <span
                                         class="glyphicon glyphicon-forward"></span></a>
                             </div>
                         </div>

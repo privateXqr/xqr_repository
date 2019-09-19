@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaOvertime {
+import java.io.Serializable;
+
+public class AoaOvertime implements Serializable {
     private Long overtimeId;
 
     private Long typeId;

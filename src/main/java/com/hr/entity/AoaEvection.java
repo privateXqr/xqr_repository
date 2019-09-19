@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaEvection {
+import java.io.Serializable;
+
+public class AoaEvection implements Serializable {
     private Long evectionId;
 
     private Long typeId;

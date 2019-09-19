@@ -1,23 +1,25 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaTaskList {
+public class AoaTaskList implements Serializable {
     private Long taskId;
 
     private String comment;
 
-    private Date endTime;
+    private Timestamp endTime;
 
     private Integer isCancel;
 
     private Integer isTop;
 
-    private Date modifyTime;
+    private Timestamp modifyTime;
 
-    private Date publishTime;
+    private Timestamp publishTime;
 
-    private Date starTime;
+    private Timestamp starTime;
 
     private Integer statusId;
 
@@ -49,11 +51,11 @@ public class AoaTaskList {
         this.comment = comment == null ? null : comment.trim();
     }
 
-    public Date getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 
@@ -73,27 +75,27 @@ public class AoaTaskList {
         this.isTop = isTop;
     }
 
-    public Date getModifyTime() {
+    public Timestamp getModifyTime() {
         return modifyTime;
     }
 
-    public void setModifyTime(Date modifyTime) {
+    public void setModifyTime(Timestamp modifyTime) {
         this.modifyTime = modifyTime;
     }
 
-    public Date getPublishTime() {
+    public Timestamp getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(Date publishTime) {
+    public void setPublishTime(Timestamp publishTime) {
         this.publishTime = publishTime;
     }
 
-    public Date getStarTime() {
+    public Timestamp getStarTime() {
         return starTime;
     }
 
-    public void setStarTime(Date starTime) {
+    public void setStarTime(Timestamp starTime) {
         this.starTime = starTime;
     }
 

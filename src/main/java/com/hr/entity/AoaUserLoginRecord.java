@@ -1,19 +1,29 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaUserLoginRecord {
+public class AoaUserLoginRecord implements Serializable {
     private Long recordId;
 
     private String browser;
 
     private String ipAddr;
 
-    private Date loginTime;
+    private Timestamp loginTime;
 
     private String sessionId;
 
     private Long userId;
+
+    public Timestamp getLoginTime() {
+        return loginTime;
+    }
+
+    public void setLoginTime(Timestamp loginTime) {
+        this.loginTime = loginTime;
+    }
 
     public Long getRecordId() {
         return recordId;
@@ -37,14 +47,6 @@ public class AoaUserLoginRecord {
 
     public void setIpAddr(String ipAddr) {
         this.ipAddr = ipAddr == null ? null : ipAddr.trim();
-    }
-
-    public Date getLoginTime() {
-        return loginTime;
-    }
-
-    public void setLoginTime(Date loginTime) {
-        this.loginTime = loginTime;
     }
 
     public String getSessionId() {

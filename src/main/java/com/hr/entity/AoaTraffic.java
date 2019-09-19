@@ -1,13 +1,15 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaTraffic {
+public class AoaTraffic implements Serializable {
     private Long trafficId;
 
     private String departName;
 
-    private Date departTime;
+    private Timestamp departTime;
 
     private String reachName;
 
@@ -37,11 +39,11 @@ public class AoaTraffic {
         this.departName = departName == null ? null : departName.trim();
     }
 
-    public Date getDepartTime() {
+    public Timestamp getDepartTime() {
         return departTime;
     }
 
-    public void setDepartTime(Date departTime) {
+    public void setDepartTime(Timestamp departTime) {
         this.departTime = departTime;
     }
 

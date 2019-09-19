@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaResign {
+import java.io.Serializable;
+
+public class AoaResign implements Serializable {
     private Long resignId;
 
     private String financialAdvice;

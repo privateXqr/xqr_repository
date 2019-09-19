@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaSubject {
+import java.io.Serializable;
+
+public class AoaSubject  implements Serializable {
     private Long subjectId;
 
     private String name;

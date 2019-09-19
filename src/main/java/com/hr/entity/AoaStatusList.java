@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaStatusList {
+import java.io.Serializable;
+
+public class AoaStatusList implements Serializable {
     private Long statusId;
 
     private String statusColor;

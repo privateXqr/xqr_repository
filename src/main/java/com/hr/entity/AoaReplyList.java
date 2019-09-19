@@ -1,8 +1,9 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class AoaReplyList {
+public class AoaReplyList implements Serializable {
     private Long replyId;
 
     private String content;

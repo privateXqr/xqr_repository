@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaDirector {
+import java.io.Serializable;
+
+public class AoaDirector implements Serializable {
     private Long directorId;
 
     private String address;

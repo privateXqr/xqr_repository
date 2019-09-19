@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaRole {
+import java.io.Serializable;
+
+public class AoaRole implements Serializable {
     private Long roleId;
 
     private String roleName;

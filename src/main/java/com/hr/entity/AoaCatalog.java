@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaCatalog {
+import java.io.Serializable;
+
+public class AoaCatalog  implements Serializable {
     private Long catalogId;
 
     private String catalogName;

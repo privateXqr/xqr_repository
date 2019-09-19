@@ -1,13 +1,15 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaCommentList {
+public class AoaCommentList implements Serializable {
     private Long commentId;
 
     private String comment;
 
-    private Date time;
+    private Timestamp time;
 
     private Long commentUserId;
 
@@ -29,11 +31,11 @@ public class AoaCommentList {
         this.comment = comment == null ? null : comment.trim();
     }
 
-    public Date getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 

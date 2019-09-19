@@ -1,8 +1,9 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class AoaAttachmentList {
+public class AoaAttachmentList implements Serializable{
     private Long attachmentId;
 
     private String attachmentName;

@@ -16,30 +16,85 @@
 
     <resultMap id="noticeMap" type="com.hr.entity.AoaNoticeList" extends="BaseResultMap">
 
-        <association property="aoaUser" column="user_id" javaType="com.hr.entity.AoaUser" >
+        <association property="aoaUser" column="user_id" javaType="com.hr.entity.AoaUser">
             <result column="user_name" jdbcType="VARCHAR" property="userName"/>
         </association>
 
         <association property="aoaDept" column="dept_id" javaType="com.hr.entity.AoaDept">
-            <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+            <result column="dept_name" jdbcType="VARCHAR" property="deptName"/>
         </association>
 
     </resultMap>
 
+    <!--主要查询 通知列表 高级查询-->
     <select id="queryAoaNoticeList" resultMap="noticeMap">
 
-      select anl.*,au.user_name,ad.dept_name
-      from aoa_notice_list anl
-      left join aoa_notice_user_relation anur
-      on anl.notice_id = anur.relatin_notice_id
-      left join aoa_user au
-      on anl.user_id = au.user_id
-      left join aoa_dept ad
-      on au.dept_id = ad.dept_id
-      where relatin_user_id = #{userId}
-      order by is_top desc
+        select anl.*,au.user_name,ad.dept_name
+        from aoa_notice_list anl
+        left join aoa_notice_user_relation anur
+        on anl.notice_id = anur.relatin_notice_id
+        left join aoa_user au
+        on anl.user_id = au.user_id
+        left join aoa_dept ad
+        on au.dept_id = ad.dept_id
+        <where>
+            <if test="userId != null">
+                and relatin_user_id = #{userId}
+            </if>
+            <if test="title != null and title != ''">
+                and anl.title like "%"#{title}"%"
+            </if>
+        </where>
+        order by is_top desc
+        <if test="firstResult != null and maxResult != null">
+            limit #{firstResult},#{maxResult}
+        </if>
 
+    </select>
 
-  </select>
+    <update id="updateAoaNoticeForTop">
+
+        update aoa_notice_list
+        set is_top =
+        <if test="isTop == 0 or isTop == ''">
+            1
+        </if>
+        <if test="isTop == 1">
+            0
+        </if>
+        WHERE notice_id = #{noticeId}
+    </update>
+
+    <select id="getNoticeCount" resultType="java.lang.Long">
+
+        select count(*)
+        from aoa_notice_list anl
+        left join aoa_notice_user_relation anur
+        on anl.notice_id = anur.relatin_notice_id
+        left join aoa_user au
+        on anl.user_id = au.user_id
+        left join aoa_dept ad
+        on au.dept_id = ad.dept_id
+        <where>
+            <if test="userId != null">
+                and relatin_user_id = #{userId}
+            </if>
+            <if test="title != null and title != ''">
+                and anl.title like "%"#{title}"%"
+            </if>
+        </where>
+    </select>
+
+    <select id="queryAoaNoticeListById" resultMap="noticeMap">
+
+        select anl.title,anl.content,
+        anl.url,DATE_FORMAT(anl.notice_time,'%Y-%m-%d %h:%i:%s') as notice_time,
+        au.user_name
+        from aoa_notice_list anl
+        left join aoa_user au
+        on anl.user_id = au.user_id
+        where anl.notice_id = #{noticeId}
+
+    </select>
 
 </mapper>

@@ -1,15 +1,17 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaAttendsList {
+public class AoaAttendsList implements Serializable {
     private Long attendsId;
 
     private String attendsIp;
 
     private String attendsRemark;
 
-    private Date attendsTime;
+    private Timestamp attendsTime;
 
     private Long statusId;
 
@@ -49,11 +51,11 @@ public class AoaAttendsList {
         this.attendsRemark = attendsRemark == null ? null : attendsRemark.trim();
     }
 
-    public Date getAttendsTime() {
+    public Timestamp getAttendsTime() {
         return attendsTime;
     }
 
-    public void setAttendsTime(Date attendsTime) {
+    public void setAttendsTime(Timestamp attendsTime) {
         this.attendsTime = attendsTime;
     }
 

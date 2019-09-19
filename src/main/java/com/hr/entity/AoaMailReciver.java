@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaMailReciver {
+import java.io.Serializable;
+
+public class AoaMailReciver implements Serializable {
     private Long pkId;
 
     private Integer isRead;

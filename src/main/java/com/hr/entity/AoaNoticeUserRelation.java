@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaNoticeUserRelation {
+import java.io.Serializable;
+
+public class AoaNoticeUserRelation  implements Serializable {
     private Long relatinId;
 
     private Integer isRead;

@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaVoteTitles {
+import java.io.Serializable;
+
+public class AoaVoteTitles  implements Serializable {
     private Long titleId;
 
     private String color;

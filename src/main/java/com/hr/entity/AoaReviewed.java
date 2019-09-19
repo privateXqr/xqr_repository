@@ -1,13 +1,15 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaReviewed {
+public class AoaReviewed implements Serializable {
     private Long reviewedId;
 
     private String advice;
 
-    private Date reviewedTime;
+    private Timestamp reviewedTime;
 
     private Long statusId;
 
@@ -33,11 +35,11 @@ public class AoaReviewed {
         this.advice = advice == null ? null : advice.trim();
     }
 
-    public Date getReviewedTime() {
+    public Timestamp getReviewedTime() {
         return reviewedTime;
     }
 
-    public void setReviewedTime(Date reviewedTime) {
+    public void setReviewedTime(Timestamp reviewedTime) {
         this.reviewedTime = reviewedTime;
     }
 

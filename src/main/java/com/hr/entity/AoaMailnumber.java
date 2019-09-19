@@ -1,13 +1,15 @@
 package com.hr.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class AoaMailnumber {
+public class AoaMailnumber implements Serializable {
     private Long mailNumberId;
 
     private String mailAccount;
 
-    private Date mailCreateTime;
+    private Timestamp mailCreateTime;
 
     private String mailDes;
 
@@ -37,11 +39,11 @@ public class AoaMailnumber {
         this.mailAccount = mailAccount == null ? null : mailAccount.trim();
     }
 
-    public Date getMailCreateTime() {
+    public Timestamp getMailCreateTime() {
         return mailCreateTime;
     }
 
-    public void setMailCreateTime(Date mailCreateTime) {
+    public void setMailCreateTime(Timestamp mailCreateTime) {
         this.mailCreateTime = mailCreateTime;
     }
 

@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaSysMenu {
+import java.io.Serializable;
+
+public class AoaSysMenu implements Serializable {
     private Long menuId;
 
     private Integer isShow;

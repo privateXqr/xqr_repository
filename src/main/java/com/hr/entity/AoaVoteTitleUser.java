@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaVoteTitleUser {
+import java.io.Serializable;
+
+public class AoaVoteTitleUser implements Serializable {
     private Long voteTitleUserId;
 
     private Long voteId;

@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaHoliday {
+import java.io.Serializable;
+
+public class AoaHoliday implements Serializable {
     private Long holidayId;
 
     private Integer leaveDays;

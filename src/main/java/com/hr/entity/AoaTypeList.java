@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaTypeList {
+import java.io.Serializable;
+
+public class AoaTypeList implements Serializable {
     private Long typeId;
 
     private String typeColor;

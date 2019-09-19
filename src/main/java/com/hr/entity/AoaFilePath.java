@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaFilePath {
+import java.io.Serializable;
+
+public class AoaFilePath implements Serializable {
     private Long pathId;
 
     private Long parentId;

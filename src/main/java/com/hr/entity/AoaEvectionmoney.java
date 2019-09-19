@@ -1,6 +1,8 @@
 package com.hr.entity;
 
-public class AoaEvectionmoney {
+import java.io.Serializable;
+
+public class AoaEvectionmoney implements Serializable {
     private Long evectionmoneyId;
 
     private String financialAdvice;
