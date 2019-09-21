@@ -15,4 +15,21 @@
     <result column="user_name" jdbcType="BIGINT" property="userName" />
   </resultMap>
 
+    <!--<select id="queryBursement" resultMap="BaseResultMap">
+
+      SELECT * FROM Bursement
+
+    </select>-->
+
+    <insert id="addBursement">
+
+        Insert INTO aoa_bursement
+            (all_money,allinvoices,burse_time,name,type_id,
+            operation_name,pro_id,user_name)
+        VALUES
+            (#{all_money},#{allinvoices},SYSDATE(),#{name},
+            #{type_id},#{operation_name},#{pro_id},#{user_name})
+
+    </insert>
+
 </mapper>
