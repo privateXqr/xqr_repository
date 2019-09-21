@@ -3,6 +3,7 @@ package com.hr.controller;
 import com.hr.entity.AoaInMailList;
 import com.hr.entity.AoaPublicChar;
 import com.hr.entity.AoaUser;
+import com.hr.service.IAoaInMailListService;
 import com.hr.service.IAoaPublicCharService;
 import com.hr.service.IAoaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class MailController {
 
     @Autowired
     private IAoaUserService aoaUserService;
+
+    @Autowired
+    private IAoaInMailListService aoaInMailListService;
 
     private Boolean forUser = false;    //是否根据用户进行操作
 
@@ -81,18 +85,21 @@ public class MailController {
      * @return
      */
     @RequestMapping("send")
-    public String sendMail(AoaInMailList mailList,Integer inmail) {
+    public String sendMail(AoaInMailList aoaInMailList,Integer inmail) {
 
         String url = "redirect:/mail/init";
 
-        if(mailList.getMailType() == 12){   //邮件
+        if(aoaInMailList.getMailType() == 16){   //邮件
 
             if (inmail == 1){   //内部邮件
 
                 //重组收件人数组
-                String[] receivers = mailList.getInReceiver().split(";");
+                String[] receivers = aoaInMailList.getInReceiver().split(";");
 
-                //发送 | 存草稿
+                //新增内部邮件
+                aoaInMailListService.addAoaMailList(aoaInMailList,receivers);
+
+                //为新邮件和目标用户建立关系
 
             }
         }
