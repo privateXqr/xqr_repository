@@ -30,4 +30,21 @@ public interface IAoaNoticeUserRelationMapper {
      * @return
      */
     public Integer deleteAoaNoticeUserRelationForNotice(@Param("noticeId") Long noticeId, @Param("userId") Long userId);
+
+    /**
+     * 统计用户有多少条未读通知
+     *
+     * @param userId 用户ID
+     * @return
+     */
+    public Long queryUnreadNoticeForUser(@Param("userId") Long userId);
+
+    /**
+     * 修改用户的通知为已读
+     *
+     * @param userId 用户ID
+     * @return
+     */
+    public Integer updateNoticeForRead(@Param("userId") Long userId);
 }
+

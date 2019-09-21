@@ -22,11 +22,19 @@ public interface IAoaUserMapper {
     public AoaUser login(@Param("userName") String userName, @Param("password") String password);
 
     /**
-     * 查询登陆用户的所有下属用户
+     * 查询登陆用户的直属下属用户
      *
-     * @param position_id
+     * @param positionId 职位ID
+     * @param deptId     部门ID
      * @return
      */
-    public Long queryAoaUserByForUnderstrapper(@Param("positionId") Long position_id);
+    public Long queryAoaUserForUnderstrapper(@Param("positionId") Long positionId, @Param("deptId") Long deptId);
 
+    /**
+     * 查询用户通讯录
+     *
+     * @param userId 用户ID
+     * @return
+     */
+    public List<AoaUser> queryAoaUserForDirector(@Param("userId") Long userId);
 }

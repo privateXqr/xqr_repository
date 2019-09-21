@@ -57,6 +57,12 @@
 
             location.href = "/notice/queryNoticeByUser?title=" + $("#notice_title").val();
         })
+
+        $("[name = 'goIndex']").click(function () {
+
+            window.parent.location.href = "/sys/initMenu";
+
+        })
     })
 
 </script>
@@ -67,7 +73,7 @@
         <h1 style="font-size: 24px; margin: 0;" class="">通知列表</h1>
     </div>
     <div class="col-md-10 text-right">
-        <a href="index"><span class="glyphicon glyphicon-home"></span> 首页</a>
+        <a name = "goIndex"><span class="glyphicon glyphicon-home"></span> 首页</a>
         > <a disabled="disabled">通知列表</a>
     </div>
 </div>
@@ -153,7 +159,7 @@
                          style="background: #fff; border: 0px; margin-top: 0px; padding: 2px; height: 25px;">
                         <div style="width: 40%; float: left;">
                             <div class="pageInfo" style="margin-left: 5px;">
-                                共<span th:text="${count}"></span>条 | 每页<span th:text="${maxResult}"></span>条
+                                共<span th:text="${count}"></span>条 | 每页<span th:text="${count != 0 ? maxResult : 0}"></span>条
                                 | 共<span th:text="${total}">1</span>页
                             </div>
                         </div>
@@ -168,7 +174,7 @@
                                    style="width: 30px; height: 20px;"> <span
                                         class="glyphicon glyphicon-triangle-left"></span></a>
                                 <a class="btn btn-default no-padding"
-                                   style="width: 30px; height: 20px;"> <span th:text="${firstResult}"></span> </a>
+                                   style="width: 30px; height: 20px;"> <span th:text="${count != 0 ? firstResult : 0}"></span> </a>
                                 <!--判断是否是最后一页  -->
                                 <a class="btn btn-sm btn-default no-padding tabledown"
                                    style="width: 30px; height: 20px;"

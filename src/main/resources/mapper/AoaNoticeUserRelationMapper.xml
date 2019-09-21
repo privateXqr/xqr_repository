@@ -25,4 +25,21 @@
 
     </delete>
 
+    <select id="queryUnreadNoticeForUser" resultType="java.lang.Long">
+
+        select count(relatin_id)
+        from aoa_notice_user_relation
+        where relatin_user_id = #{userId}
+        and is_read = 1
+
+    </select>
+
+    <update id="updateNoticeForRead">
+
+        update aoa_notice_user_relation
+        set is_read = 0
+        where relatin_user_id = #{userId}
+
+    </update>
+
 </mapper>

@@ -4,6 +4,7 @@ import com.hr.entity.AoaNoticeList;
 import com.hr.entity.AoaUser;
 import com.hr.mapper.IAoaNoticeUserRelationMapper;
 import com.hr.service.IAoaNoticeListService;
+import com.hr.service.IAoaNoticeUserRelationService;
 import com.hr.service.IAoaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,11 +30,13 @@ public class NoticeController {
     private IAoaUserService aoaUserService;
 
     @Autowired
-    private IAoaNoticeUserRelationMapper aoaNoticeUserRelationMapper;
+    private IAoaNoticeUserRelationService aoaNoticeUserRelationService;
 
-    private Integer firstResult = 1;
+    private Integer firstResult = 1;    //当前页码
 
-    private Integer maxResult = 5;
+    private Integer maxResult = 5;      //每页查询多少条
+
+    private Boolean forUser = false;   //是否根据用户进行操作
 
     /**
      * 根据用户 查询通知列表
@@ -45,7 +48,7 @@ public class NoticeController {
      * @return
      */
     @RequestMapping("queryNoticeByUser")
-    public String queryNoticeByUser(HttpSession session, ModelMap map, String title, Integer firstResult) {
+    public String queryNoticeByUser(HttpSession session, ModelMap map, String title, Integer firstResult, Boolean forUser) {
 
         String url = "notice/informlist";
 
@@ -53,12 +56,23 @@ public class NoticeController {
             firstResult = this.firstResult;
         }
 
+        if (forUser == null) {
+            forUser = this.forUser;
+        }
+
         Map<String, Object> paramMap = new HashMap<>();
 
         AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
 
         //查询条件
-        paramMap.put("userId", aoaUser.getUserId());
+
+        if (forUser) {  //根据当前登陆用户查询
+            paramMap.put("userId", aoaUser.getUserId());
+
+            //当用户点击查看通知时，修改用户所有通知信息的状态为已读
+            aoaNoticeUserRelationService.updateNoticeForRead(aoaUser.getUserId());
+        }
+
         paramMap.put("title", title);
         paramMap.put("firstResult", (firstResult - 1) * maxResult);
         paramMap.put("maxResult", maxResult);
@@ -133,13 +147,14 @@ public class NoticeController {
         AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
 
         //查询其直属下属ID
-        Long userId = aoaUserService.queryAoaUserByForUnderstrapper(aoaUser.getPositionId());
+        Long userId = aoaUserService.queryAoaUserForUnderstrapper(aoaUser.getPositionId(), aoaUser.getDeptId());
 
         //转发通知
         //修改中间表 为下属与通知 建立新关系
-//        aoaNoticeUserRelationMapper.addAoaNoticeUserRelation(noticeId, userId);
-//
-//        aoaNoticeUserRelationMapper.deleteAoaNoticeUserRelationForNotice(noticeId,userId);
+        aoaNoticeUserRelationService.addAoaNoticeUserRelation(noticeId, userId);
+
+        //删除本用户与通知的关系
+        aoaNoticeUserRelationService.deleteAoaNoticeUserRelationForNotice(noticeId, aoaUser.getUserId());
 
         return url;
     }

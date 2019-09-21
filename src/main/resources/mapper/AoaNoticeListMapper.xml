@@ -87,7 +87,7 @@
 
     <select id="queryAoaNoticeListById" resultMap="noticeMap">
 
-        select anl.*
+        select anl.*,au.user_name
         from aoa_notice_list anl
         left join aoa_user au
         on anl.user_id = au.user_id

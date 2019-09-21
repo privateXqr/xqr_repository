@@ -1,12 +1,9 @@
-package com.hr.mapper;
+package com.hr.service;
 
 import com.hr.entity.AoaInMailList;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * 内部邮件表
- */
-public interface IAoaInMailListMapper {
+public interface IAoaInMailListService {
 
     /**
      * 新建内部邮件
