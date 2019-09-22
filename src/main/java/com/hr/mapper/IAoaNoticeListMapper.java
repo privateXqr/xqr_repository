@@ -57,9 +57,6 @@ public interface IAoaNoticeListMapper {
      * @param noticeId 通知ID
      * @return
      */
-    public AoaNoticeList queryAoaNoticeListById(Long noticeId);
-
-
-
+    public AoaNoticeList queryAoaNoticeListById(@Param("noticeId") Long noticeId);
 
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.mapper.IAoaPublicCharMapper">
+    <resultMap id="BaseResultMap" type="com.hr.entity.AoaPublicChar">
+        <id column="char_id" jdbcType="INTEGER" property="charId"/>
+        <result column="char_status_id" jdbcType="INTEGER" property="charStatusId"/>
+        <result column="char_name" jdbcType="VARCHAR" property="charName"/>
+        <result column="char_type" jdbcType="VARCHAR" property="charType"/>
+        <result column="is_top" jdbcType="INTEGER" property="isTop"/>
+    </resultMap>
+
+    <select id="queryAoaPublicCharByType" resultMap="BaseResultMap">
+
+      select * from aoa_public_char where char_type = #{charType}
+      order by char_status_id
+
+    </select>
+
+</mapper>

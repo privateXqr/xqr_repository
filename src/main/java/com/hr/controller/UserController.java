@@ -1,6 +1,8 @@
 package com.hr.controller;
 
 import com.hr.entity.AoaUser;
+import com.hr.mapper.IAoaNoticeUserRelationMapper;
+import com.hr.service.IAoaNoticeUserRelationService;
 import com.hr.service.IAoaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class UserController {
     @Autowired
     private IAoaUserService aoaUserService;
 
+    @Autowired
+    private IAoaNoticeUserRelationService aoaNoticeUserRelationService;
+
     /**
      * 登陆
      * @param session
@@ -36,6 +41,11 @@ public class UserController {
 
         if (aoaUser != null){   //成功登陆
             session.setAttribute("aoaUser",aoaUser);
+
+            //统计当前登陆用户有多少条未读通知
+            Long notice_count = aoaNoticeUserRelationService.queryUnreadNoticeForUser(aoaUser.getUserId());
+
+            map.addAttribute("notice_count",notice_count);
 
             url = "forward:/sys/initMenu";  //转发至初始化菜单
         }

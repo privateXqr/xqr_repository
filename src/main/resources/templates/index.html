@@ -200,8 +200,8 @@ maximum-scale=1, user-scalable=no">
                                     </a>
                                 </div>
                                 <div th:id="${aoaSysMenuParent.menuId}" class="panel-collapse collapse ">
-                                    <ul th:each="aoaSysMenuChild:${listAoaSysUser}">
-                                        <li th:if="${aoaSysMenuChild.parentId eq aoaSysMenuParent.menuId}">
+                                    <ul >
+                                        <li th:each="aoaSysMenuChild:${listAoaSysUser}" th:if="${aoaSysMenuChild.parentId eq aoaSysMenuParent.menuId}">
                                             <a href="javascript:changepath('typemanage.html');"> <span
                                                     class="glyphicon glyphicon-record"></span> <span
                                                     th:text="${aoaSysMenuChild.menuName}"></span>
@@ -226,13 +226,13 @@ maximum-scale=1, user-scalable=no">
                     <!--右侧导航栏-->
                     <ul class="nav navbar-nav navbar-right moredeep">
 
-                        <li title="通知"><a href="javascript:changepath('/notice/queryNoticeByUser');"
+                        <li title="通知"><a href="javascript:changepath('/notice/queryNoticeByUser?forUser=true');"
                                           class="green-none white"><span
                                 class="glyphicon glyphicon-bell"></span>
-                            <span class="badge blue-badge badge-notice">1</span>
+                            <span class="badge blue-badge badge-notice" th:text="${notice_count != 0 ? notice_count : ''}"></span>
                         </a>
                         </li>
-                        <li title="邮件"><a href="javascript:changepath('mail.html');" class="green-none white"><span
+                        <li title="邮件"><a href="javascript:changepath('/mail/init?forUser=true');" class="green-none white"><span
                                 class="glyphicon glyphicon-envelope"></span>
                             <span class="badge yellow-badge badge-mail">1</span>
                         </a>

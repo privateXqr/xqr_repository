@@ -3,6 +3,7 @@ package com.hr.service.impl;
 import com.hr.mapper.IAoaNoticeUserRelationMapper;
 import com.hr.service.IAoaNoticeUserRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,5 +23,16 @@ public class AoaNoticeUsersRelationServiceImpl implements IAoaNoticeUserRelation
     @Override
     public Integer deleteAoaNoticeUserRelationForNotice(Long noticeId, Long userId) {
         return aoaNoticeUserRelationMapper.deleteAoaNoticeUserRelationForNotice(noticeId,userId);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public Long queryUnreadNoticeForUser(Long userId) {
+        return aoaNoticeUserRelationMapper.queryUnreadNoticeForUser(userId);
+    }
+
+    @Override
+    public Integer updateNoticeForRead(Long userId) {
+        return aoaNoticeUserRelationMapper.updateNoticeForRead(userId);
     }
 }

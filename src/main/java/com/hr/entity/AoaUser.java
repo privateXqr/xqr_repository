@@ -65,6 +65,26 @@ public class AoaUser implements Serializable{
 
     private String pinyin;
 
+    private AoaDept aoaDept;
+
+    private AoaPosition aoaPosition;
+
+    public AoaDept getAoaDept() {
+        return aoaDept;
+    }
+
+    public void setAoaDept(AoaDept aoaDept) {
+        this.aoaDept = aoaDept;
+    }
+
+    public AoaPosition getAoaPosition() {
+        return aoaPosition;
+    }
+
+    public void setAoaPosition(AoaPosition aoaPosition) {
+        this.aoaPosition = aoaPosition;
+    }
+
     public Long getUserId() {
         return userId;
     }
