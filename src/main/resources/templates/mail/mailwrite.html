@@ -41,13 +41,13 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="mailStatusid" id="ctl00_cphMain_ddlStatus" class="select2 form-control">
+                    <select name="mailStatusId" id="ctl00_cphMain_ddlStatus" class="select2 form-control">
                         <option th:value="${mailLevel.charStatusId}" th:each="mailLevel:${listMailLevel}"
                                 th:text="${mailLevel.charName}" th:selected="${mailLevel.isTop == 1}"></option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="inmail" id="account" class="select2 form-control">
+                    <select name="mailPush" id="account" class="select2 form-control">
                         <option th:value="${mailScope.charStatusId}" th:each="mailScope:${listMailScope}"
                                 th:text="${mailScope.charName}" th:selected="${mailScope.isTop == 1}"></option>
                     </select>

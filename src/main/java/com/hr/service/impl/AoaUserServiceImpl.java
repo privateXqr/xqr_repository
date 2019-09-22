@@ -22,18 +22,23 @@ public class AoaUserServiceImpl implements IAoaUserService {
     //@Cacheable("login")
     @Transactional(propagation = Propagation.SUPPORTS)
     public AoaUser login(String userName, String password) {
-        return aoaUserMapper.login(userName,password);
+        return aoaUserMapper.login(userName, password);
     }
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
-    public Long queryAoaUserForUnderstrapper(Long positionId,Long deptId) {
-        return aoaUserMapper.queryAoaUserForUnderstrapper(positionId,deptId);
+    public Long queryAoaUserForUnderstrapper(Long positionId, Long deptId) {
+        return aoaUserMapper.queryAoaUserForUnderstrapper(positionId, deptId);
     }
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<AoaUser> queryAoaUserForDirector(Long userId) {
         return aoaUserMapper.queryAoaUserForDirector(userId);
+    }
+
+    @Override
+    public Long queryAoaUserIdByUserName(String userName) {
+        return aoaUserMapper.queryAoaUserIdByUserName(userName);
     }
 }

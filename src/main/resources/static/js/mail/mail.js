@@ -254,7 +254,7 @@ function check() {
             var $account = $("#account").val();
 
             //扫描为邮箱 判断是否为外部邮件 如果为外部邮件，进行邮件验证
-            if ($account != 1) {
+            if ($account != 0) {
 
                 if (index == 3) {
                     var $mail = $(this).val();

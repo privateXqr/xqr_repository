@@ -10,4 +10,13 @@
     <result column="is_del" jdbcType="INTEGER" property="isDel" />
   </resultMap>
 
+  <insert id="addAoaMailReciver">
+
+    insert into aoa_mail_reciver
+    (is_read,mail_id,mail_reciver_id)
+    values
+    (0,#{mailId},#{userId})
+
+  </insert>
+
 </mapper>
