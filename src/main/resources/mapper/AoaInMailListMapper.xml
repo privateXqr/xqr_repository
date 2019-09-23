@@ -17,30 +17,16 @@
         <result column="mail_star" jdbcType="INTEGER" property="mailStar"/>
     </resultMap>
 
-    <insert id="addAoaMailList">
-
-        <if test="receivers != null">
-
-            <foreach collection="${receivers}" item="receiver">
-                insert into aoa_in_mail_list
-                (mail_content,mail_create_time,mail_title,
-                mail_type,mail_in_push_user_id,in_receiver,
-                mail_status_id,mail_push)
-                values (#{mailContent},DATE_FORMAT(NOW(),'%Y %b %d %H:%i %s'),
-                #{mailTile},#{mailType},#{mailInPushUserId},#{receiver},
-                #{mailStatusId},#{mailPush})
-            </foreach>
-
-        </if>
-        <if test="receivers == null">
-            insert into aoa_in_mail_list
-            (mail_content,mail_create_time,mail_title,
-            mail_type,mail_in_push_user_id,in_receiver,
-            mail_status_id,mail_push)
-            values (#{mailContent},DATE_FORMAT(NOW(),'%Y %b %d %H:%i %s'),
-            #{mailTile},#{mailType},#{mailInPushUserId},#{inReceiver},
-            #{mailStatusId},#{mailPush})
-        </if>
+    <!--添加内部邮件-->
+    <insert id="addAoaMailList" parameterType="com.hr.entity.AoaInMailList" useGeneratedKeys="true" keyProperty="mailId">
+        insert into aoa_in_mail_list
+        (mail_content,mail_create_time,mail_title,
+        mail_type,mail_in_push_user_id,in_receiver,
+        mail_status_id,mail_push)
+        values
+        (#{mailContent},DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s'),
+        #{mailTitle},#{mailType},
+        #{mailInPushUserId},#{inReceiver},
+        #{mailStatusId},#{mailPush})
     </insert>
-
 </mapper>

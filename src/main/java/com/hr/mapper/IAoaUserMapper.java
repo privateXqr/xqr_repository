@@ -37,4 +37,12 @@ public interface IAoaUserMapper {
      * @return
      */
     public List<AoaUser> queryAoaUserForDirector(@Param("userId") Long userId);
+
+    /**
+     * 根据用户名查询用户ID
+     *
+     * @param userName 用户ID
+     * @return
+     */
+    public Long queryAoaUserIdByUserName(@Param("userName") String userName);
 }

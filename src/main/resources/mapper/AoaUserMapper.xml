@@ -75,7 +75,7 @@
 
     </select>
 
-    <select id="queryAoaUserByForUnderstrapper" resultType="java.lang.Long">
+    <select id="queryAoaUserForUnderstrapper" resultType="java.lang.Long">
 
         select user_id from aoa_user au
         left join aoa_position ap on au.position_id = ap.position_id
@@ -99,4 +99,9 @@
 
     </select>
 
+    <select id="queryAoaUserIdByUserName" resultType="java.lang.Long">
+
+        select user_id from aoa_user where user_name = #{userName}
+
+    </select>
 </mapper>

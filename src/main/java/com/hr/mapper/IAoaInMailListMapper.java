@@ -2,18 +2,21 @@ package com.hr.mapper;
 
 import com.hr.entity.AoaInMailList;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.Map;
 
 /**
  * 内部邮件表
  */
+@Repository
 public interface IAoaInMailListMapper {
 
     /**
      * 新建内部邮件
      *
-     * @param aoaInMailList 内部邮件实体
-     * @param receivers     收件人
+     * @param aoaInMailList 邮件
      * @return
      */
-    public Integer addAoaMailList(@Param("aoaInMailList") AoaInMailList aoaInMailList, @Param("receivers") String[] receivers);
+    public Integer addAoaMailList(AoaInMailList aoaInMailList);
 }
