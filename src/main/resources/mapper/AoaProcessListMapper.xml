@@ -46,4 +46,24 @@
 
     </select>
 
+    <select id="queryApplyFor">
+
+        SELECT type_name,process_id,apply_time,shenuser,deeply_id,status_id
+        FROM aoa_process_list GROUP BY apply_time desc
+
+    </select>
+
+    <select id="queryApplyForById">
+
+      SELECT * from aoa_process_list WHERE process_id = #{id}
+
+    </select>
+
+    <update id="updateApplyFor">
+
+        
+
+    </update>
+
+
 </mapper>

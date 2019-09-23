@@ -10,6 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * 流程管理服务实现
+ */
+
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class AoaProcessServiceImpl implements IAoaProcessService {
@@ -73,6 +77,26 @@ public class AoaProcessServiceImpl implements IAoaProcessService {
 
     @Override
     public void addAoaProcessList(AoaProcessList aoaProcessList) {
+        iAoaProcessListMapper.addAoaProcessList(aoaProcessList);
+}
 
+    @Override
+    public AoaProcessList queryMyApplyForById(AoaPlanList aoaPlanList) {
+        return iAoaProcessListMapper.queryMyApplyForById(aoaPlanList);
+    }
+
+    @Override
+    public List<AoaProcessList> queryApplyFor() {
+        return iAoaProcessListMapper.queryApplyFor();
+    }
+
+    @Override
+    public AoaProcessList queryApplyForById(AoaProcessList id) {
+        return iAoaProcessListMapper.queryApplyForById(id);
+    }
+
+    @Override
+    public void updateApplyFor(AoaProcessList id) {
+        iAoaProcessListMapper.updateApplyFor(id);
     }
 }

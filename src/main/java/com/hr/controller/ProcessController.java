@@ -26,8 +26,6 @@ public class ProcessController {
     @RequestMapping("addBursement")
     public String addBursement(AoaBursement aoaBursement){
 
-        //iAoaProcessService.add
-
         iAoaProcessService.addBursement(aoaBursement);
 
         return "";
@@ -86,14 +84,25 @@ public class ProcessController {
     //我的申请id
     @RequestMapping("queryMyApplyForById")
     public String queryMyApplyForById(int i){
+        String url = "index";
 
-        return "";
+        System.out.println("我的申请id");
+
+
+
+        return url;
     }
 
     //流程审核
     @RequestMapping("queryProcessApplyFor")
-    public String queryProcessApplyFor(){
+    public String queryProcessApplyFor(AoaProcessList aoaProcessList){
 
-        return "";
+        String url = "index";
+
+        System.out.println("流程审核");
+
+        iAoaProcessService.queryMyApplyFor(aoaProcessList);
+
+        return url;
     }
 }
