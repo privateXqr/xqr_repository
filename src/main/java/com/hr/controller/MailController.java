@@ -279,19 +279,7 @@ public class MailController {
         }
 
         //判断是否为数字类型
-        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
-        boolean f = pattern.matcher(param).matches();
-        if (f) {  //数字
-            int num = Integer.parseInt(param);
 
-            if(num == 16 || num == 17 || num == 18){
-                paramMap.put("mailType",param);
-            }else if(num == 20 || num == 21 || num == 22){
-                paramMap.put("mailStatusId",param);
-            }
-        }else{
-            paramMap.put("param",param);
-        }
 
         paramMap.put("firstResult", (firstResult - 1) * maxResult);
         paramMap.put("maxResult", maxResult);
