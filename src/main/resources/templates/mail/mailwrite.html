@@ -2,11 +2,12 @@
 <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
 <script type="text/javascript" th:src="@{/easyui/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-<!--<script charset="utf-8" th:src="@{/plugins/kindeditor/kindeditor-min.js}"></script>-->
-<!--<script charset="utf-8" th:src="@{/plugins/kindeditor/lang/zh_CN.js}"></script>-->
+<script charset="utf-8" th:src="@{/plugins/kindeditor/kindeditor-min.js}"></script>
+<script charset="utf-8" th:src="@{/plugins/kindeditor/lang/zh_CN.js}"></script>
 <script type="text/javascript" th:src="@{/js/mail/mail.js}"></script>
-<!--<link rel="stylesheet" th:href="@{/plugins/kindeditor/themes/default/default.css}">-->
+<link rel="stylesheet" th:href="@{/plugins/kindeditor/themes/default/default.css}">
 <link rel="stylesheet" th:href="@{/css/common/tanchuang.css}">
+<script type="text/javascript" th:src="@{/js/mail/query_page.js}"></script>
 <style>
     .ke-container {
         border-radius: 5px;
@@ -54,11 +55,13 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div id = "shoujianren" class="form-group">
                 <input name="inReceiver" type="text" id="recive_list" style="background-color: #fff;"
-                       class="form-control" readonly="readonly" placeholder="收件人：">
+                       class="form-control" readonly="readonly" placeholder="收件人：" list="listReceiver">
+                <datalist id = "listReceiver">
+                </datalist>
                 <div class="reciver">
-                    <span class="label label-success glyphicon glyphicon-plus" data-toggle="modal"
+                    <span class="label label-success glyphicon glyphicon-plus tongxunlu" data-toggle="modal"
                           data-target="#myModal" style="cursor: pointer;">通讯录</span>
                 </div>
             </div>
@@ -97,17 +100,6 @@
         <input type="hidden" name="mailPsuh" value="1">
     </form>
 </div>
-<script type="text/javascript">
-
-
-
-
-
-
-
-</script>
-
-
 <style>
     .table-r {
         overflow: scroll;
@@ -169,26 +161,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="row" th:each="aoaUser:${listAoaUser}">
-                                    <td
-                                    <td class=" col-xs-1">
-                                        <span class="labels"><label><input name="id"
-                                                                           type="checkbox"><i>✓</i></label></span>
-                                    </td>
-                                    <td class=" col-xs-1">
-													<span class="imgs center-block">
-														<img style="width: 30px;height: 30px;"
-                                                             class="profile-user-img img-responsive img-circle"
-                                                             th:src="@{/images/647cbde6-3fba-4d8c-a50f-1a07f9bee417.jpg}">
-															</span>
-                                    </td>
-                                    <td class="col-xs-2" th:text="${aoaUser.aoaDept.deptName}"></td>
-                                    <td class=" col-xs-2" th:text="${aoaUser.realName}">小明</td>
-                                    <td class="col-xs-2 na" th:text="${aoaUser.userName}">罗密欧</td>
-                                    <td class=" col-xs-2" th:text="${aoaUser.aoaPosition.name}">超级管理员</td>
-                                    <td class=" col-xs-2" th:text="${aoaUser.userTel}">13272143450</td>
-
-                                </tr>
 
                                 </tbody>
                             </table>
@@ -200,27 +172,27 @@
                                      style="background: #fff; border: 0px; margin-top: 0px; padding: 2px; height: 25px;">
                                     <div style="width: 40%; float: left;">
                                         <div class="pageInfo" style="margin-left: 5px;">
-                                            共<span>31</span>条 | 每页<span>10</span>条
-                                            | 共<span>4</span>页
+                                            共<span id="count"></span>条 | 每页<span id="maxResult"></span>条
+                                            | 共<span id="total"></span>页
                                         </div>
                                     </div>
                                     <div style="width: 60%; float: left;">
                                         <div class="pageOperation">
                                             <!--判断是否是第一页  -->
-                                            <a class="btn btn-sm btn-default no-padding tablefirst" disabled="disabled"
+                                            <a class="btn btn-sm btn-default no-padding tablefirst"
                                                style="width: 30px; height: 20px;"> <span
                                                     class="glyphicon glyphicon-backward"></span></a>
-                                            <a class="btn btn-sm btn-default no-padding tableup" disabled="disabled"
+                                            <a class="btn btn-sm btn-default no-padding tableup"
                                                style="width: 30px; height: 20px;"> <span
                                                     class="glyphicon glyphicon-triangle-left"></span></a>
-                                            <a disabled="disabled" class="btn btn-default no-padding"
+                                            <a disabled="disabled" class="btn btn-default no-padding" id="pageNum"
                                                style="width: 30px; height: 20px;">
-                                                1
+
                                             </a>
                                             <!--判断是否是最后一页  -->
                                             <a class="btn btn-sm btn-default no-padding tabledown"
                                                style="width: 30px; height: 20px;"> <span
-                                                    class="glyphicon glyphicon-triangle-right"></span></a>
+                                                    class="glyphicon glyphicon-triangle-right" id="nextPage"></span></a>
                                             <a class="btn btn-sm btn-default no-padding tablelast"
                                                style="width: 30px; height: 20px;"> <span
                                                     class="glyphicon glyphicon-forward"></span></a>
@@ -229,67 +201,67 @@
                                 </div>
                             </div>
                         </div>
-                        <script>
-                            /* 分页插件按钮的点击事件 */
-                            /* url是从后台接收过来的链接，sort是记录排序规则 */
-                            $('.tablefirst').on('click', function () {
-                                if (true == false) {
-                                    $('.thistable').load('names?page=0');
-                                }
-                            });
-                            $('.tableup').on('click', function () {
-                                if (true == false) {
-                                    $('.thistable').load('names?page=-1');
-                                }
-                            });
-                            $('.tabledown').on('click', function () {
-                                if (false == false) {
-                                    $('.thistable').load('names?page=1');
-                                }
-                            });
-                            $('.tablelast').on('click', function () {
-                                if (false == false) {
-                                    $('.thistable').load('names?page=3');
-                                }
+                        <!--<script>-->
+                        <!--/* 分页插件按钮的点击事件 */-->
+                        <!--/* url是从后台接收过来的链接，sort是记录排序规则 */-->
+                        <!--$('.tablefirst').on('click', function () {-->
+                        <!--if (true == false) {-->
+                        <!--$('.thistable').load('names?page=0');-->
+                        <!--}-->
+                        <!--});-->
+                        <!--$('.tableup').on('click', function () {-->
+                        <!--if (true == false) {-->
+                        <!--$('.thistable').load('names?page=-1');-->
+                        <!--}-->
+                        <!--});-->
+                        <!--$('.tabledown').on('click', function () {-->
+                        <!--if (false == false) {-->
+                        <!--$('.thistable').load('/mail/goWrite');-->
+                        <!--}-->
+                        <!--});-->
+                        <!--$('.tablelast').on('click', function () {-->
+                        <!--if (false == false) {-->
+                        <!--$('.thistable').load('names?page=3');-->
+                        <!--}-->
 
-                            });
+                        <!--});-->
 
-                            /*类型、状态、时间的排序  */
-                            $('.thistype').on('click', function () {
-                                if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
-                                    $('.thistable').load('names?type=0&icon=glyphicon-triangle-top');
-                                } else {
-                                    $('.thistable').load('names?type=1&icon=glyphicon-triangle-bottom');
-                                }
-                            });
-                            $('.thisstatus').on('click', function () {
-                                if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
-                                    $('.thistable').load('names?status=0&icon=glyphicon-triangle-top');
-                                } else {
-                                    $('.thistable').load('names?status=1&icon=glyphicon-triangle-bottom');
-                                }
-                            });
-                            $('.thistime').on('click', function () {
-                                if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
-                                    $('.thistable').load('names?time=0&icon=glyphicon-triangle-top');
-                                } else {
-                                    $('.thistable').load('names?time=1&icon=glyphicon-triangle-bottom');
-                                }
-                            });
-                            $('.thisvisit').on('click', function () {
-                                if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
-                                    $('.thistable').load('names?visitnum=0&icon=glyphicon-triangle-top');
-                                } else {
-                                    $('.thistable').load('names?visitnum=1&icon=glyphicon-triangle-bottom');
-                                }
-                            });
-                            /* 查找 */
-                            $('.baseKetsubmit').on('click', function () {
-                                var baseKey = $('.baseKey').val();
-                                console.log(baseKey);
-                                $('.thistable').load('names?baseKey=' + baseKey + '');
-                            });
-                        </script>
+                        <!--/*类型、状态、时间的排序  */-->
+                        <!--$('.thistype').on('click', function () {-->
+                        <!--if ($(this).children().hasClass('glyphicon-triangle-bottom')) {-->
+                        <!--$('.thistable').load('names?type=0&icon=glyphicon-triangle-top');-->
+                        <!--} else {-->
+                        <!--$('.thistable').load('names?type=1&icon=glyphicon-triangle-bottom');-->
+                        <!--}-->
+                        <!--});-->
+                        <!--$('.thisstatus').on('click', function () {-->
+                        <!--if ($(this).children().hasClass('glyphicon-triangle-bottom')) {-->
+                        <!--$('.thistable').load('names?status=0&icon=glyphicon-triangle-top');-->
+                        <!--} else {-->
+                        <!--$('.thistable').load('names?status=1&icon=glyphicon-triangle-bottom');-->
+                        <!--}-->
+                        <!--});-->
+                        <!--$('.thistime').on('click', function () {-->
+                        <!--if ($(this).children().hasClass('glyphicon-triangle-bottom')) {-->
+                        <!--$('.thistable').load('names?time=0&icon=glyphicon-triangle-top');-->
+                        <!--} else {-->
+                        <!--$('.thistable').load('names?time=1&icon=glyphicon-triangle-bottom');-->
+                        <!--}-->
+                        <!--});-->
+                        <!--$('.thisvisit').on('click', function () {-->
+                        <!--if ($(this).children().hasClass('glyphicon-triangle-bottom')) {-->
+                        <!--$('.thistable').load('names?visitnum=0&icon=glyphicon-triangle-top');-->
+                        <!--} else {-->
+                        <!--$('.thistable').load('names?visitnum=1&icon=glyphicon-triangle-bottom');-->
+                        <!--}-->
+                        <!--});-->
+                        <!--/* 查找 */-->
+                        <!--$('.baseKetsubmit').on('click', function () {-->
+                        <!--var baseKey = $('.baseKey').val();-->
+                        <!--console.log(baseKey);-->
+                        <!--$('.thistable').load('names?baseKey=' + baseKey + '');-->
+                        <!--});-->
+                        <!--</script>-->
                     </div>
                 </div>
 

@@ -18,15 +18,56 @@
     </resultMap>
 
     <!--添加内部邮件-->
-    <insert id="addAoaMailList" parameterType="com.hr.entity.AoaInMailList" useGeneratedKeys="true" keyProperty="mailId">
+    <insert id="addAoaMailList" parameterType="com.hr.entity.AoaInMailList" useGeneratedKeys="true"
+            keyProperty="mailId">
         insert into aoa_in_mail_list
         (mail_content,mail_create_time,mail_title,
         mail_type,mail_in_push_user_id,in_receiver,
-        mail_status_id,mail_push)
+        mail_status_id,mail_number_id,mail_push)
         values
         (#{mailContent},DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s'),
         #{mailTitle},#{mailType},
         #{mailInPushUserId},#{inReceiver},
-        #{mailStatusId},#{mailPush})
+        #{mailStatusId},#{mailNumberId},#{mailPush})
     </insert>
+
+    <select id="queryAoaInMailList" resultMap="BaseResultMap">
+
+        select aiml.mail_id, aiml.mail_star,aiml.mail_type,aiml.in_receiver,
+        aiml.mail_title,aiml.mail_create_time,aiml.mail_file_id,
+        aal.attachment_path,aiml.mail_status_id
+        from aoa_in_mail_list aiml
+        left join aoa_mail_reciver amr on aiml.mail_id = amr.mail_id
+        left join aoa_attachment_list aal on aiml.mail_file_id = aal.attachment_id
+        <where>
+            <if test="userId != null">
+                and amr.mail_reciver_id = #{userId}
+            </if>
+            <if test="1 == 1">
+                and aiml.mail_number_id != 1
+            </if>
+            <if test="param != null and param != ''">
+                and (mail_title like "%"#{param}"%" or in_receiver like "%"#{param}"%")
+            </if>
+
+        </where>
+        <if test="firstResult != null and maxResult != null">
+            limit #{firstResult},#{maxResult}
+        </if>
+    </select>
+
+    <select id="getCountForInMailBox" resultType="java.lang.Long">
+        select count(aiml.mail_id)
+        from aoa_in_mail_list aiml
+        left join aoa_mail_reciver amr on aiml.mail_id = amr.mail_id
+        left join aoa_attachment_list aal on aiml.mail_file_id = aal.attachment_id
+        <where>
+            <if test="userId != null">
+                and amr.mail_reciver_id = #{userId}
+            </if>
+            <if test="1 == 1">
+                and mail_number_id != 1
+            </if>
+        </where>
+    </select>
 </mapper>

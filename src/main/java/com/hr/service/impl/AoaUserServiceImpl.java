@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
@@ -33,12 +34,19 @@ public class AoaUserServiceImpl implements IAoaUserService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
-    public List<AoaUser> queryAoaUserForDirector(Long userId) {
-        return aoaUserMapper.queryAoaUserForDirector(userId);
+    public List<AoaUser> queryAoaUserForDirector(Map<String,Object> paramMap) {
+        return aoaUserMapper.queryAoaUserForDirector(paramMap);
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public Long queryAoaUserIdByUserName(String userName) {
         return aoaUserMapper.queryAoaUserIdByUserName(userName);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public Long getCountForDirector(Map<String, Object> paramMap) {
+        return aoaUserMapper.getCountForDirector(paramMap);
     }
 }

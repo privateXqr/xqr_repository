@@ -38,7 +38,7 @@
             $("#isTop" + noticeId).html("");
         }
 
-        location.href = "/notice/updateTop?noticeId=" + noticeId + "&isTop=" + isTop;
+        location.href = "/notice/updateTop?noticeId=" + noticeId + "&isTop=" + isTop + "&forUser=true";
     }
 
     function turn_page(noticeUrl) {
@@ -55,7 +55,7 @@
 
         $("[name = 'query_notice_btn']").click(function () {
 
-            location.href = "/notice/queryNoticeByUser?title=" + $("#notice_title").val();
+            location.href = "/notice/queryNoticeByUser?title=" + $("#notice_title").val() + "&forUser=true";
         })
 
         $("[name = 'goIndex']").click(function () {
@@ -73,7 +73,7 @@
         <h1 style="font-size: 24px; margin: 0;" class="">通知列表</h1>
     </div>
     <div class="col-md-10 text-right">
-        <a name = "goIndex"><span class="glyphicon glyphicon-home"></span> 首页</a>
+        <a name="goIndex"><span class="glyphicon glyphicon-home"></span> 首页</a>
         > <a disabled="disabled">通知列表</a>
     </div>
 </div>
@@ -120,12 +120,12 @@
                             <th scope="col">操作</th>
                         </tr>
                         <tr th:each="aoaNoticeList:${listAoaNoticeList}">
-                            <td th:switch="${aoaNoticeList.typeId}"><span th:case="10">公告</span><span
-                                    th:case="11">通知</span><span th:case="12">投票</span></td>
+                            <td th:switch="${aoaNoticeList.typeId}"><span th:case="17">公告</span><span
+                                    th:case="16">通知</span><span th:case="18">投票</span></td>
                             <td th:switch="${aoaNoticeList.statusId}">
-                                <span class="label label-primary" th:case="14">一般</span>
-                                <span class="label label-warning" th:case="15">重要</span>
-                                <span class="label label-danger" th:case="16">紧急</span>
+                                <span class="label label-primary" th:case="20">一般</span>
+                                <span class="label label-warning" th:case="21">重要</span>
+                                <span class="label label-danger" th:case="22">紧急</span>
                             </td>
                             <td class="c"><span th:text="${aoaNoticeList.title}"></span></td>
                             <td><span th:text="${aoaNoticeList.noticeTime}"></span></td>
@@ -143,7 +143,8 @@
                             <td><a th:href="@{/notice/queryNoticeById(noticeId=${aoaNoticeList.noticeId})}"
                                    class="label xiugai chakan"><span class="glyphicon glyphicon-search"></span>
                                 查看</a>
-                                <a th:href="@{/notice/forwardUnder(noticeId=${aoaNoticeList.noticeId})}" onclick="{return confirm('确定转发给自己的下属吗？');};"
+                                <a th:href="@{/notice/forwardUnder(noticeId=${aoaNoticeList.noticeId})}"
+                                   onclick="{return confirm('确定转发给自己的下属吗？');};"
                                    class="label xinzeng chakan forwardthis"><span
                                         class="glyphicon glyphicon-log-out"></span>
                                     转发</a>
@@ -159,30 +160,36 @@
                          style="background: #fff; border: 0px; margin-top: 0px; padding: 2px; height: 25px;">
                         <div style="width: 40%; float: left;">
                             <div class="pageInfo" style="margin-left: 5px;">
-                                共<span th:text="${count}"></span>条 | 每页<span th:text="${count != 0 ? maxResult : 0}"></span>条
+                                共<span th:text="${count}"></span>条 | 每页<span
+                                    th:text="${count != 0 ? maxResult : 0}"></span>条
                                 | 共<span th:text="${total}">1</span>页
                             </div>
                         </div>
                         <div style="width: 60%; float: left;">
                             <div class="pageOperation">
                                 <a class="btn btn-sm btn-default no-padding tablefirst"
-                                   th:href="@{/notice/queryNoticeByUser(firstResult=1,title=${title})}"
+                                   th:disabled="${firstResult - 1 < 1 ? 'true' : 'false'}"
+                                   th:href="@{/notice/queryNoticeByUser(firstResult=1,title=${title},forUser=true)}"
                                    style="width: 30px; height: 20px;"> <span
                                         class="glyphicon glyphicon-backward"></span></a>
                                 <a class="btn btn-sm btn-default no-padding tableup"
-                                   th:href="@{/notice/queryNoticeByUser(firstResult=${firstResult - 1 < 1 ? 1 : firstResult - 1},title=${title})}"
+                                   th:disabled="${firstResult - 1 < 1 ? 'true' : 'false'}"
+                                   th:href="@{/notice/queryNoticeByUser(firstResult=${firstResult - 1 < 1 ? 1 : firstResult - 1},title=${title},forUser=true)}"
                                    style="width: 30px; height: 20px;"> <span
                                         class="glyphicon glyphicon-triangle-left"></span></a>
                                 <a class="btn btn-default no-padding"
-                                   style="width: 30px; height: 20px;"> <span th:text="${count != 0 ? firstResult : 0}"></span> </a>
+                                   style="width: 30px; height: 20px;"> <span
+                                        th:text="${count != 0 ? firstResult : 0}"></span> </a>
                                 <!--判断是否是最后一页  -->
                                 <a class="btn btn-sm btn-default no-padding tabledown"
+                                   th:disabled="${firstResult + 1 > total ? 'true' : 'false'}"
                                    style="width: 30px; height: 20px;"
-                                   th:href="@{/notice/queryNoticeByUser(firstResult=${firstResult + 1 >= total ? total : firstResult + 1},title=${title})}"> <span
+                                   th:href="@{/notice/queryNoticeByUser(firstResult=${firstResult + 1 >= total ? total : firstResult + 1},title=${title},forUser=true)}"> <span
                                         class="glyphicon glyphicon-triangle-right"></span></a>
                                 <a class="btn btn-sm btn-default no-padding tablelast"
+                                   th:disabled="${firstResult + 1 > total ? 'true' : 'false'}"
                                    style="width: 30px; height: 20px;"
-                                   th:href="@{/notice/queryNoticeByUser(firstResult=${total},title=${title})}"> <span
+                                   th:href="@{/notice/queryNoticeByUser(firstResult=${total},title=${title},forUser=true)}"> <span
                                         class="glyphicon glyphicon-forward"></span></a>
                             </div>
                         </div>

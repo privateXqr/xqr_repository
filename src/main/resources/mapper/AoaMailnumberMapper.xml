@@ -1,16 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hr.mapper.IAoaMailnumberMapper">
-  <resultMap id="BaseResultMap" type="com.hr.entity.AoaMailnumber">
-    <id column="mail_number_id" jdbcType="BIGINT" property="mailNumberId" />
-    <result column="mail_account" jdbcType="VARCHAR" property="mailAccount" />
-    <result column="mail_create_time" jdbcType="TIMESTAMP" property="mailCreateTime" />
-    <result column="mail_des" jdbcType="VARCHAR" property="mailDes" />
-    <result column="mail_type" jdbcType="BIGINT" property="mailType" />
-    <result column="mail_user_name" jdbcType="VARCHAR" property="mailUserName" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="status" jdbcType="BIGINT" property="status" />
-    <result column="mail_num_user_id" jdbcType="BIGINT" property="mailNumUserId" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.hr.entity.AoaMailnumber">
+        <id column="mail_number_id" jdbcType="BIGINT" property="mailNumberId"/>
+        <result column="mail_account" jdbcType="VARCHAR" property="mailAccount"/>
+        <result column="mail_create_time" jdbcType="TIMESTAMP" property="mailCreateTime"/>
+        <result column="mail_des" jdbcType="VARCHAR" property="mailDes"/>
+        <result column="mail_type" jdbcType="BIGINT" property="mailType"/>
+        <result column="mail_user_name" jdbcType="VARCHAR" property="mailUserName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="status" jdbcType="BIGINT" property="status"/>
+        <result column="mail_num_user_id" jdbcType="BIGINT" property="mailNumUserId"/>
+    </resultMap>
+    
+    <resultMap id="mailnumber_user_map" type="com.hr.entity.AoaMailnumber" extends="BaseResultMap">
+        
+        <association property="aoaUser" column="mailNumUserId" javaType="com.hr.entity.AoaUser">
+            <id column="user_id" jdbcType="BIGINT" property="userId"/>
+            <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        </association>
+    </resultMap>
 
+    <select id="existsAoaMailnumber" resultMap="BaseResultMap">
+
+      select mail_number_id,mail_account
+      from aoa_mailnumber
+      where mail_account = #{mailAccount}
+
+    </select>
+
+    <select id="queryAoaMailNumberByMailAccount" resultMap="mailnumber_user_map">
+
+        select mail_number_id,mail_account,mail_num_user_id,
+        au.user_name
+        from aoa_mailnumber am
+        left join aoa_user au
+        on am.mail_num_user_id = au.user_id
+        <where>
+            <if test="mailAccount != null and mailAccount != ''">
+                and mail_account like "%"#{mailAccount}"%"
+            </if>
+            <if test="userId != null">
+                and mail_num_user_id != #{userId}
+            </if>
+        </where>
+
+    </select>
 </mapper>

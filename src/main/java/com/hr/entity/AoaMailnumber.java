@@ -23,6 +23,16 @@ public class AoaMailnumber implements Serializable {
 
     private Long mailNumUserId;
 
+    private AoaUser aoaUser;
+
+    public AoaUser getAoaUser() {
+        return aoaUser;
+    }
+
+    public void setAoaUser(AoaUser aoaUser) {
+        this.aoaUser = aoaUser;
+    }
+
     public Long getMailNumberId() {
         return mailNumberId;
     }

@@ -4,6 +4,7 @@ import com.hr.entity.AoaUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IAoaUserService {
 
@@ -21,10 +22,18 @@ public interface IAoaUserService {
     /**
      * 查询用户通讯录
      *
-     * @param userId 用户ID
+     * @param paramMap 参数集合
      * @return
      */
-    public List<AoaUser> queryAoaUserForDirector(@Param("userId") Long userId);
+    public List<AoaUser> queryAoaUserForDirector(Map<String,Object> paramMap);
+
+    /**
+     * 获取通讯录总条目数
+     *
+     * @param paramMap 参数集合
+     * @return
+     */
+    public Long getCountForDirector(Map<String, Object> paramMap);
 
     /**
      * 根据用户名查询用户ID
