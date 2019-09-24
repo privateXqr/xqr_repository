@@ -426,6 +426,7 @@ public class MailController {
                 aoaMailReciverService.batchUpdateAoaMailReciverForRead(paramMap);
                 break;
             case "star":
+                aoaMailReciverService.batchUpdateAoaMailReciverForStar(paramMap);
                 break;
         }
         return url;
