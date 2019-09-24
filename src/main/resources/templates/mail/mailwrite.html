@@ -48,17 +48,18 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="mailPush" id="account" class="select2 form-control">
+                    <select id="account" class="select2 form-control">
                         <option th:value="${mailScope.charStatusId}" th:each="mailScope:${listMailScope}"
                                 th:text="${mailScope.charName}" th:selected="${mailScope.isTop == 1}"></option>
                     </select>
                 </div>
             </div>
 
-            <div id = "shoujianren" class="form-group">
-                <input name="inReceiver" type="text" id="recive_list" style="background-color: #fff;"
+            <div id="shoujianren" class="form-group">
+                <input th:value="${mailInPushName != null ? mailInPushName : ''}" name="inReceiver" type="text"
+                       id="recive_list" style="background-color: #fff;"
                        class="form-control" readonly="readonly" placeholder="收件人：" list="listReceiver">
-                <datalist id = "listReceiver">
+                <datalist id="listReceiver">
                 </datalist>
                 <div class="reciver">
                     <span class="label label-success glyphicon glyphicon-plus tongxunlu" data-toggle="modal"
@@ -67,15 +68,16 @@
             </div>
 
             <div class="form-group">
-                <input name="mailTitle" type="text" value="" id="ctl00_cphMain_txtSubject" class="form-control"
+                <input th:value="${mailTitle != null ? mailTitle : ''}" name="mailTitle" type="text" value=""
+                       id="ctl00_cphMain_txtSubject" class="form-control"
                        placeholder="主题：">
             </div>
 
             <div class="form-group">
-                <textarea name="mailContent" class="form-control tent"
+                <textarea th:text="${mailContent != null ? mailContent : ''}" name="mailContent"
+                          class="form-control tent"
                           style="width: 100%; height: 300px;  font-size: 20px;"></textarea>
             </div>
-
             <div class="form-group">
                 <div class="btn btn-default ">
                     <span class="glyphicon glyphicon-paperclip">增加附件</span> <input type="file" name="file"
@@ -97,7 +99,7 @@
             </div>
         </div>
         <!--存草稿 | 发送-->
-        <input type="hidden" name="mailPsuh" value="1">
+        <input type="hidden" name="mailPush" value="1">
     </form>
 </div>
 <style>

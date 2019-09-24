@@ -25,12 +25,20 @@ public class AoaInMailListServiceImpl implements IAoaInMailListService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public List<AoaInMailList> queryAoaInMailList(Map<String, Object> paramMap) {
         return aoaInMailListMapper.queryAoaInMailList(paramMap);
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public Long getCountForInMailBox(Map<String, Object> paramMap) {
         return aoaInMailListMapper.getCountForInMailBox(paramMap);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public AoaInMailList queryAoaInMailListWhere(Map<String, Object> paramMap) {
+        return aoaInMailListMapper.queryAoaInMailListWhere(paramMap);
     }
 }

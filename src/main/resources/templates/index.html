@@ -194,7 +194,7 @@ maximum-scale=1, user-scalable=no">
                                     <a class="open-menu green-left" th:href="'#'+${aoaSysMenuParent.menuId}"
                                        data-toggle="collapse"
                                        data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-cog"></span> <span
+                                            class="glyphicon " th:classappend="${aoaSysMenuParent.menuIcon}"></span> <span
                                             th:text="${aoaSysMenuParent.menuName}"></span> <span
                                             class="glyphicon glyphicon-menu-left pull-right"></span>
                                     </a>

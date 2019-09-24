@@ -31,4 +31,12 @@ public interface IAoaInMailListService {
      * @return
      */
     public Long getCountForInMailBox(Map<String, Object> paramMap);
+
+    /**
+     * 查询指定邮件
+     *
+     * @param paramMap 参数列表
+     * @return
+     */
+    public AoaInMailList queryAoaInMailListWhere(Map<String, Object> paramMap);
 }

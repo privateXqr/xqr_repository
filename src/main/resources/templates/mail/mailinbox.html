@@ -4,9 +4,11 @@
         <!--盒子头-->
         <div class="box-header">
             <h3 class="box-title titles">收件箱</h3>
+            <input type="checkbox" class="form-control">
             <div class="box-tools">
                 <div class="input-group" style="width: 220px; margin-top: 0px;">
-                    <input th:value="${param}" type="text" class="form-control input-sm cha" placeholder="类型，主题，状态，收件人查询">
+                    <input th:value="${queryParam == null ? '' : queryParam}" type="text"
+                           class="form-control input-sm cha" placeholder="类型，主题，状态，收件人查询">
                     <div class="input-group-btn chazhao">
                         <a class="btn btn-sm btn-default"><span class="glyphicon glyphicon-search"></span></a>
                     </div>
@@ -49,7 +51,7 @@
                                 <span class="labels"><label><input name="items" type="checkbox"><i>✓</i></label></span>
                             </td>
                             <td class="em"><span class="glyphicon "
-                                                 th:classappend="${aoaInMailList.mailStar == 1 ? 'glyphicon-star' : 'glyphicon-star-empty'}"
+                                                 th:classappend="${aoaInMailList.aoaMailReciver.isStar == 1 ? 'glyphicon-star' : 'glyphicon-star-empty'}"
                                                  style="width: 25px;"></span></td>
                             <td th:switch="${aoaInMailList.mailType}">
                                 <span class="label label-primary" th:case="16">邮件</span>
@@ -57,7 +59,9 @@
                                 <span class="label label-primary" th:case="18">通知</span>
                             </td>
                             <td><span th:text="${aoaInMailList.inReceiver}"></span></td>
-                            <td><span th:text="${aoaInMailList.mailTitle}"></span></td>
+                            <td><span th:text="${aoaInMailList.mailTitle}"
+                                      th:style="'font-weight:' + ${ aoaInMailList.aoaMailReciver.isRead == 0 ? 'bold' : 'normal'}"></span>
+                            </td>
                             <td><span
                                     th:text="${#dates.format(aoaInMailList.mailCreateTime,'yyyy-MM-dd hh:mm:ss')}"></span>
                             </td>
@@ -69,68 +73,13 @@
                                 <div class="label label-warning" th:case="21">重要</div>
                                 <div class="label label-danger" th:case="22">紧急</div>
                             </td>
-                            <td class="mailid" style="display:none;"><span>54</span></td>
-                            <td><a href="##" class="label xiugai lab"><span class="glyphicon glyphicon-search"></span>
+                            <td class="mailid" style="display:none;"><span th:text="${aoaInMailList.mailId}"></span>
+                            </td>
+                            <td><a th:id="${aoaInMailList.mailId}" href="##" class="label xiugai lab"><span
+                                    class="glyphicon glyphicon-search"></span>
                                 查看</a>
                             </td>
                         </tr>
-                        <!--<tr>-->
-                        <!--<td>-->
-                        <!--<span class="labels"><label><input name="items" type="checkbox"><i>✓</i></label></span>-->
-                        <!--</td>-->
-                        <!--<td class="em"><span class="glyphicon glyphicon-star-empty" style="width: 25px;"></span>-->
-                        <!--</td>-->
-                        <!--<td><span>邮件</span></td>-->
-                        <!--<td><span>朱丽叶;罗密欧</span></td>-->
-                        <!--<td><span>【回复】发v显示</span></td>-->
-                        <!--<td><span>2017-10-1 16:59:41</span></td>-->
-                        <!--<td><span></span></td>-->
-                        <!--<td>-->
-                        <!--<div class="label label-primary">一般</div>-->
-                        <!--</td>-->
-                        <!--<td class="mailid" style="display:none;"><span>25</span></td>-->
-                        <!--<td><a href="##" class="label xiugai lab"><span class="glyphicon glyphicon-search"></span>-->
-                        <!--查看</a>-->
-                        <!--</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                        <!--<td>-->
-                        <!--<span class="labels"><label><input name="items" type="checkbox"><i>✓</i></label></span>-->
-                        <!--</td>-->
-                        <!--<td class="em"><span class="glyphicon glyphicon-star-empty" style="width: 25px;"></span>-->
-                        <!--</td>-->
-                        <!--<td><span>邮件</span></td>-->
-                        <!--<td><span>罗密欧;朱丽叶</span></td>-->
-                        <!--<td><span>信息</span></td>-->
-                        <!--<td><span>2017-10-1 12:46:44</span></td>-->
-                        <!--<td><span class="glyphicon glyphicon-paperclip"></span></td>-->
-                        <!--<td>-->
-                        <!--<div class="label label-primary">一般</div>-->
-                        <!--</td>-->
-                        <!--<td class="mailid" style="display:none;"><span>23</span></td>-->
-                        <!--<td><a href="##" class="label xiugai lab"><span class="glyphicon glyphicon-search"></span>-->
-                        <!--查看</a>-->
-                        <!--</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                        <!--<td>-->
-                        <!--<span class="labels"><label><input name="items" type="checkbox"><i>✓</i></label></span>-->
-                        <!--</td>-->
-                        <!--<td class="em"><span class="glyphicon glyphicon-star-empty" style="width: 25px;"></span>-->
-                        <!--</td>-->
-                        <!--<td><span style="color:red;">公告</span></td>-->
-                        <!--<td><span>罗密欧</span></td>-->
-                        <!--<td><span>呃呃呃</span></td>-->
-                        <!--<td><span>2017-9-30 16:24:46</span></td>-->
-                        <!--<td><span></span></td>-->
-                        <!--<td>-->
-                        <!--<div class="label label-primary">一般</div>-->
-                        <!--</td>-->
-                        <!--<td class="mailid" style="display:none;"><span>18</span></td>-->
-                        <!--<td><a href="##" class="label xiugai lab"><span class="glyphicon glyphicon-search"></span>-->
-                        <!--查看</a>-->
-                        <!--</td>-->
-                        <!--</tr>-->
                         </tbody>
                     </table>
                 </div>
@@ -149,12 +98,12 @@
                             <div class="pageOperation">
                                 <!--判断是否是第一页  -->
                                 <a class="btn btn-sm btn-default no-padding tablefirst"
-                                   th:disabled="${firstResult - 1 < 1 ? 'true' : 'false'}"
-                                   style="width: 30px; height: 20px;"> <span
+                                   style="width: 30px; height: 20px;"
+                                > <span
                                         class="glyphicon glyphicon-backward"></span></a>
                                 <a class="btn btn-sm btn-default no-padding tableup"
-                                   th:disabled="${firstResult - 1 < 1 ? 'true' : 'false'}"
-                                   style="width: 30px; height: 20px;"> <span
+                                   style="width: 30px; height: 20px;"
+                                > <span
                                         class="glyphicon glyphicon-triangle-left"></span></a>
                                 <a th:text="${firstResult}" disabled="disabled" class="btn btn-default no-padding"
                                    style="width: 30px; height: 20px;">
@@ -162,12 +111,14 @@
                                 <!--判断是否是最后一页  -->
                                 <a
                                         class="btn btn-sm btn-default no-padding tabledown"
-                                        th:disabled="${firstResult + 1 > total ? 'true' : 'false'}"
-                                        style="width: 30px; height: 20px;"> <span
+                                        style="width: 30px; height: 20px;">
+                                <span
                                         class="glyphicon glyphicon-triangle-right"></span></a>
                                 <a class="btn btn-sm btn-default no-padding tablelast"
-                                   th:disabled="${firstResult + 1 > total ? 'true' : 'false'}"
-                                   style="width: 30px; height: 20px;"> <span class="glyphicon glyphicon-forward"></span></a>
+                                   style="width: 30px; height: 20px;"
+                                > <span
+                                        class="glyphicon glyphicon-forward"
+                                ></span></a>
                             </div>
                         </div>
                     </div>
@@ -179,16 +130,16 @@
                 /* 分页插件按钮的点击事件 */
                 /* url是从后台接收过来的链接，sort是记录排序规则 */
                 $('.tablefirst').on('click', function () {
-                    $('.set').load('/mail/queryInMail?firstResult=1&forUser=true&param='+param);
+                    $('.set').load('/mail/queryInMail?firstResult=1&forUser=true&queryParam=' + param);
                 });
                 $('.tableup').on('click', function () {
-                    $('.set').load('/mail/queryInMail?firstResult=' + [[${firstResult - 1}]] + '&forUser=true&param='+param);
+                    $('.set').load('/mail/queryInMail?firstResult=' + [[${firstResult - 1 < 1 ? 1 : firstResult - 1}]] + '&forUser=true&queryParam=' + param);
                 });
                 $('.tabledown').on('click', function () {
-                    $('.set').load('/mail/queryInMail?firstResult=' + [[${firstResult + 1}]] + '&forUser=true&param='+param);
+                    $('.set').load('/mail/queryInMail?firstResult=' + [[${firstResult + 1 > total ? total : firstResult + 1}]] + '&forUser=true&queryParam=' + param);
                 });
                 $('.tablelast').on('click', function () {
-                    $('.set').load('/mail/queryInMail?firstResult=' + [[${total}]] + '&forUser=true&param='+param);
+                    $('.set').load('/mail/queryInMail?firstResult=' + [[${total}]] + '&forUser=true&queryParam=' + param);
                 });
 
                 /*类型、状态、时间的排序  */
@@ -245,10 +196,10 @@
                                 return;
                             }
                             var values = arry.toString();
-                            $(".thistable").load("alldelete", {ids: values, title: title});
+                            $(".set").load("/mail/inMailOperation", {ids: values, oper: "del"});
                         }
                     });
-                    //批量查看
+                    //标记已读
                     $(".looked").click(function () {
 
                         var arry = new Array();
@@ -268,8 +219,8 @@
                             return;
                         }
                         var values = arry.toString();
-                        $(".thistable").load("watch", {ids: values, title: title});
 
+                        $(".set").load("/mail/inMailOperation", {ids: values, oper: "watch"});
                     });
                     //批量标星
                     $(".star").click(function () {
@@ -287,8 +238,7 @@
                             return;
                         }
                         var values = arry.toString();
-                        $(".thistable").load("star", {ids: values, title: title});
-
+                        $(".set").load("/mail/inMailOperation", {ids: values, oper: "star"});
                     });
                     //查看
                     $('.lab').on('click', function () {
@@ -300,7 +250,7 @@
                         }
 
                         //$('.set').load('smail',{id:$mailid,title:title});
-                        $('.set').load('mailsee.html');
+                        $('.set').load('/mail/queryInMailById?mailId=' + $(this).attr("id"));
                         /* parent.changeemail(); */
                     });
                     //重新编辑
@@ -341,7 +291,7 @@
             var con = $(".cha").val();
             var title = $(".titles").text();
 
-            $(".thistable").load("/mail/queryInMail", {param: con,forUser:true});
+            $(".set").load("/mail/queryInMail", {queryParam: con, forUser: true});
         });
         /**
          * checkebox的全选与反选
@@ -384,7 +334,6 @@
                 } else {
                     $(this).removeAttr("checked");
                 }
-
             })
         })
     })
