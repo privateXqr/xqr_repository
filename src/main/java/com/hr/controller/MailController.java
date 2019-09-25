@@ -40,7 +40,7 @@ public class MailController {
 
     private Boolean forUser = false;    //是否根据用户进行操作    默认不根据
 
-    private Map<String, Object> paramMap = new HashMap<>();  //参数集合
+    private Map<String, Object> paramMap = null;  //参数集合
 
     private Integer firstResult = 1;        //当前页码
 
@@ -110,6 +110,8 @@ public class MailController {
     @ResponseBody
     public Map<String, Object> queryAddressList(HttpSession session, Integer firstResult) {
 
+        paramMap = new HashMap<>();
+
         Map<String, Object> map = new HashMap<>();
 
         if (firstResult == null) {
@@ -172,6 +174,8 @@ public class MailController {
     @ResponseBody
     public List<AoaMailnumber> queryReceiverForAjax(HttpSession session, String mailAccount) {
 
+        paramMap = new HashMap<>();
+
         AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
 
         paramMap.put("mailAccount", mailAccount);
@@ -212,12 +216,12 @@ public class MailController {
         //发件人ID
         aoaInMailList.setMailInPushUserId(aoaUser.getUserId());
 
-        if (aoaInMailList.getMailType() == 16) {   //邮件
+        if (mailAccount == null || "".equals(mailAccount)) {   //内部邮件
 
-            if (aoaInMailList.getMailNumberId() == null) {   //内部邮件
+            //新增内部邮件
+            aoaInMailListService.addAoaMailList(aoaInMailList);
 
-                //新增内部邮件
-                aoaInMailListService.addAoaMailList(aoaInMailList);
+            if (aoaInMailList.getMailPush() == 1) {     //为发送时，才真正为收件人与邮件建立关系
 
                 //重组收件人数组
                 String[] receivers = aoaInMailList.getInReceiver().split(";");
@@ -231,33 +235,39 @@ public class MailController {
                     //分别为每个收件人 与 内部邮件 建立关系
                     aoaMailReciverService.addAoaMailReciver(aoaInMailList.getMailId(), userId);
                 }
-            } else {  //外部邮件
-
-                //根据外部邮箱账号获取邮箱账号ID
-                AoaMailnumber aoaMailnumber = aoaMailnumberService.existsAoaMailnumber(mailAccount);
-
-                //外部邮箱账号ID
-                aoaInMailList.setMailNumberId(aoaMailnumber.getMailNumberId());
-                aoaInMailList.setInReceiver(mailAccount);
-
-                //新增外部邮件
-                aoaInMailListService.addAoaMailList(aoaInMailList);
             }
+        } else {  //外部邮件
+
+            //根据外部邮箱账号获取邮箱账号ID
+            AoaMailnumber aoaMailnumber = aoaMailnumberService.existsAoaMailnumber(mailAccount);
+
+            //外部邮箱账号ID
+            aoaInMailList.setMailNumberId(aoaMailnumber.getMailNumberId());
+            aoaInMailList.setInReceiver(mailAccount);
+
+            //新增外部邮件
+            aoaInMailListService.addAoaMailList(aoaInMailList);
         }
         return url;
     }
 
     /**
+     * 主要查询 查询邮箱
+     *
+     * @param map
      * @param session
-     * @param map         响应结果集
      * @param firstResult 当前页码
-     * @param forUser     是否根据用户进行操作
+     * @param forUser     根据用户查询
+     * @param mailBoxType 邮箱类型
+     * @param queryParam  高级查询参数
      * @return
      */
-    @RequestMapping("queryInMail")
-    public String queryAoaInMailList(HttpSession session, ModelMap map, Integer firstResult, Boolean forUser, String queryParam) {
+    @RequestMapping("queryMail")
+    public String queryMailList(ModelMap map, HttpSession session, Integer firstResult, Boolean forUser, String mailBoxType, String queryParam) {
 
-        String url = "/mail/mailinbox";
+        paramMap = new HashMap<>();
+
+        String url = "";
 
         if (firstResult == null) {
             firstResult = this.firstResult;
@@ -267,11 +277,13 @@ public class MailController {
             forUser = this.forUser;
         }
 
-        if (forUser) {   //查询当前登陆用户收件箱(内部邮件)
+        //根据用户查询
+        if (forUser) {
 
             AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
 
             paramMap.put("userId", aoaUser.getUserId());
+
         }
 
         if (queryParam != null) { //高级查询
@@ -304,14 +316,43 @@ public class MailController {
             }
             map.addAttribute("queryParam", queryParam);
         }
+
         paramMap.put("firstResult", (firstResult - 1) * maxResult);
         paramMap.put("maxResult", maxResult);
 
-        //查询收件箱
-        List<AoaInMailList> listAoaInMailList = aoaInMailListService.queryAoaInMailList(paramMap);
+        // 邮件箱
+        List<AoaInMailList> listAoaInMailList = null;
 
-        //获取收件箱总条目数
-        count = aoaInMailListService.getCountForInMailBox(paramMap);
+        // 主要查询
+        switch (mailBoxType) {
+            //收件箱
+            case "inMail":
+                paramMap.put("isDel", 0);
+                listAoaInMailList = aoaInMailListService.queryAoaInMailList(paramMap);
+                count = aoaInMailListService.getCountForInMailBox(paramMap);
+                url = "mail/mailinbox";
+                break;
+            //发件箱
+            case "outMail":
+                paramMap.put("mailPush", 1);
+                listAoaInMailList = aoaInMailListService.queryAoaOutMailList(paramMap);
+                count = aoaInMailListService.getCountForOutMailBox(paramMap);
+                url = "mail/mailoutbox";
+                break;
+            //草稿箱
+            case "draft":
+                paramMap.put("mailPush", 0);
+                listAoaInMailList = aoaInMailListService.queryAoaOutMailList(paramMap);
+                count = aoaInMailListService.getCountForOutMailBox(paramMap);
+                url = "mail/maildraftbox";
+                break;
+            case "rubbish":
+                paramMap.put("isDel", 1);
+                listAoaInMailList = aoaInMailListService.queryAoaInMailList(paramMap);
+                count = aoaInMailListService.getCountForInMailBox(paramMap);
+                url = "mail/mailrubbishbox";
+                break;
+        }
 
         total = count / maxResult;
 
@@ -336,10 +377,12 @@ public class MailController {
      * @param mailId 邮件ID
      * @return
      */
-    @RequestMapping("queryInMailById")
-    public String queryInMailListById(ModelMap map, HttpSession session, Long mailId) {
+    @RequestMapping("queryMailById")
+    public String queryMailListById(ModelMap map, HttpSession session, Long mailId, String mailBoxType) {
 
         String url = "/mail/mailsee";
+
+        paramMap = new HashMap<>();
 
         AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
 
@@ -356,79 +399,103 @@ public class MailController {
         AoaInMailList aoaInMailList = aoaInMailListService.queryAoaInMailListWhere(paramMap);
 
         map.addAttribute("aoaInMailList", aoaInMailList);
+        map.addAttribute("mailBoxType", mailBoxType);
 
         return url;
     }
 
     /**
-     * 删除内部邮件
+     * 邮箱操作汇总
      *
-     * @return
-     */
-    @RequestMapping("deleteInMail")
-    public String batchDeleteInMail(HttpSession session, String ids) {
-
-        String url = "redirect:/mail/queryInMail?forUser=true";
-
-        AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
-
-        paramMap.put("userId", aoaUser.getUserId());
-        paramMap.put("mailIds", ids.split(","));
-
-        //批量删除用户与邮件的关系
-        aoaMailReciverService.batchDeleteAoaMailReciver(paramMap);
-
-        return url;
-    }
-
-    /**
-     * 设置邮件已读
-     *
-     * @return
-     */
-    @RequestMapping("updateForRead")
-    public String batchUpdateMailForRead(HttpSession session, String ids) {
-
-        String url = "redirect:/mail/queryInMail?forUser=true";
-
-        AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
-
-        paramMap.put("userId", aoaUser.getUserId());
-        paramMap.put("mailIds", ids.split(","));
-
-
-        return url;
-    }
-
-    /**
-     * 内部邮件 操作汇总
-     *
+     * @param map
      * @param session
-     * @param ids     邮件ID集
-     * @param oper    操作类型
+     * @param ids         邮件ID
+     * @param mailBoxType 邮箱类型
+     * @param oper        操作类型
+     * @param firstResult 当前页码
+     * @param forUser     是否根据用户进行随后查询
      * @return
      */
-    @RequestMapping("inMailOperation")
-    public String inMailOperation(HttpSession session, String ids, String oper) {
+    @RequestMapping("mailOperation")
+    public String mailOperation(ModelMap map, HttpSession session, String ids, String mailBoxType, String oper, Integer firstResult, Boolean forUser) {
 
-        String url = "redirect:/mail/queryInMail?forUser=true";
+        //转发主查询页面
+        String url = "forward:/mail/queryMail";
+
+        paramMap = new HashMap<>();
 
         AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
 
         paramMap.put("userId", aoaUser.getUserId());
         paramMap.put("mailIds", ids.split(","));
 
-        switch (oper) {
-            case "del":
-                aoaMailReciverService.batchUpdateAoaMailReciverForRead(paramMap);
-                break;
-            case "watch":
-                aoaMailReciverService.batchUpdateAoaMailReciverForRead(paramMap);
-                break;
-            case "star":
-                aoaMailReciverService.batchUpdateAoaMailReciverForStar(paramMap);
-                break;
+        String[] mailIds = ids.split(",");
+
+        if (forUser) {
+            //根据用户进行查询
+            map.addAttribute("forUser", true);
         }
+
+        /*
+        操作管理
+        根据邮箱类型以及操作类型 分发操作
+         */
+        if (mailBoxType.equals("inMail") || mailBoxType.equals("rubbish")) {    //收件箱 | 垃圾箱
+            switch (oper) {
+                //删除
+                case "del":
+                    if (mailBoxType.equals("inMail")) {
+                        aoaMailReciverService.batchDeleteAoaMailReciver(paramMap);
+                    } else {
+                        aoaMailReciverService.batchRealDeleteAoaMailReciver(paramMap);
+                    }
+                    break;
+                //已读
+                case "watch":
+                    aoaMailReciverService.batchUpdateAoaMailReciverForRead(paramMap);
+                    break;
+                //星标
+                case "star":
+                    //遍历数组
+                    for (String mailId : mailIds) {
+
+                        paramMap.put("mailId", mailId);
+
+                        //判断此邮件是否星标
+                        Long isStar = aoaMailReciverService.getStarStatus(paramMap);
+
+                        paramMap.put("isStar", isStar);
+
+                        aoaMailReciverService.updateAoaMailReciverForStar(paramMap);
+                    }
+                    break;
+            }
+        } else if (mailBoxType.equals("outMail") || mailBoxType.equals("draft")) {  //发件箱 | 草稿箱
+            switch (oper) {
+                //删除
+                case "del":
+                    aoaInMailListService.deleteForOutMail(paramMap);
+                    break;
+                case "star":
+                    //遍历数组
+                    for (String mailId : mailIds) {
+                        paramMap.put("mailId", mailId);
+
+                        //判断此邮件是否星标
+                        Long mailStar = aoaInMailListService.getStarStatus(paramMap);
+
+                        paramMap.put("mailStar", mailStar);
+
+                        //修改星标状态
+                        aoaInMailListService.updateAoaInMailListForStar(paramMap);
+                    }
+                    break;
+            }
+        }
+        map.addAttribute("mailBoxType", mailBoxType);   //邮箱类型
+        map.addAttribute("firstResult", firstResult);   //当前页码
         return url;
     }
+
+
 }

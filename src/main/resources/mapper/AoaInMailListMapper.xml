@@ -41,16 +41,18 @@
         insert into aoa_in_mail_list
         (mail_content,mail_create_time,mail_title,
         mail_type,mail_in_push_user_id,in_receiver,
-        mail_status_id,mail_number_id,mail_del,mail_push)
+        mail_status_id,mail_number_id,mail_del,
+        mail_push,mail_star)
         values
         (#{mailContent},DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s'),
         #{mailTitle},#{mailType},
         #{mailInPushUserId},#{inReceiver},
-        #{mailStatusId},#{mailNumberId},0,#{mailPush})
+        #{mailStatusId},#{mailNumberId},0,
+        #{mailPush},0)
     </insert>
 
     <!--收件箱高级查询条件-->
-    <sql id="queryWhere">
+    <sql id="queryInMailWhere">
         <where>
             <if test="userId != null">
                 and amr.mail_reciver_id = #{userId}
@@ -63,12 +65,9 @@
             <if test="1 == 1">
                 and mail_push = 1
             </if>
-            -- 未删除邮件
-            <if test="1 == 1">
-                and mail_del = 0
-            </if>
-            <if test="1 == 1">
-                and amr.is_del = 0
+            -- 是否删除
+            <if test="isDel != null">
+                and amr.is_del = #{isDel}
             </if>
             <if test="mailType != null">
                 and aiml.mail_type = #{mailType}
@@ -90,7 +89,7 @@
         from aoa_in_mail_list aiml
         left join aoa_mail_reciver amr on aiml.mail_id = amr.mail_id
         left join aoa_attachment_list aal on aiml.mail_file_id = aal.attachment_id
-        <include refid="queryWhere"></include>
+        <include refid="queryInMailWhere"></include>
         <if test="firstResult != null and maxResult != null">
             limit #{firstResult},#{maxResult}
         </if>
@@ -101,7 +100,7 @@
         from aoa_in_mail_list aiml
         left join aoa_mail_reciver amr on aiml.mail_id = amr.mail_id
         left join aoa_attachment_list aal on aiml.mail_file_id = aal.attachment_id
-        <include refid="queryWhere"></include>
+        <include refid="queryInMailWhere"></include>
     </select>
 
     <select id="queryAoaInMailListWhere" resultMap="mail_reciver_user_attachment_map">
@@ -109,7 +108,7 @@
         aiml.mail_content,aiml.mail_file_id,
         aiml.mail_create_time,aiml.in_receiver,
         aal.attachment_name,aal.attachment_path,
-        aiml.mail_file_id,
+        aiml.mail_file_id,aiml.mail_number_id,
         (select au.user_name
         from aoa_in_mail_list aim
         left join aoa_user au
@@ -128,5 +127,80 @@
             </if>
         </where>
     </select>
+
+    <sql id="queryOutMailWhere">
+        <where>
+            <if test="userId != null">
+                and mail_in_push_user_id = #{userId}
+            </if>
+            <if test="mailPush != null">
+                and mail_push = #{mailPush}
+            </if>
+            <if test="1 == 1">
+                and mail_del = 0
+            </if>
+            <if test="mailType != null">
+                and aiml.mail_type = #{mailType}
+            </if>
+            <if test="mailStatusId != null">
+                and aiml.mail_status_id= #{mailStatusId}
+            </if>
+            <if test="param != null and param != ''">
+                and (mail_title like "%"#{param}"%" or in_receiver like "%"#{param}"%")
+            </if>
+        </where>
+    </sql>
+
+    <select id="queryAoaOutMailList" resultMap="mail_reciver_user_attachment_map">
+
+        select mail_type,in_receiver,mail_title,
+        mail_create_time,aal.attachment_name,
+        attachment_path,mail_status_id,mail_star,
+        mail_file_id,mail_id
+        from aoa_in_mail_list aiml
+        left join aoa_attachment_list aal
+        on aiml.mail_file_id = aal.attachment_id
+        <include refid="queryOutMailWhere"></include>
+        <if test="firstResult != null and maxResult != null">
+            limit #{firstResult},#{maxResult}
+        </if>
+    </select>
+
+    <select id="getCountForOutMailBox" resultType="java.lang.Long">
+
+        select count(aiml.mail_id)
+        from aoa_in_mail_list aiml
+        left join aoa_attachment_list aal
+        on aiml.mail_file_id = aal.attachment_id
+        <include refid="queryOutMailWhere"></include>
+    </select>
+
+    <update id="deleteForOutMail">
+
+        update aoa_in_mail_list
+        set mail_del = 1
+        where mail_id in
+        <foreach collection="mailIds" item="mailId" open="(" separator="," close=")">
+            #{mailId}
+        </foreach>
+    </update>
+
+    <select id="getStarStatus" resultType="java.lang.Long">
+
+        select mail_star
+        from aoa_in_mail_list
+        where mail_id = #{mailId}
+
+    </select>
+
+    <update id="updateAoaInMailListForStar">
+
+        update aoa_in_mail_list
+        set mail_star =
+        <if test="mailStar == 1">0</if>
+        <if test="mailStar == 0">1</if>
+        where mail_id = #{mailId}
+
+    </update>
 </mapper>
 

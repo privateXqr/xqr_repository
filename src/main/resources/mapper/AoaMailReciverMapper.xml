@@ -20,16 +20,17 @@
 
     </insert>
 
-    <delete id="batchDeleteAoaMailReciver">
+    <update id="batchDeleteAoaMailReciver">
 
-        delete from aoa_mail_reciver
+        update aoa_mail_reciver
+        set is_del = 1
         where mail_reciver_id = #{userId}
         and mail_id in
         <foreach collection="mailIds" item="mailId" open="(" separator="," close=")">
             #{mailId}
         </foreach>
 
-    </delete>
+    </update>
 
     <update id="batchUpdateAoaMailReciverForRead">
 
@@ -42,10 +43,37 @@
             #{mailId}
         </foreach>
     </update>
-    
-    <update id="batchUpdateAoaMailReciverForStar">
 
+    <select id="getStarStatus" resultType="java.lang.Long">
 
+        select amr.is_star
+        from aoa_in_mail_list aim
+        inner join aoa_mail_reciver amr
+        on aim.mail_id = amr.mail_id
+        where aim.mail_id = #{mailId}
+        AND mail_reciver_id = #{userId}
+
+    </select>
+
+    <update id="updateAoaMailReciverForStar">
+
+        update aoa_mail_reciver
+        set
+        is_star =
+        <if test="isStar == 1">0</if>
+        <if test="isStar == 0">1</if>
+        WHERE mail_id = #{mailId}
+
+    </update>
+
+    <update id="batchRealDeleteAoaMailReciver">
+
+        DELETE from aoa_mail_reciver
+        where mail_reciver_id = #{userId}
+        and mail_id in
+        <foreach collection="mailIds" item="mailId" open="(" separator="," close=")">
+            #{mailId}
+        </foreach>
 
     </update>
 </mapper>

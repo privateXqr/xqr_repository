@@ -2,7 +2,7 @@ $(function () {
 
     $("[name = 'fasong']").click(function () {
 
-        $(this).val() == "发送" ? $("[name = 'mailPsuh']").val("1") : $("[name = 'mailPsuh']").val("0");
+        $(this).val() == "发送" ? $("[name = 'mailPush']").val("1") : $("[name = 'mailPush']").val("0");
 
     })
 

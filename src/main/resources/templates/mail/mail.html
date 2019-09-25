@@ -18,7 +18,7 @@
         <h1 style="font-size: 24px; margin: 0;" class="">邮件管理</h1>
     </div>
     <div class="col-md-10 text-right">
-        <a href="##" class = "goIndex"><span class="glyphicon glyphicon-home"></span> 首页</a> > <a
+        <a href="##" class="goIndex"><span class="glyphicon glyphicon-home"></span> 首页</a> > <a
             href="javascript:changePath('/mail/init')">邮件管理</a>
     </div>
 </div>
@@ -87,20 +87,20 @@
         $(function () {
             $('.getmail').on('click', function () {
                 //$('.set').load('amail',{title:"收件箱"});
-                $('.set').load('/mail/queryInMail?forUser=true');
+                $('.set').load('/mail/queryMail?forUser=true&mailBoxType=inMail');
             });
             $('.getmail').click();
             $('.setmail').on('click', function () {
                 //$('.set').load('amail',{title:"发件箱"});
-                $('.set').load('mailoutbox.html');
+                $('.set').load('/mail/queryMail?forUser=true&mailBoxType=outMail');
             });
             $('.caogao').on('click', function () {
                 //$('.set').load('amail',{title:"草稿箱"});
-                $('.set').load('maildraftbox.html');
+                $('.set').load('/mail/queryMail?forUser=true&mailBoxType=draft');
             });
             $('.rubbish').on('click', function () {
                 //$('.set').load('amail',{title:"垃圾箱"});
-                $('.set').load('mailrubbishbox.html');
+                $('.set').load('/mail/queryMail?forUser=true&mailBoxType=rubbish');
             });
             $('.write').on('click', function () {
                 $('.set').load('/mail/goWrite');
