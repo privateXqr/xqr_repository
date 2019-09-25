@@ -18,4 +18,52 @@
     <result column="shenuser" jdbcType="VARCHAR" property="shenuser" />
   </resultMap>
 
+
+    <insert id="addAoaProcessList">
+
+        INSERT INTO aoa_process_list
+            (apply_time,deeply_id,process_des,process_name,
+            procsee_days,is_checked,start_time,status_id,type_name,
+            pro_file_id,process_user_id,shenuser)
+        VALUES
+            (SYSDATE(),#{deeply_id},#{process_des},#{process_name},
+            #{procsee_days},#{is_checked},#{start_time},#{status_id},
+            #{type_name},#{pro_file_id},#{process_user_id},#{shenuser})
+
+    </insert>
+
+    <select id="queryMyApplyFor" resultMap="BaseResultMap">
+
+        SELECT type_name,process_id,apply_time,shenuser,deeply_id,status_id
+        from aoa_process_list WHERE process_user_id = #{process_user_id}
+
+    </select>
+
+    <select id="queryMyApplyForById" resultMap="BaseResultMap">
+
+        SELECT type_name,process_id,apply_time,shenuser,deeply_id,status_id
+        from aoa_process_list WHERE process_id = #{process_id}
+
+    </select>
+
+    <select id="queryApplyFor">
+
+        SELECT type_name,process_id,apply_time,shenuser,deeply_id,status_id
+        FROM aoa_process_list GROUP BY apply_time desc
+
+    </select>
+
+    <select id="queryApplyForById">
+
+      SELECT * from aoa_process_list WHERE process_id = #{id}
+
+    </select>
+
+    <update id="updateApplyFor">
+
+        
+
+    </update>
+
+
 </mapper>
