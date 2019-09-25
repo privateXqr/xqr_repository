@@ -5,10 +5,10 @@
 <script type="text/javascript" th:src="@{/js/mail/mail.js}"></script>
 <link rel="stylesheet" type="text/css" th:href="@{/css/common/box.css}"/>
 <link rel="stylesheet" type="text/css" th:href="@{/css/common/checkbox.css}"/>
-<script type="text/javascript" src="/js/common/iconfont.js"></script>
-<!--<script charset="utf-8" src="/plugins/kindeditor/kindeditor-min.js"></script>-->
-<!--<script charset="utf-8" src="/plugins/kindeditor/lang/zh_CN.js"></script>-->
-<!--<link rel="stylesheet" href="/plugins/kindeditor/themes/default/default.css"/>-->
+<script type="text/javascript" th:src="@{/js/common/iconfont.js}"></script>
+<script charset="utf-8" th:src="@{/plugins/kindeditor/kindeditor-min.js}"></script>
+<script charset="utf-8" th:src="@{/plugins/kindeditor/lang/zh_CN.js}"></script>
+<link rel="stylesheet" th:href="@{/plugins/kindeditor/themes/default/default.css}"/>
 <link rel="stylesheet" th:href="@{/css/mail/mail.css}"/>
 <link rel="stylesheet" th:href="@{/css/common/iconfont.css}"/>
 <script type="text/javascript" th:src="@{/js/common/change_path.js}"></script>
@@ -87,7 +87,7 @@
         $(function () {
             $('.getmail').on('click', function () {
                 //$('.set').load('amail',{title:"收件箱"});
-                $('.set').load('mailinbox.html');
+                $('.set').load('/mail/queryInMail?forUser=true');
             });
             $('.getmail').click();
             $('.setmail').on('click', function () {

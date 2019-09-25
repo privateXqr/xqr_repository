@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -21,5 +22,23 @@ public class AoaInMailListServiceImpl implements IAoaInMailListService{
     @Override
     public Integer addAoaMailList(AoaInMailList aoaInMailList) {
         return aoaInMailListMapper.addAoaMailList(aoaInMailList);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public List<AoaInMailList> queryAoaInMailList(Map<String, Object> paramMap) {
+        return aoaInMailListMapper.queryAoaInMailList(paramMap);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public Long getCountForInMailBox(Map<String, Object> paramMap) {
+        return aoaInMailListMapper.getCountForInMailBox(paramMap);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public AoaInMailList queryAoaInMailListWhere(Map<String, Object> paramMap) {
+        return aoaInMailListMapper.queryAoaInMailListWhere(paramMap);
     }
 }

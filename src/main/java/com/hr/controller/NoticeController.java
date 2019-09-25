@@ -109,7 +109,7 @@ public class NoticeController {
 
         Integer i = aoaNoticeListService.updateAoaNoticeForTop(noticeId, isTop);
 
-        return "redirect:queryNoticeByUser";
+        return "redirect:queryNoticeByUser?forUser=true";
 
     }
 
@@ -142,7 +142,7 @@ public class NoticeController {
     @RequestMapping("forwardUnder")
     public String forwardUnderstrapper(HttpSession session, Long noticeId) {
 
-        String url = "redirect:queryNoticeByUser";
+        String url = "redirect:queryNoticeByUser?forUser=true";
 
         AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
 

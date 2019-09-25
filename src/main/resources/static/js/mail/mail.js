@@ -1,4 +1,4 @@
-$(function(){
+$(function () {
 
     $("[name = 'fasong']").click(function () {
 
@@ -6,188 +6,253 @@ $(function(){
 
     })
 
+    //内部邮件 | 外部邮件
     $("#account").change(function () {
         console.log("qq");
         var options = $("#account option:selected");
         if (options.val() == "0") {
+            //清空联系人
+            $("#recive_list").val("");
             console.log("www");
             $("#recive_list").prop("readonly", true);
+            $("#recive_list").attr("placeholder", "收件人:");
+            $("#recive_list").attr("name", "inReceiver");
+            $(".reciver").css("display", "block");
         } else {
             console.log("sss");
             $("#recive_list").removeAttr("readonly");
+            $("#recive_list").attr("placeholder", "外部邮箱账号:");
+            $("#recive_list").attr("name", "mailAccount");
+            $(".reciver").css("display", "none");
+        }
+    });
+
+    /**
+     * 动态查询联系人邮箱
+     */
+    $("#recive_list").bind("input propertychange", function () {
+
+        var receiver = $(this).val();
+
+        if (receiver != "") {
+
+            var listObj = $("#listReceiver");
+
+            var listHtmlStr = "";
+
+            $.post("/mail/queryReceiverByMailAccount", {"mailAccount": receiver}, function (data) {
+
+                $(data).each(function (index, aoaMailnumber) {
+
+                    listHtmlStr += "<option value = '" + aoaMailnumber.mailAccount + "'>" + aoaMailnumber.aoaUser.userName + "</option>";
+
+                });
+                $(listObj).html(listHtmlStr);
+            });
+        }
+    });
+
+    /**
+     * 验证外部邮箱账号有效性
+     */
+    $("#recive_list").blur(function () {
+
+        var receiver = $(this).val();
+
+        if (receiver != "") {
+            //验证邮箱是否有效
+            if (!isMailNo(receiver)) {
+                alertCheck("邮箱账号无效，请重新输入！");
+                return;
+            } else {
+                $('.alert-danger').css('display', 'none');
+            }
+
+            //验证邮箱是否存在
+            $.post("/mail/existsMailAccount", {"mailAccount": receiver}, function (data) {
+
+                var account = $("#account").val();
+
+                if (account == 1) {
+
+                    if (data == "error") {   //邮箱账号ID无效
+                        alertCheck("外部邮箱账号不存在，请重新输入！");
+                    } else {
+                        $('.alert-danger').css('display', 'none');
+                    }
+                }
+            });
         }
     });
 
 
-				
-			/*	*//**
-				 * 切换星星
-				 *//*
-				$(".em").click(function(){
-					var $this=$(this).parents("tr").find(".em span");
-					
-					if($this.hasClass("glyphicon-star-empty")){
-						$this.removeClass("glyphicon-star-empty").addClass("glyphicon-star");
-					}else{
-						$this.removeClass("glyphicon-star").addClass("glyphicon-star-empty");
-					}
-				});*/
-				
-				/**
-				 * 蓝色左边框
-				 */
-				$(".nav>li").click(function(){
-					if($(this).parent().hasClass("files")){
-						$(this).css("border-left","3px solid blue")
-					.siblings().css("border-left","3px solid transparent");
-					}
-				})
-				
-				/**
-				 * 伸缩
-				 */
-	           	$(".des").click(function(){
-					
-					var $this=$(this).children();
-					
-					var $ul=$(this).parents(".box-header").next();
-					
-					if($(this).hasClass("mm")){
-						if($this.hasClass("glyphicon-minus")){
-							$this.removeClass("glyphicon-minus").addClass("glyphicon-plus");
-						}else{
-							
-							$this.removeClass("glyphicon-plus").addClass("glyphicon-minus");	
-						}
-						$ul.slideToggle(1000);
-					}else{
-						if($this.hasClass("glyphicon-minus")){
-							$this.removeClass("glyphicon-minus").addClass("glyphicon-plus");
-						}else{
-							
-							$this.removeClass("glyphicon-plus").addClass("glyphicon-minus");	
-						}
-							$ul.slideToggle(1000);
-					}
-				})
-	           	
-	           	
-	           	
-	           		/**
-				 * 全选/反选
-				 */
-					$("[name=id]:checkbox").click(function(){
-	           				
-	           				var flag=true;
-				           	$("[name=id]:checkbox").each(function(){
-				           			if(!this.checked){
-				           				flag=false;
-				           			}
-				           		});
-				           		
-				           	$("#checkedAll").prop("checked",flag);
-				  })
-					
-					  	
-	           	$("#checkedAll").click(function(){
-	           		
-	           		$("[name=id]:checkbox").each(function(){
-	           			
-	           			if($("#checkedAll").is(':checked')){
-	           				/*$(this).prop("checked","checked");*/
-	           				$(this).prop("checked",!$(this).attr("checked"));
-	           				
-	           			}else{
-	           				$(this).removeAttr("checked");
-	           			}
-	           				
-	           		})
-	           	})
-	           	
-	           	$(".top .btn").click(function() {
-	           		var $this = $('.top .btn .glyphicon ');
-					if($this.hasClass("glyphicon-chevron-down")) {
-						$this.removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
-					} else {
-						$this.removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
-					}
-					$("#MoreDiv").slideToggle(1000);
+    /*	*/
+    /**
+     * 切换星星
+     */
+    /*
+                    $(".em").click(function(){
+                        var $this=$(this).parents("tr").find(".em span");
 
-				});
+                        if($this.hasClass("glyphicon-star-empty")){
+                            $this.removeClass("glyphicon-star-empty").addClass("glyphicon-star");
+                        }else{
+                            $this.removeClass("glyphicon-star").addClass("glyphicon-star-empty");
+                        }
+                    });*/
 
-				$("#ctl00_cphMain_ddlAccount").change(function() {
-					var options = $("#ctl00_cphMain_ddlAccount option:selected");
-					if(options.val() != "0") {
-						$("#ctl00_cphMain_txtReceiver").removeAttr("readonly");
-
-					} else {
-						$("#ctl00_cphMain_txtReceiver").attr("readonly", true);
-						
-					}
-				});
-			
-	          
-		})
-
-			var editor;
-			KindEditor.ready(function(K) {
-				editor = K.create('textarea[name="content"]', {
-					allowFileManager: true
-				});
-				K('input[name=getHtml]').click(function(e) {
-					alert(editor.html());
-				});
-				K('input[name=isEmpty]').click(function(e) {
-					alert(editor.isEmpty());
-				});
-				K('input[name=getText]').click(function(e) {
-					alert(editor.text());
-				});
-				K('input[name=selectedHtml]').click(function(e) {
-					alert(editor.selectedHtml());
-				});
-				K('input[name=setHtml]').click(function(e) {
-					editor.html('<h3>Hello KindEditor</h3>');
-				});
-				K('input[name=setText]').click(function(e) {
-					editor.text('<h3>Hello KindEditor</h3>');
-				});
-				K('input[name=insertHtml]').click(function(e) {
-					editor.insertHtml('<strong>插入HTML</strong>');
-				});
-				K('input[name=appendHtml]').click(function(e) {
-					editor.appendHtml('<strong>添加HTML</strong>');
-				});
-				K('input[name=clear]').click(function(e) {
-					editor.html('');
-				});
-				
-				
-			});
-
-    // 新增联系人
-    function addvalue() {
-        var id_array = new Array();
-
-        if($('input[name="id"]:checked').length > 0){
-            $('input[name="id"]:checked').each(function () {
-
-                var $name = $(this).parents(".col-xs-1").siblings(".na").text();
-                console.log($name);
-                id_array.push($name);//向数组中添加元素
-                var idstr = id_array.join(';');//将数组元素连接起来以构建一个字符串
-                $("#recive_list").val(idstr);
-                $(".recive_list").val(idstr);
-                $(".recive_list").change();
-            })
-        }else {
-            $("#recive_list").val("");
-            $(".recive_list").val("");
-            $(".recive_list").change();
+    /**
+     * 蓝色左边框
+     */
+    $(".nav>li").click(function () {
+        if ($(this).parent().hasClass("files")) {
+            $(this).css("border-left", "3px solid blue")
+                .siblings().css("border-left", "3px solid transparent");
         }
-        $(".fade").css("display", "none");
+    })
 
+    /**
+     * 伸缩
+     */
+    $(".des").click(function () {
+
+        var $this = $(this).children();
+
+        var $ul = $(this).parents(".box-header").next();
+
+        if ($(this).hasClass("mm")) {
+            if ($this.hasClass("glyphicon-minus")) {
+                $this.removeClass("glyphicon-minus").addClass("glyphicon-plus");
+            } else {
+
+                $this.removeClass("glyphicon-plus").addClass("glyphicon-minus");
+            }
+            $ul.slideToggle(1000);
+        } else {
+            if ($this.hasClass("glyphicon-minus")) {
+                $this.removeClass("glyphicon-minus").addClass("glyphicon-plus");
+            } else {
+
+                $this.removeClass("glyphicon-plus").addClass("glyphicon-minus");
+            }
+            $ul.slideToggle(1000);
+        }
+    })
+
+
+    /**
+     * 全选/反选
+     */
+    $("[name=id]:checkbox").click(function () {
+
+        var flag = true;
+        $("[name=id]:checkbox").each(function () {
+            if (!this.checked) {
+                flag = false;
+            }
+        });
+
+        $("#checkedAll").prop("checked", flag);
+    })
+
+
+    $("#checkedAll").click(function () {
+
+        $("[name=id]:checkbox").each(function () {
+
+            if ($("#checkedAll").is(':checked')) {
+                /*$(this).prop("checked","checked");*/
+                $(this).prop("checked", !$(this).attr("checked"));
+
+            } else {
+                $(this).removeAttr("checked");
+            }
+
+        })
+    })
+
+    $(".top .btn").click(function () {
+        var $this = $('.top .btn .glyphicon ');
+        if ($this.hasClass("glyphicon-chevron-down")) {
+            $this.removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+        } else {
+            $this.removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+        }
+        $("#MoreDiv").slideToggle(1000);
+
+    });
+
+    $("#ctl00_cphMain_ddlAccount").change(function () {
+        var options = $("#ctl00_cphMain_ddlAccount option:selected");
+        if (options.val() != "0") {
+            $("#ctl00_cphMain_txtReceiver").removeAttr("readonly");
+
+        } else {
+            $("#ctl00_cphMain_txtReceiver").attr("readonly", true);
+
+        }
+    });
+})
+
+var editor;
+KindEditor.ready(function (K) {
+    editor = K.create('textarea[name="content"]', {
+        allowFileManager: true
+    });
+    K('input[name=getHtml]').click(function (e) {
+        alert(editor.html());
+    });
+    K('input[name=isEmpty]').click(function (e) {
+        alert(editor.isEmpty());
+    });
+    K('input[name=getText]').click(function (e) {
+        alert(editor.text());
+    });
+    K('input[name=selectedHtml]').click(function (e) {
+        alert(editor.selectedHtml());
+    });
+    K('input[name=setHtml]').click(function (e) {
+        editor.html('<h3>Hello KindEditor</h3>');
+    });
+    K('input[name=setText]').click(function (e) {
+        editor.text('<h3>Hello KindEditor</h3>');
+    });
+    K('input[name=insertHtml]').click(function (e) {
+        editor.insertHtml('<strong>插入HTML</strong>');
+    });
+    K('input[name=appendHtml]').click(function (e) {
+        editor.appendHtml('<strong>添加HTML</strong>');
+    });
+    K('input[name=clear]').click(function (e) {
+        editor.html('');
+    });
+
+
+});
+
+// 新增联系人
+function addvalue() {
+    var id_array = new Array();
+
+    if ($('input[name="id"]:checked').length > 0) {
+        $('input[name="id"]:checked').each(function () {
+
+            var $name = $(this).parents(".col-xs-1").siblings(".na").text();
+            console.log($name);
+            id_array.push($name);//向数组中添加元素
+            var idstr = id_array.join(';');//将数组元素连接起来以构建一个字符串
+            $("#recive_list").val(idstr);
+            $(".recive_list").val(idstr);
+            $(".recive_list").change();
+        })
+    } else {
+        $("#recive_list").val("");
+        $(".recive_list").val("");
+        $(".recive_list").change();
     }
+    $(".fade").css("display", "none");
+
+}
 
 /*追加到联系人*/
 function addvalue2() {
@@ -202,7 +267,7 @@ function addvalue2() {
     })
     var org = $("#recive_list").val();
 
-    if (idstr.indexOf(org) == -1){
+    if (idstr.indexOf(org) == -1) {
         $("#recive_list").val(org + ';' + idstr);
     }
     $(".fade").css("display", "none");

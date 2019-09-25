@@ -26,10 +26,11 @@ public class UserController {
 
     /**
      * 登陆
+     *
      * @param session
      * @param map
-     * @param userName  用户名/手机号
-     * @param password  密码
+     * @param userName 用户名/手机号
+     * @param password 密码
      * @return
      */
     @RequestMapping("login")
@@ -39,16 +40,32 @@ public class UserController {
 
         AoaUser aoaUser = aoaUserService.login(userName, password);
 
-        if (aoaUser != null){   //成功登陆
-            session.setAttribute("aoaUser",aoaUser);
+        if (aoaUser != null) {   //成功登陆
+            session.setAttribute("aoaUser", aoaUser);
 
             //统计当前登陆用户有多少条未读通知
             Long notice_count = aoaNoticeUserRelationService.queryUnreadNoticeForUser(aoaUser.getUserId());
 
-            map.addAttribute("notice_count",notice_count);
+            map.addAttribute("notice_count", notice_count);
 
             url = "forward:/sys/initMenu";  //转发至初始化菜单
         }
+
+        return url;
+    }
+
+    /**
+     * 登出
+     *
+     * @param session
+     * @return
+     */
+    @RequestMapping("logout")
+    public String logout(HttpSession session) {
+
+        String url = "redirect:/login.html";
+
+        session.removeAttribute("aoaUser");
 
         return url;
     }

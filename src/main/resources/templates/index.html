@@ -7,7 +7,7 @@
 maximum-scale=1, user-scalable=no">
     <link th:href="@{/images/favicon1.ico}" rel="icon" type="image/x-icon"/>
     <link th:href="@{/images/favicon1.ico}" rel="shortcut icon" type="image/x-icon"/>
-    <title>控制面板主页</title>
+    <title>华瑞办公管理系统</title>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
     <script type="text/javascript" th:src="@{/easyui/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
@@ -166,7 +166,7 @@ maximum-scale=1, user-scalable=no">
                         </div>
                         <div class="pull-left info">
                             <p style="color: #fff; line-height: 1.5;">
-                                <span th:text="${session.aoaUser.userName}"></span><br>
+                                <span th:text="${session.aoaUser.realName}"></span><br>
                                 <small><span
                                         c1lass="glyphicon glyphicon-record" style="color: #00a65a;">
 					</span> 在线
@@ -194,7 +194,7 @@ maximum-scale=1, user-scalable=no">
                                     <a class="open-menu green-left" th:href="'#'+${aoaSysMenuParent.menuId}"
                                        data-toggle="collapse"
                                        data-parent="#accordion"> <span
-                                            class="glyphicon glyphicon-cog"></span> <span
+                                            class="glyphicon " th:classappend="${aoaSysMenuParent.menuIcon}"></span> <span
                                             th:text="${aoaSysMenuParent.menuName}"></span> <span
                                             class="glyphicon glyphicon-menu-left pull-right"></span>
                                     </a>
@@ -247,7 +247,7 @@ maximum-scale=1, user-scalable=no">
                             <!--设置导航栏头像面板-->
                             <a href="#" class="green-none white" data-toggle="dropdown">
                                 <img th:src="@{/images/647cbde6-3fba-4d8c-a50f-1a07f9bee417.jpg}" class="user-image"/>
-                                <span th:text="${session.aoaUser.userName}"></span>
+                                <span th:text="${session.aoaUser.realName}"></span>
                             </a> <!--设置点击按钮弹出用户面板层-->
                             <ul class="dropdown-menu" style="padding:0;">
                                 <li class="user-header green"><img
@@ -264,7 +264,7 @@ maximum-scale=1, user-scalable=no">
                                            class="btn btn-default">用户面板</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="login.html" class="btn btn-danger">退出登录</a>
+                                        <a th:href="@{/user/logout}" class="btn btn-danger">退出登录</a>
                                     </div>
                                 </li>
                             </ul>

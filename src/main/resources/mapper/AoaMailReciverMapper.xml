@@ -1,22 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hr.mapper.IAoaMailReciverMapper">
-  <resultMap id="BaseResultMap" type="com.hr.entity.AoaMailReciver">
-    <id column="pk_id" jdbcType="BIGINT" property="pkId" />
-    <result column="is_read" jdbcType="INTEGER" property="isRead" />
-    <result column="mail_id" jdbcType="BIGINT" property="mailId" />
-    <result column="mail_reciver_id" jdbcType="BIGINT" property="mailReciverId" />
-    <result column="is_star" jdbcType="INTEGER" property="isStar" />
-    <result column="is_del" jdbcType="INTEGER" property="isDel" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.hr.entity.AoaMailReciver">
+        <id column="pk_id" jdbcType="BIGINT" property="pkId"/>
+        <result column="is_read" jdbcType="INTEGER" property="isRead"/>
+        <result column="mail_id" jdbcType="BIGINT" property="mailId"/>
+        <result column="mail_reciver_id" jdbcType="BIGINT" property="mailReciverId"/>
+        <result column="is_star" jdbcType="INTEGER" property="isStar"/>
+        <result column="is_del" jdbcType="INTEGER" property="isDel"/>
+    </resultMap>
 
-  <insert id="addAoaMailReciver">
+    <insert id="addAoaMailReciver">
 
-    insert into aoa_mail_reciver
-    (is_read,mail_id,mail_reciver_id)
-    values
-    (0,#{mailId},#{userId})
+        insert into aoa_mail_reciver
+        (is_read,mail_id,mail_reciver_id,
+        is_star,is_del)
+        values
+        (0,#{mailId},#{userId},0,0)
 
-  </insert>
+    </insert>
 
+    <delete id="batchDeleteAoaMailReciver">
+
+        delete from aoa_mail_reciver
+        where mail_reciver_id = #{userId}
+        and mail_id in
+        <foreach collection="mailIds" item="mailId" open="(" separator="," close=")">
+            #{mailId}
+        </foreach>
+
+    </delete>
+
+    <update id="batchUpdateAoaMailReciverForRead">
+
+        update aoa_mail_reciver
+        set
+        is_read = 1
+        where mail_reciver_id = #{userId}
+        and mail_id in
+        <foreach collection="mailIds" item="mailId" open="(" separator="," close=")">
+            #{mailId}
+        </foreach>
+    </update>
+    
+    <update id="batchUpdateAoaMailReciverForStar">
+
+
+
+    </update>
 </mapper>

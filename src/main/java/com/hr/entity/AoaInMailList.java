@@ -31,6 +31,36 @@ public class AoaInMailList implements Serializable {
 
     private Integer mailStar;
 
+    private String mailInPushName;
+
+    private AoaMailReciver aoaMailReciver;
+
+    private AoaAttachmentList aoaAttachmentList;
+
+    public AoaAttachmentList getAoaAttachmentList() {
+        return aoaAttachmentList;
+    }
+
+    public void setAoaAttachmentList(AoaAttachmentList aoaAttachmentList) {
+        this.aoaAttachmentList = aoaAttachmentList;
+    }
+
+    public String getMailInPushName() {
+        return mailInPushName;
+    }
+
+    public void setMailInPushName(String mailInPushName) {
+        this.mailInPushName = mailInPushName;
+    }
+
+    public AoaMailReciver getAoaMailReciver() {
+        return aoaMailReciver;
+    }
+
+    public void setAoaMailReciver(AoaMailReciver aoaMailReciver) {
+        this.aoaMailReciver = aoaMailReciver;
+    }
+
     public Long getMailId() {
         return mailId;
     }
