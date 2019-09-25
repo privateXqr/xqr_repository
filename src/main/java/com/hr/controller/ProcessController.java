@@ -7,6 +7,7 @@ import com.hr.entity.AoaProcessList;
 import com.hr.service.IAoaProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -33,7 +34,7 @@ public class ProcessController {
 
     //出差申请单
     @RequestMapping("addEvection")
-    public String addEvection(AoaEvection aoaEvection, AoaProcessList aoaProcessList){
+    public String addEvection( AoaEvection aoaEvection, AoaProcessList aoaProcessList){
 
         //流程表添加
         iAoaProcessService.addAoaProcessList(aoaProcessList);
@@ -76,18 +77,17 @@ public class ProcessController {
 
     //我的申请
     @RequestMapping("queryMyApplyFor")
-    public String queryMyApplyFor(){
+    public String queryMyApplyFor(ModelMap map){
 
         return "";
     }
 
     //我的申请id
     @RequestMapping("queryMyApplyForById")
-    public String queryMyApplyForById(int i){
+    public String queryMyApplyForById(ModelMap map,int i){
         String url = "index";
 
         System.out.println("我的申请id");
-
 
 
         return url;
@@ -95,7 +95,7 @@ public class ProcessController {
 
     //流程审核
     @RequestMapping("queryProcessApplyFor")
-    public String queryProcessApplyFor(AoaProcessList aoaProcessList){
+    public String queryProcessApplyFor(ModelMap map,AoaProcessList aoaProcessList){
 
         String url = "index";
 
