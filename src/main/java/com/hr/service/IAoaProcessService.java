@@ -44,7 +44,7 @@ public interface IAoaProcessService {
     public List<AoaProcessList> queryMyApplyFor(AoaProcessList aoaProcessList);
 
     //我的申请(ById)
-    public AoaProcessList queryMyApplyForById(AoaPlanList aoaPlanList);
+    public AoaProcessList queryMyApplyForById(AoaProcessList aoaProcessList);
 
 
     /**
@@ -53,7 +53,7 @@ public interface IAoaProcessService {
      */
 
     //流程审核--根据时间查询
-    public List<AoaProcessList> queryApplyFor();
+    public List<AoaProcessList> queryProcessApplyFor();
 
     //流程审核 --ById
     public AoaProcessList queryApplyForById(AoaProcessList id);

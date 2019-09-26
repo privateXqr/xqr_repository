@@ -1,10 +1,10 @@
-
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript" src="easyui/jquery.min.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/common/box.css" />
-<link rel="stylesheet" type="text/css" href="css/common/checkbox.css" />
-<link rel="stylesheet" href="css/common/tanchuang.css" />
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/common/box.css" />
+<link rel="stylesheet" type="text/css" href="/css/common/checkbox.css" />
+<link rel="stylesheet" href="/css/common/tanchuang.css" />
 <style>
 a {
 	color: black;
@@ -43,8 +43,8 @@ a:hover {
     margin-top: 8px;
 }
 .shen{
-	min-height:50px;
-	border:0px solid red;
+	min-height:50px
+	border:0px solid red;;
 	margin-left: 13px;
     margin-right: 17px;
     position: relative;
@@ -143,8 +143,8 @@ a:hover {
 				</div>
 				<div class="page-header page"></div>
 				<div class="col-md-6 form-group" style="z-index: 1;">
-					<label class="control-label">审核状态</label>
-						 <select class="form-control" name="statusId" class="sele">
+                    <label class="control-label">审核状态</label>
+                    <select class="form-control" name="statusId">
 							<option value="25">已批准</option>
 							<option value="26">未通过</option>
 						</select>
@@ -587,3 +587,4 @@ function addvalue2(){
 	
 }
 </script>
+</html>

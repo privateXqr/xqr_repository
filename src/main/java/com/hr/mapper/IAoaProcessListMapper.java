@@ -17,14 +17,16 @@ public interface IAoaProcessListMapper {
     public List<AoaProcessList> queryMyApplyFor(AoaProcessList aoaProcessList);
 
     //我的申请(ById)
-    public AoaProcessList queryMyApplyForById(AoaPlanList aoaPlanList);
+    public AoaProcessList queryMyApplyForById(AoaProcessList aoaProcessList);
 
-    //流程审核--根据时间查询
-    public List<AoaProcessList> queryApplyFor();
+    //流程审核--查询--时间排序
+    public List<AoaProcessList> queryProcessApplyFor();
 
     //流程审核 --ById
     public AoaProcessList queryApplyForById(AoaProcessList id);
 
     //审核流程 --修改
     public void updateApplyFor(AoaProcessList id);
+
+
 }

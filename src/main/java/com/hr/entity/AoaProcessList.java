@@ -77,6 +77,26 @@ public class AoaProcessList implements Serializable {
         return processName;
     }
 
+    @Override
+    public String toString() {
+        return "AoaProcessList{" +
+                "processId=" + processId +
+                ", applyTime=" + applyTime +
+                ", deeplyId=" + deeplyId +
+                ", endTime=" + endTime +
+                ", processDes='" + processDes + '\'' +
+                ", processName='" + processName + '\'' +
+                ", procseeDays=" + procseeDays +
+                ", isChecked=" + isChecked +
+                ", startTime=" + startTime +
+                ", statusId=" + statusId +
+                ", typeName='" + typeName + '\'' +
+                ", proFileId=" + proFileId +
+                ", processUserId=" + processUserId +
+                ", shenuser='" + shenuser + '\'' +
+                '}';
+    }
+
     public void setProcessName(String processName) {
         this.processName = processName == null ? null : processName.trim();
     }
