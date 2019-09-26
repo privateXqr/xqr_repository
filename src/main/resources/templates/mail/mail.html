@@ -83,7 +83,7 @@
     <div class="col-md-9 set ">
 
     </div>
-    <script>
+    <script th:inline="javascript">
         $(function () {
             $('.getmail').on('click', function () {
                 //$('.set').load('amail',{title:"收件箱"});
@@ -107,17 +107,16 @@
             });
             $(".mail").click(function () {
                 var title = $(".titles").text();
-                $(".thistable").load("mailtitle", {val: "邮件", title: title});
+                $(".set").load("mailtitle", {val: "邮件", title: title});
             });
             $(".tongzhi").click(function () {
                 var title = $(".titles").text();
-                $(".thistable").load("mailtitle", {val: "通知", title: title});
+                $(".set").load("mailtitle", {val: "通知", title: title});
             });
             $(".gonggao").click(function () {
                 var title = $(".titles").text();
-                $(".thistable").load("mailtitle", {val: "公告", title: title});
+                $(".set").load("mailtitle", {val: "公告", title: title});
             });
-
 
         });
     </script>
