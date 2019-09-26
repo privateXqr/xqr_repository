@@ -10,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * 流程管理模块
  */
@@ -25,7 +28,7 @@ public class ProcessController {
 
     // 费用报销单
     @RequestMapping("addBursement")
-    public String addBursement(AoaBursement aoaBursement) {
+    public String addBursement(AoaBursement aoaBursement){
 
         iAoaProcessService.addBursement(aoaBursement);
 
@@ -34,7 +37,7 @@ public class ProcessController {
 
     //出差申请单
     @RequestMapping("addEvection")
-    public String addEvection(AoaEvection aoaEvection, AoaProcessList aoaProcessList) {
+    public String addEvection( AoaEvection aoaEvection, AoaProcessList aoaProcessList){
 
         //流程表添加
         iAoaProcessService.addAoaProcessList(aoaProcessList);
@@ -46,7 +49,7 @@ public class ProcessController {
 
     //加班申请单
     @RequestMapping("addOvertime")
-    public String addOvertime(AoaOvertime aoaOvertime) {
+    public String addOvertime(AoaOvertime aoaOvertime){
 
         iAoaProcessService.addOvertime(aoaOvertime);
 
@@ -55,7 +58,7 @@ public class ProcessController {
 
     //转正申请单
     @RequestMapping("addRegular")
-    public String addRegular() {
+    public String addRegular(){
 
         return "";
 
@@ -63,46 +66,63 @@ public class ProcessController {
 
     //请假申请单
     @RequestMapping("addHoliday")
-    public String addHoliday() {
+    public String addHoliday(){
 
         return "";
     }
 
     //离职申请单
     @RequestMapping("addResign")
-    public String addResign() {
+    public String addResign(){
 
         return "";
     }
 
-    //我的申请
+    /***
+     * 我的申请
+     * @param map
+     * @return
+     */
+
+    //查询所有我的申请
     @RequestMapping("queryMyApplyFor")
-    public String queryMyApplyFor(ModelMap map) {
+    public String queryMyApplyFor(ModelMap map,AoaProcessList ProcessList,AoaProcessList aoaProcessList){
+
+        System.out.println(ProcessList);
+
+        List<AoaProcessList> aoaProcessLists = iAoaProcessService.queryMyApplyFor(aoaProcessList);
+
+        map.addAttribute("aoaProcessLists",aoaProcessLists);
+
+        return "Process/flowmanage";
+    }
+
+    //根据id查询
+    @RequestMapping("queryProcessApplyForById")
+    public String queryMyApplyForById(ModelMap map,int i){
+
+
 
         return "";
     }
 
-    //我的申请id
-    @RequestMapping("queryMyApplyForById")
-    public String queryMyApplyForById(ModelMap map, int i) {
-        String url = "index";
+    /***
+     * 流程审核
+     * @param map
+     * @return
+     */
 
-        System.out.println("我的申请id");
-
-
-        return url;
-    }
-
-    //流程审核
+    //查询所有的流程
     @RequestMapping("queryProcessApplyFor")
-    public String queryProcessApplyFor(ModelMap map, AoaProcessList aoaProcessList) {
+    public String queryProcessApplyFor(ModelMap map,AoaProcessList aoaProcessList){
 
-        String url = "index";
+        List<AoaProcessList> aoaProcessLists = iAoaProcessService.queryProcessApplyFor();
 
-        System.out.println("流程审核");
+        map.addAttribute("aoaProcessLists",aoaProcessLists);
 
-        iAoaProcessService.queryMyApplyFor(aoaProcessList);
+        System.out.println(aoaProcessLists);
 
-        return url;
+        return "Process/auditing";
     }
+
 }

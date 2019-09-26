@@ -32,12 +32,6 @@
 
     </insert>
 
-    <select id="queryMyApplyFor" resultMap="BaseResultMap">
-
-        SELECT type_name,process_id,apply_time,shenuser,deeply_id,status_id
-        from aoa_process_list WHERE process_user_id = #{process_user_id}
-
-    </select>
 
     <select id="queryMyApplyForById" resultMap="BaseResultMap">
 
@@ -46,16 +40,22 @@
 
     </select>
 
-    <select id="queryApplyFor">
+    <select id="queryProcessApplyFor" resultMap="BaseResultMap">
 
         SELECT type_name,process_id,apply_time,shenuser,deeply_id,status_id
         FROM aoa_process_list GROUP BY apply_time desc
 
     </select>
 
-    <select id="queryApplyForById">
+    <select id="queryApplyForById" resultMap="BaseResultMap">
 
       SELECT * from aoa_process_list WHERE process_id = #{id}
+
+    </select>
+
+    <select id="queryMyApplyFor" resultMap="BaseResultMap">
+
+        SELECT * from aoa_process_list WHERE process_user_id={processUserId}
 
     </select>
 

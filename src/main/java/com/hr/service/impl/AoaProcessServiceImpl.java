@@ -81,13 +81,13 @@ public class AoaProcessServiceImpl implements IAoaProcessService {
 }
 
     @Override
-    public AoaProcessList queryMyApplyForById(AoaPlanList aoaPlanList) {
-        return iAoaProcessListMapper.queryMyApplyForById(aoaPlanList);
+    public AoaProcessList queryMyApplyForById(AoaProcessList aoaProcessList) {
+        return iAoaProcessListMapper.queryMyApplyForById(aoaProcessList);
     }
 
     @Override
-    public List<AoaProcessList> queryApplyFor() {
-        return iAoaProcessListMapper.queryApplyFor();
+    public List<AoaProcessList> queryProcessApplyFor() {
+        return iAoaProcessListMapper.queryProcessApplyFor();
     }
 
     @Override
