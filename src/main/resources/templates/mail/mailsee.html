@@ -17,7 +17,8 @@
                 <div class=" mailbox-read-info">
                     <h3>
                         <span id="ctl00_cphMain_lblTitle">主题：<span
-                                th:text="${aoaInMailList.mailTitle}"></span>(内部邮件)</span>
+                                th:text="${aoaInMailList.mailTitle}"></span><span
+                                th:text="${aoaInMailList.mailNumberId != null ? '(外部邮件)' : '(内部邮件)'}"></span></span>
                     </h3>
                     <h5 class="fonts">
 						<span id="ctl00_cphMain_lblFrom" class="mailbox-read-time">发送：<i
@@ -98,7 +99,9 @@
 
         //返回
         $(".fa-back").click(function () {
-            $(".set").load("/mail/queryInMail?forUser=true");
+            var mailBoxType = [[${mailBoxType}]]
+
+            $(".set").load("/mail/queryMail?forUser=true&mailBoxType="+mailBoxType);
         })
     })
 

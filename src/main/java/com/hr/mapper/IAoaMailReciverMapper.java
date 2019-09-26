@@ -24,7 +24,7 @@ public interface IAoaMailReciverMapper {
     public Integer addAoaMailReciver(@Param("mailId") Long mailId, @Param("userId") Long userId);
 
     /**
-     * 批量删除内部邮件与收件人中间关系
+     * 批量删除内部邮件与收件人关系(逻辑删除)
      *
      * @param paramMap 参数集合
      * @return
@@ -40,10 +40,26 @@ public interface IAoaMailReciverMapper {
     public Integer batchUpdateAoaMailReciverForRead(Map<String, Object> paramMap);
 
     /**
+     * 判断是否星标
+     *
+     * @param paramMap 参数集合
+     * @return
+     */
+    public Long getStarStatus(Map<String, Object> paramMap);
+
+    /**
      * 设置星标
      *
      * @param paramMap 参数集合
      * @return
      */
-    public Integer batchUpdateAoaMailReciverForStar(Map<String, Object> paramMap);
+    public Integer updateAoaMailReciverForStar(Map<String, Object> paramMap);
+
+    /**
+     * 批量删除内部邮件与收件人关系(真实删除)
+     *
+     * @param paramMap
+     * @return
+     */
+    public Integer batchRealDeleteAoaMailReciver(Map<String, Object> paramMap);
 }

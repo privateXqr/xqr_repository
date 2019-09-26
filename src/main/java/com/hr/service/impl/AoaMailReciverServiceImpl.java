@@ -1,5 +1,6 @@
 package com.hr.service.impl;
 
+import com.hr.entity.AoaInMailList;
 import com.hr.mapper.IAoaMailReciverMapper;
 import com.hr.service.IAoaMailReciverService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,17 @@ public class AoaMailReciverServiceImpl implements IAoaMailReciverService {
     }
 
     @Override
-    public Integer batchUpdateAoaMailReciverForStar(Map<String, Object> paramMap) {
-        return aoaMailReciverMapper.batchUpdateAoaMailReciverForStar(paramMap);
+    public Long getStarStatus(Map<String, Object> paramMap) {
+        return aoaMailReciverMapper.getStarStatus(paramMap);
+    }
+
+    @Override
+    public Integer updateAoaMailReciverForStar(Map<String, Object> paramMap) {
+        return aoaMailReciverMapper.updateAoaMailReciverForStar(paramMap);
+    }
+
+    @Override
+    public Integer batchRealDeleteAoaMailReciver(Map<String, Object> paramMap) {
+        return aoaMailReciverMapper.batchRealDeleteAoaMailReciver(paramMap);
     }
 }

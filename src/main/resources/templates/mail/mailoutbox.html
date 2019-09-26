@@ -3,7 +3,7 @@
     <div class="bgc-w box box-primary">
         <!--盒子头-->
         <div class="box-header">
-            <h3 class="box-title titles">收件箱</h3>
+            <h3 class="box-title titles">发件箱</h3>
             <input type="checkbox" class="form-control">
             <div class="box-tools">
                 <div class="input-group" style="width: 220px; margin-top: 0px;">
@@ -24,8 +24,6 @@
                     <div class="btn-group">
                         <a class="btn btn-sm btn-default bac sdelete" title="删除">
                             <span class="glyphicon glyphicon-trash"></span></a>
-                        <a class="btn btn-sm btn-default bac looked" title="标为已读">
-                            <span class="glyphicon glyphicon-eye-open"></span></a>
                         <a class="btn btn-sm btn-default bac star" title="星标">
                             <span class="glyphicon glyphicon-star"></span></a>
                     </div>
@@ -51,7 +49,7 @@
                                 <span class="labels"><label><input name="items" type="checkbox"><i>✓</i></label></span>
                             </td>
                             <td class="em"><span class="glyphicon "
-                                                 th:classappend="${aoaInMailList.aoaMailReciver.isStar == 1 ? 'glyphicon-star' : 'glyphicon-star-empty'}"
+                                                 th:classappend="${aoaInMailList.mailStar == 1 ? 'glyphicon-star' : 'glyphicon-star-empty'}"
                                                  style="width: 25px;"></span></td>
                             <td th:switch="${aoaInMailList.mailType}">
                                 <span class="label label-primary" th:case="16">邮件</span>
@@ -59,8 +57,7 @@
                                 <span class="label label-primary" th:case="18">通知</span>
                             </td>
                             <td><span th:text="${aoaInMailList.inReceiver}"></span></td>
-                            <td><span th:text="${aoaInMailList.mailTitle}"
-                                      th:style="'font-weight:' + ${ aoaInMailList.aoaMailReciver.isRead == 0 ? 'bold' : 'normal'}"></span>
+                            <td><span th:text="${aoaInMailList.mailTitle}"></span>
                             </td>
                             <td><span
                                     th:text="${#dates.format(aoaInMailList.mailCreateTime,'yyyy-MM-dd hh:mm:ss')}"></span>
@@ -130,16 +127,16 @@
                 /* 分页插件按钮的点击事件 */
                 /* url是从后台接收过来的链接，sort是记录排序规则 */
                 $('.tablefirst').on('click', function () {
-                    $('.set').load('/mail/queryMail?firstResult=1&forUser=true&queryParam=' + param + "&mailBoxType=inMail");
+                    $('.set').load('/mail/queryMail?firstResult=1&forUser=true&queryParam=' + param + "&mailBoxType=outMail");
                 });
                 $('.tableup').on('click', function () {
-                    $('.set').load('/mail/queryMail?firstResult=' + [[${firstResult - 1 < 1 ? 1 : firstResult - 1}]] + '&forUser=true&queryParam=' + param + "&mailBoxType=inMail");
+                    $('.set').load('/mail/queryMail?firstResult=' + [[${firstResult - 1 < 1 ? 1 : firstResult - 1}]] + '&forUser=true&queryParam=' + param + "&mailBoxType=outMail");
                 });
                 $('.tabledown').on('click', function () {
-                    $('.set').load('/mail/queryMail?firstResult=' + [[${firstResult + 1 > total ? total : firstResult + 1}]] + '&forUser=true&queryParam=' + param + "&mailBoxType=inMail");
+                    $('.set').load('/mail/queryMail?firstResult=' + [[${firstResult + 1 > total ? total : firstResult + 1}]] + '&forUser=true&queryParam=' + param + "&mailBoxType=outMail");
                 });
                 $('.tablelast').on('click', function () {
-                    $('.set').load('/mail/queryMail?firstResult=' + [[${total}]] + '&forUser=true&queryParam=' + param + "&mailBoxType=inMail");
+                    $('.set').load('/mail/queryMail?firstResult=' + [[${total}]] + '&forUser=true&queryParam=' + param + "&mailBoxType=outMail");
                 });
 
                 /*类型、状态、时间的排序  */
@@ -182,7 +179,7 @@
                 $(function () {
                     var forUser = true;                     //根据用户
                     var firstResult = [[${firstResult}]];   //当前页码
-                    //删除
+                    //批量删除
                     $(".sdelete").click(function () {
                         if (confirm("确定删除么？")) {
                             var arry = new Array();
@@ -198,11 +195,10 @@
                                 return;
                             }
                             var values = arry.toString();
-
                             $(".set").load("/mail/mailOperation", {
                                 ids: values,
                                 oper: "del",
-                                mailBoxType: "inMail",
+                                mailBoxType: "outMail",
                                 firstResult: firstResult,
                                 forUser: forUser
                             });
@@ -228,10 +224,11 @@
                             return;
                         }
                         var values = arry.toString();
+
                         $(".set").load("/mail/mailOperation", {
                             ids: values,
                             oper: "watch",
-                            mailBoxType: "inMail",
+                            mailBoxType: "outMail",
                             firstResult: firstResult,
                             forUser: forUser
                         });
@@ -255,7 +252,7 @@
                         $(".set").load("/mail/mailOperation", {
                             ids: values,
                             oper: "star",
-                            mailBoxType: "inMail",
+                            mailBoxType: "outMail",
                             firstResult: firstResult,
                             forUser: forUser
                         });
@@ -270,7 +267,7 @@
                         }
 
                         //$('.set').load('smail',{id:$mailid,title:title});
-                        $('.set').load('/mail/queryMailById?mailId=' + $(this).attr("id") + "&mailBoxType=inMail");
+                        $('.set').load('/mail/queryMailById?mailId=' + $(this).attr("id") + "&mailBoxType=outMail");
                         /* parent.changeemail(); */
                     });
                     //重新编辑
@@ -296,6 +293,7 @@
                         var values = arry.toString();
                         $('.thistable').load('refresh', {ids: values, title: title});
                     });
+
                 });
             </script>
         </div>
@@ -310,7 +308,7 @@
             var con = $(".cha").val();
             var title = $(".titles").text();
 
-            $(".set").load("/mail/queryMail", {queryParam: con, forUser: true, mailBoxType: "inMail"});
+            $(".set").load("/mail/queryMail", {queryParam: con, forUser: true, mailBoxType: "outMail"});
         });
         /**
          * checkebox的全选与反选

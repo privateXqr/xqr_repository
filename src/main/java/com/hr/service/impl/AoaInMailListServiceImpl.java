@@ -41,4 +41,32 @@ public class AoaInMailListServiceImpl implements IAoaInMailListService{
     public AoaInMailList queryAoaInMailListWhere(Map<String, Object> paramMap) {
         return aoaInMailListMapper.queryAoaInMailListWhere(paramMap);
     }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public List<AoaInMailList> queryAoaOutMailList(Map<String, Object> paramMap) {
+        return aoaInMailListMapper.queryAoaOutMailList(paramMap);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public Long getCountForOutMailBox(Map<String, Object> paramMap) {
+        return aoaInMailListMapper.getCountForOutMailBox(paramMap);
+    }
+
+    @Override
+    public Integer deleteForOutMail(Map<String, Object> paramMap) {
+        return aoaInMailListMapper.deleteForOutMail(paramMap);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public Long getStarStatus(Map<String, Object> paramMap) {
+        return aoaInMailListMapper.getStarStatus(paramMap);
+    }
+
+    @Override
+    public Integer updateAoaInMailListForStar(Map<String, Object> paramMap) {
+        return aoaInMailListMapper.updateAoaInMailListForStar(paramMap);
+    }
 }
