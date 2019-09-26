@@ -203,7 +203,11 @@ maximum-scale=1, user-scalable=no">
                                     <ul >
                                         <li th:each="aoaSysMenuChild:${listAoaSysUser}"
                                             th:if="${aoaSysMenuChild.parentId eq aoaSysMenuParent.menuId}">
-                                            <a href="javascript:changepath('${aoaSysMenuParent.menuId}');"> <span
+                                            <a th:if="${aoaSysMenuChild.menuUrl eq '我的申请'}" th:onclick="changepath([[${aoaSysMenuChild.menuUrl}]]+'?processUserId='+${session.aoaUser.userId})"> <span
+                                                    class="glyphicon glyphicon-record"></span> <span
+                                                    th:text="${aoaSysMenuChild.menuName}"></span>
+                                            </a>
+                                            <a th:if="${aoaSysMenuChild.menuUrl != '我的申请'}" th:onclick="changepath([[${aoaSysMenuChild.menuUrl}]])"> <span
                                                     class="glyphicon glyphicon-record"></span> <span
                                                     th:text="${aoaSysMenuChild.menuName}"></span>
                                             </a>

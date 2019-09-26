@@ -86,7 +86,9 @@ public class ProcessController {
 
     //查询所有我的申请
     @RequestMapping("queryMyApplyFor")
-    public String queryMyApplyFor(ModelMap map,AoaProcessList aoaProcessList){
+    public String queryMyApplyFor(ModelMap map,AoaProcessList ProcessList,AoaProcessList aoaProcessList){
+
+        System.out.println(ProcessList);
 
         List<AoaProcessList> aoaProcessLists = iAoaProcessService.queryMyApplyFor(aoaProcessList);
 
@@ -119,10 +121,6 @@ public class ProcessController {
         map.addAttribute("aoaProcessLists",aoaProcessLists);
 
         System.out.println(aoaProcessLists);
-
-        for (AoaProcessList aa :aoaProcessLists ) {
-            System.out.println(aa);
-        }
 
         return "Process/auditing";
     }
