@@ -3,10 +3,13 @@ package com.hr.service.impl;
 import com.hr.mapper.IAoaNoticeUserRelationMapper;
 import com.hr.service.IAoaNoticeUserRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
@@ -16,13 +19,14 @@ public class AoaNoticeUsersRelationServiceImpl implements IAoaNoticeUserRelation
     private IAoaNoticeUserRelationMapper aoaNoticeUserRelationMapper;
 
     @Override
-    public Integer addAoaNoticeUserRelation(Long noticeId, Long userId) {
-        return aoaNoticeUserRelationMapper.addAoaNoticeUserRelation(noticeId,userId);
+    public Integer addAoaNoticeUserRelation(Long noticeId, List<Long> listUserId) {
+        return aoaNoticeUserRelationMapper.addAoaNoticeUserRelation(noticeId,listUserId);
     }
 
     @Override
+    @CacheEvict(value = {"queryAoaNoticeListById", "getNoticeCount", "queryAoaNoticeList"}, allEntries = true)
     public Integer deleteAoaNoticeUserRelationForNotice(Long noticeId, Long userId) {
-        return aoaNoticeUserRelationMapper.deleteAoaNoticeUserRelationForNotice(noticeId,userId);
+        return aoaNoticeUserRelationMapper.deleteAoaNoticeUserRelationForNotice(noticeId, userId);
     }
 
     @Override
@@ -32,6 +36,7 @@ public class AoaNoticeUsersRelationServiceImpl implements IAoaNoticeUserRelation
     }
 
     @Override
+    @CacheEvict(value = {"queryAoaNoticeListById", "getNoticeCount", "queryAoaNoticeList"}, allEntries = true)
     public Integer updateNoticeForRead(Long userId) {
         return aoaNoticeUserRelationMapper.updateNoticeForRead(userId);
     }

@@ -14,7 +14,8 @@
 
     <select id="queryAoaSysMenu" resultMap="BaseResultMap" parameterType="java.lang.Long">
 
-        select asm.*
+        select asm.menu_id,asm.menu_icon,
+        menu_name,menu_url,parent_id
         from aoa_role_power_list arpl
         left join aoa_sys_menu asm
         on arpl.menu_id = asm.menu_id

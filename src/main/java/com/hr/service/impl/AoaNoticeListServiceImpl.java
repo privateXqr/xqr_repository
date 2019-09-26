@@ -4,6 +4,8 @@ import com.hr.entity.AoaNoticeList;
 import com.hr.mapper.IAoaNoticeListMapper;
 import com.hr.service.IAoaNoticeListService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,23 +58,27 @@ public class AoaNoticeListServiceImpl implements IAoaNoticeListService {
     }
 
     @Override
+    @Cacheable("queryAoaNoticeList")
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<AoaNoticeList> queryAoaNoticeList(Map<String, Object> paramMap) {
         return aoaNoticeListMapper.queryAoaNoticeList(paramMap);
     }
 
     @Override
+    @CacheEvict(value = {"queryAoaNoticeListById", "getNoticeCount", "queryAoaNoticeList"}, allEntries = true)
     public Integer updateAoaNoticeForTop(Long noticeId, Integer isTop) {
         return aoaNoticeListMapper.updateAoaNoticeForTop(noticeId, isTop);
     }
 
     @Override
+    @Cacheable("getNoticeCount")
     @Transactional(propagation = Propagation.SUPPORTS)
     public Long getNoticeCount(Map<String, Object> paramMap) {
         return aoaNoticeListMapper.getNoticeCount(paramMap);
     }
 
     @Override
+    @Cacheable("queryAoaNoticeListById")
     @Transactional(propagation = Propagation.SUPPORTS)
     public AoaNoticeList queryAoaNoticeListById(Long noticeId) {
         return aoaNoticeListMapper.queryAoaNoticeListById(noticeId);

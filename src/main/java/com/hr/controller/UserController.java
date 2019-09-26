@@ -2,12 +2,14 @@ package com.hr.controller;
 
 import com.hr.entity.AoaUser;
 import com.hr.mapper.IAoaNoticeUserRelationMapper;
+import com.hr.service.IAoaMailReciverService;
 import com.hr.service.IAoaNoticeUserRelationService;
 import com.hr.service.IAoaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,8 +23,6 @@ public class UserController {
     @Autowired
     private IAoaUserService aoaUserService;
 
-    @Autowired
-    private IAoaNoticeUserRelationService aoaNoticeUserRelationService;
 
     /**
      * 登陆
@@ -34,24 +34,35 @@ public class UserController {
      * @return
      */
     @RequestMapping("login")
-    public String login(HttpSession session, ModelMap map, String userName, String password) {
+    @ResponseBody
+    public String login(HttpSession session, ModelMap map, String userName, String password, String code) {
 
-        String url = "redirect:/login.html";
+        String result = "";
 
         AoaUser aoaUser = aoaUserService.login(userName, password);
 
-        if (aoaUser != null) {   //成功登陆
-            session.setAttribute("aoaUser", aoaUser);
+        if (aoaUser != null) {   //用户名密码正确
 
-            //统计当前登陆用户有多少条未读通知
-            Long notice_count = aoaNoticeUserRelationService.queryUnreadNoticeForUser(aoaUser.getUserId());
+            String sysCode = (String) session.getAttribute("code");
 
-            map.addAttribute("notice_count", notice_count);
+            if (code.equalsIgnoreCase(sysCode)) {   //验证码正确
 
-            url = "forward:/sys/initMenu";  //转发至初始化菜单
+                //成功登陆
+                session.setAttribute("aoaUser", aoaUser);
+
+                result = "success";
+
+            } else {  //验证码错误
+
+                result = "errorCode";
+            }
+
+        } else {
+
+            result = "errorUser";
+
         }
-
-        return url;
+        return result;
     }
 
     /**

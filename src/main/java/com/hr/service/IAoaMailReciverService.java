@@ -1,6 +1,7 @@
 package com.hr.service;
 
 import com.hr.entity.AoaInMailList;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -55,4 +56,11 @@ public interface IAoaMailReciverService {
      * @return
      */
     public Integer batchRealDeleteAoaMailReciver(Map<String, Object> paramMap);
+
+    /**
+     * 统计用户有多少封未读邮件
+     * @param userId
+     * @return
+     */
+    public Long getUnreadInMailForUser(@Param("userId") Long userId);
 }

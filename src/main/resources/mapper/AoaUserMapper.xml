@@ -62,14 +62,12 @@
 
     <select id="login" resultMap="BaseResultMap">
 
-        SELECT *
+        SELECT user_id,user_name,real_name,
+        dept_id,position_id,role_id
         FROM aoa_user
         WHERE
         <if test="userName != '' and userName != null">
-            user_name = #{userName}
-        </if>
-        <if test="userName == '' or userName == null">
-            user_tel = #{userName}
+            user_name = #{userName} or user_tel = #{userName}
         </if>
         AND password = #{password}
 
@@ -77,14 +75,7 @@
 
     <select id="queryAoaUserForUnderstrapper" resultType="java.lang.Long">
 
-        select user_id from aoa_user au
-        left join aoa_position ap on au.position_id = ap.position_id
-        left join aoa_dept ad on au.dept_id = ad.dept_id
-        where `level` &gt;
-        (select `level` from aoa_position where position_id =
-        #{positionId} and ap.deptid = #{deptId})
-        ORDER BY `level`
-        limit 0,1
+      select user_id from aoa_user where father_id = #{userId}
 
     </select>
 

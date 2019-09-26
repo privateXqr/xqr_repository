@@ -84,4 +84,6 @@ public interface IAoaInMailListMapper {
      * @return
      */
     public Integer updateAoaInMailListForStar(Map<String, Object> paramMap);
+
+
 }

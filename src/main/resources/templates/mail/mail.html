@@ -39,17 +39,17 @@
             <ul class="nav nav-pills nav-stacked files ">
                 <li style="border-left: 3px solid blue;" class="getmail"><span
                         class="glyphicon glyphicon-inbox le"> 收件箱</span>
-                    <span class="pull-right uncheck"><i class="btn btn-xs btn-primary">1</i></span>
+                    <span class="pull-right uncheck"><i class="btn btn-xs btn-primary" id = "unreadMailCount" th:text="${mail_count != 0 ? mail_count : ''}"></i></span>
                 </li>
                 <li class="setmail"><span class="glyphicon glyphicon-envelope le"> 发件箱</span>
-                    <span class="pull-right uncheck"><i class="btn btn-xs btn-primary">27</i></span>
+                    <span class="pull-right uncheck"></span>
 
                 </li>
                 <li class="caogao"><span class="glyphicon glyphicon-list-alt le"> 草稿箱</span>
-                    <span class="pull-right uncheck"><i class="btn btn-xs btn-primary">1</i></span>
+                    <span class="pull-right uncheck"></span>
                 </li>
                 <li class=" rubbish"><span class="glyphicon glyphicon-trash le"> 垃圾箱</span>
-                    <span class="pull-right uncheck"><i class="btn btn-xs btn-primary">1</i></span>
+                    <span class="pull-right uncheck"></span>
                 </li>
             </ul>
         </div>
@@ -63,17 +63,17 @@
             </div>
             <ul class="nav nav-pills nav-stacked fff">
                 <li class="mail">
-                    <svg class="icon le " aria-hidden="true">
+                    <svg class="icon le " aria-hidden="true">123
                         <use xlink:href="#icon-kongxinquan"></use>
                     </svg>&nbsp;&nbsp;&nbsp;邮件
                 </li>
                 <li class="tongzhi">
-                    <svg class="icon le " aria-hidden="true">
+                    <svg class="icon le " aria-hidden="true">456
                         <use xlink:href="#icon-kongxinquan"></use>
                     </svg>&nbsp;&nbsp;&nbsp;通知
                 </li>
                 <li class="gonggao">
-                    <svg class="icon le " aria-hidden="true" style="color: red;">
+                    <svg class="icon le " aria-hidden="true">789
                         <use xlink:href="#icon-kongxinquan"></use>
                     </svg>&nbsp;&nbsp;&nbsp;公告
                 </li>
@@ -83,8 +83,9 @@
     <div class="col-md-9 set ">
 
     </div>
-    <script th:inline="javascript">
+    <script>
         $(function () {
+
             $('.getmail').on('click', function () {
                 //$('.set').load('amail',{title:"收件箱"});
                 $('.set').load('/mail/queryMail?forUser=true&mailBoxType=inMail');
@@ -105,17 +106,26 @@
             $('.write').on('click', function () {
                 $('.set').load('/mail/goWrite');
             });
+
+            /**
+             * 点击改变类型颜色
+             */
+            $(".mail,.tongzhi,.gonggao").click(function () {
+                $("svg").css("color", "");
+                $(this).children("svg").css("color", "red");
+            })
+
             $(".mail").click(function () {
                 var title = $(".titles").text();
-                $(".set").load("mailtitle", {val: "邮件", title: title});
+                $(".set").load("/mail/queryMail", {queryParam: "邮件", forUser: true, mailBoxType: "inMail"});
             });
             $(".tongzhi").click(function () {
                 var title = $(".titles").text();
-                $(".set").load("mailtitle", {val: "通知", title: title});
+                $(".set").load("/mail/queryMail", {queryParam: "通知", forUser: true, mailBoxType: "inMail"});
             });
             $(".gonggao").click(function () {
                 var title = $(".titles").text();
-                $(".set").load("mailtitle", {val: "公告", title: title});
+                $(".set").load("/mail/queryMail", {queryParam: "公告", forUser: true, mailBoxType: "inMail"});
             });
 
         });
