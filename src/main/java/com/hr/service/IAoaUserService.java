@@ -13,11 +13,10 @@ public interface IAoaUserService {
     /**
      * 查询登陆用户的直属下属用户
      *
-     * @param positionId 职位ID
-     * @param deptId     部门ID
+     * @param userId 用户ID
      * @return
      */
-    public Long queryAoaUserForUnderstrapper(@Param("positionId") Long positionId, @Param("deptId") Long deptId);
+    public List<Long> queryAoaUserForUnderstrapper(@Param("userId") Long userId);
 
     /**
      * 查询用户通讯录

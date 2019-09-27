@@ -6,6 +6,7 @@ import com.hr.mapper.IAoaNoticeUserRelationMapper;
 import com.hr.service.IAoaNoticeListService;
 import com.hr.service.IAoaNoticeUserRelationService;
 import com.hr.service.IAoaUserService;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,7 +35,7 @@ public class NoticeController {
 
     private Integer firstResult = 1;    //当前页码
 
-    private Integer maxResult = 5;      //每页查询多少条
+    private Integer maxResult = 1;      //每页查询多少条
 
     private Boolean forUser = false;   //是否根据用户进行操作
 
@@ -73,7 +74,10 @@ public class NoticeController {
             aoaNoticeUserRelationService.updateNoticeForRead(aoaUser.getUserId());
         }
 
-        paramMap.put("title", title);
+        if (title != null && !"".equals(title)){
+            paramMap.put("title",title);
+            map.addAttribute("title", title);
+        }
         paramMap.put("firstResult", (firstResult - 1) * maxResult);
         paramMap.put("maxResult", maxResult);
 
@@ -147,11 +151,11 @@ public class NoticeController {
         AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
 
         //查询其直属下属ID
-        Long userId = aoaUserService.queryAoaUserForUnderstrapper(aoaUser.getPositionId(), aoaUser.getDeptId());
+        List<Long> listUserId = aoaUserService.queryAoaUserForUnderstrapper(aoaUser.getUserId());
 
         //转发通知
         //修改中间表 为下属与通知 建立新关系
-        aoaNoticeUserRelationService.addAoaNoticeUserRelation(noticeId, userId);
+        aoaNoticeUserRelationService.addAoaNoticeUserRelation(noticeId, listUserId);
 
         //删除本用户与通知的关系
         aoaNoticeUserRelationService.deleteAoaNoticeUserRelationForNotice(noticeId, aoaUser.getUserId());

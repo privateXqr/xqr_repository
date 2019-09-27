@@ -54,13 +54,13 @@
         <div class="pull-right foot">
             <a class="btn btn-default fault" onclick="javascript:window.print();">
                 <span class="glyphicon glyphicon glyphicon-print"></span> 打印</a>
-            <a class="btn btn-primary huifu">
+            <a th:style="'display:'+${mailBoxType == 'rubbish' ? 'none' : 'block'}" class="btn btn-primary huifu">
                 <svg class="icon" aria-hidden="true" style="color: #fff;">
                     <use xlink:href="#icon-huifu"></use>
                 </svg>
                 回复
             </a>
-            <a class="btn btn-primary zhuanfa">
+            <a class="btn btn-primary zhuanfa" th:style="'display:'+${mailBoxType == 'rubbish' ? 'none' : 'block'}">
                 <span class="glyphicon glyphicon-share-alt"></span> 转发</a>
         </div>
     </div>
@@ -94,14 +94,20 @@
             var mailContent = [[${aoaInMailList.mailContent}]];
             var mailFileId = [[${aoaInMailList.mailFileId}]];
 
-            $(".set").load("/mail/goWrite?mailTitle=" + mailTitle + "&mailContent=" + mailContent + "&mailFileId=" + mailFileId);
+            if (mailFileId != null && mailFileId != "") {
+                $(".set").load("/mail/goWrite?mailTitle=" + mailTitle + "&mailContent=" + mailContent + "&mailFileId=" + mailFileId);
+            } else {
+                $(".set").load("/mail/goWrite?mailTitle=" + mailTitle + "&mailContent=" + mailContent);
+            }
+
+
         });
 
         //返回
         $(".fa-back").click(function () {
             var mailBoxType = [[${mailBoxType}]]
 
-            $(".set").load("/mail/queryMail?forUser=true&mailBoxType="+mailBoxType);
+            $(".set").load("/mail/queryMail?forUser=true&mailBoxType=" + mailBoxType);
         })
     })
 

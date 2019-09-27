@@ -2,6 +2,8 @@ package com.hr.controller;
 
 import com.hr.entity.AoaSysMenu;
 import com.hr.entity.AoaUser;
+import com.hr.service.IAoaMailReciverService;
+import com.hr.service.IAoaNoticeUserRelationService;
 import com.hr.service.IAoaSysMenuService;
 import com.hr.util.MenuHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,12 @@ public class SystemController {
 
     @Autowired
     private IAoaSysMenuService aoaSysMenuService;
+
+    @Autowired
+    private IAoaNoticeUserRelationService aoaNoticeUserRelationService;
+
+    @Autowired
+    private IAoaMailReciverService aoaMailReciverService;
 
     @Autowired
     private MenuHelper menuHelper;
@@ -53,6 +61,14 @@ public class SystemController {
             listAoaSysUser = menuHelper.initMenuWhere(listAoaSysUser,paramMap);
         }
 
+        //统计当前登陆用户有多少条未读通知
+        Long notice_count = aoaNoticeUserRelationService.queryUnreadNoticeForUser(aoaUser.getUserId());
+
+        //统计当前登陆用户有多少未读邮件
+        Long mail_count = aoaMailReciverService.getUnreadInMailForUser(aoaUser.getUserId());
+
+        map.addAttribute("notice_count", notice_count);
+        map.addAttribute("mail_count", mail_count);
         map.addAttribute("listAoaSysUser", listAoaSysUser);
 
         return url;

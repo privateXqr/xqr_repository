@@ -76,4 +76,18 @@
         </foreach>
 
     </update>
+
+    <select id="getUnreadInMailForUser" resultType="java.lang.Long">
+
+        select count(aiml.mail_id)
+        from aoa_in_mail_list aiml
+        inner join aoa_mail_reciver amr
+        on aiml.mail_id = amr.mail_id
+        where amr.mail_reciver_id = #{userId}
+        and amr.is_del = 0
+        and amr.is_read = 0
+        and aiml.mail_number_id
+        is null and mail_push = 1
+
+    </select>
 </mapper>

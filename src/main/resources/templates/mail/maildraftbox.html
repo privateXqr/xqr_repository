@@ -74,7 +74,9 @@
                             </td>
                             <td><a th:id="${aoaInMailList.mailId}" href="##" class="label xiugai lab"><span
                                     class="glyphicon glyphicon-search"></span>
-                                查看</a>
+                                查看</a><a th:id="${aoaInMailList.mailId}" href="##" class="label xinzeng edit"><span
+                                    class="glyphicon glyphicon-pencil"></span> 编辑</a>
+
                             </td>
                         </tr>
                         </tbody>
@@ -273,7 +275,7 @@
                     //重新编辑
                     $('.edit').on('click', function () {
                         var $mailid = $(this).parents("td").siblings(".mailid").children("span").text();
-                        $('.set').load('wmail', {id: $mailid});
+                        $('.set').load('/mail/queryMailById?mailId=' + $(this).attr("id") + "&mailBoxType=write");
                     });
 
                     //批量恢复删除

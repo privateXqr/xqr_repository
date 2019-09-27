@@ -20,7 +20,7 @@ public class AoaSysMenuServiceImpl implements IAoaSysMenuService {
     private IAoaSysMenuMapper aoaSysMenuMapper;
 
     @Override
-    //@Cacheable("queryAoaSysMenu")
+    @Cacheable("queryAoaSysMenu")
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<AoaSysMenu> queryAoaSysMenu(Map<String, Object> paramMap) {
         return aoaSysMenuMapper.queryAoaSysMenu(paramMap);

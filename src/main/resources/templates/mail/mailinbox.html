@@ -180,6 +180,7 @@
             </script>
             <script th:inline="javascript">
                 $(function () {
+                    $.ajaxSettings.async = false;           //改变ajax为单线程
                     var forUser = true;                     //根据用户
                     var firstResult = [[${firstResult}]];   //当前页码
                     //删除
@@ -194,6 +195,7 @@
                                     arry.push($mailid);
                                 }
                             })
+
                             if (arry.length == 0) {
                                 return;
                             }
@@ -210,7 +212,6 @@
                     });
                     //标记已读
                     $(".looked").click(function () {
-
                         var arry = new Array();
                         var title = $(".titles").text();
                         $("[name=items]:checkbox").each(function () {
@@ -228,12 +229,22 @@
                             return;
                         }
                         var values = arry.toString();
+
                         $(".set").load("/mail/mailOperation", {
                             ids: values,
                             oper: "watch",
                             mailBoxType: "inMail",
                             firstResult: firstResult,
                             forUser: forUser
+                        });
+                        $.post("/mail/getUnreadMailCount", function (data) {
+                            if (data == "0") {
+                                $("#unreadMailCount").html("");
+                                $(".badge-mail").html("");
+                            } else {
+                                $("#unreadMailCount").html(data);
+                                $(".badge-mail").html(data);
+                            }
                         });
                     });
                     //批量标星

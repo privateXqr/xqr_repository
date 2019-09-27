@@ -57,13 +57,20 @@ public class MailController {
      * @return
      */
     @RequestMapping("init")
-    public String initMailMenu(Boolean forUser) {
+    public String initMailMenu(HttpSession session, ModelMap map, Boolean forUser) {
+
+        AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
 
         String url = "mail/mail";
 
         if (forUser == null) {
             forUser = this.forUser;
         }
+
+        //统计当前登陆用户有多少未读邮件
+        Long mail_count = aoaMailReciverService.getUnreadInMailForUser(aoaUser.getUserId());
+
+        map.addAttribute("mail_count", mail_count);
 
         return url;
     }
@@ -78,15 +85,11 @@ public class MailController {
 
         String url = "mail/mailwrite";
 
-        //回信或转发
+        //回信 | 转发 | 编辑
         if (aoaInMailList != null) {
-            if (aoaInMailList.getMailInPushName() != null) {    //回信
-                map.addAttribute("mailInPushName", aoaInMailList.getMailInPushName());
-            } else if (aoaInMailList.getMailTitle() != null) {  //转发
-                map.addAttribute("mailTitle", aoaInMailList.getMailTitle());
-                map.addAttribute("mailContent", aoaInMailList.getMailContent());
-                map.addAttribute("mailFileId", aoaInMailList.getMailFileId());
-            }
+
+            map.addAttribute("aoaInMailList", aoaInMailList);
+
         }
 
         //查询字典表相关信息
@@ -367,6 +370,8 @@ public class MailController {
         map.addAttribute("count", count);
         map.addAttribute("total", total);
 
+        map.addAttribute("mailBoxType", mailBoxType);
+
         return url;
     }
 
@@ -497,5 +502,19 @@ public class MailController {
         return url;
     }
 
+    /**
+     * 获取未读邮件总数
+     *
+     * @param session
+     * @return
+     */
+    @RequestMapping("getUnreadMailCount")
+    @ResponseBody
+    public Long getUnreadMailCount(HttpSession session) {
 
+        AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
+
+        return aoaMailReciverService.getUnreadInMailForUser(aoaUser.getUserId());
+
+    }
 }

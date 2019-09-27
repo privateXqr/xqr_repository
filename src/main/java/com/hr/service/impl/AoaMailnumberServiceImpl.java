@@ -5,6 +5,7 @@ import com.hr.mapper.IAoaMailnumberMapper;
 import com.hr.service.IAoaMailnumberService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public class AoaMailnumberServiceImpl implements IAoaMailnumberService{
+public class AoaMailnumberServiceImpl implements IAoaMailnumberService {
 
     @Autowired
     private IAoaMailnumberMapper aoaMailnumberMapper;

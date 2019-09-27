@@ -62,4 +62,11 @@ public interface IAoaMailReciverMapper {
      * @return
      */
     public Integer batchRealDeleteAoaMailReciver(Map<String, Object> paramMap);
+
+    /**
+     * 统计用户有多少封未读邮件
+     * @param userId
+     * @return
+     */
+    public Long getUnreadInMailForUser(@Param("userId") Long userId);
 }

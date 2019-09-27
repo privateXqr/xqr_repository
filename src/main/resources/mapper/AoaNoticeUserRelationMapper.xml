@@ -13,8 +13,9 @@
         insert into aoa_notice_user_relation
         (is_read,relatin_notice_id,relatin_user_id)
         values
-        (0,#{noticeId},#{userId})
-
+        <foreach collection="listUserId" item="userId" separator=",">
+            (0,#{noticeId},#{userId})
+        </foreach>
     </insert>
 
     <delete id="deleteAoaNoticeUserRelationForNotice">

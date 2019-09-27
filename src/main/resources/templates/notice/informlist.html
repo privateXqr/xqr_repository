@@ -212,7 +212,7 @@
                 });
                 $('.tablelast').on('click', function () {
                     if (!true) {
-                        $('.thistable').load('/notice/queryNoticeByUser?firstResult='+[[${total}]]+'&title='+[[${title}]]+'&forUser=true');
+                        $('.thistable').load('/notice/queryNoticeByUser?firstResult='+[[${total}]]+'&title=\'+[[${title}]]+\'&forUser=true');
                     }
 
                 });
@@ -243,7 +243,7 @@
                 $('.baseKetsubmit').on('click', function () {
                     var baseKey = $('.baseKey').val();
                     console.log(baseKey);
-                    $('.thistable').load('informlistpaging?baseKey=' + baseKey);
+                    $('.thistable').load('/notice/queryNoticeByUser?title=' + baseKey);
                 });
             </script>
         </div>

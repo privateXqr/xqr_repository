@@ -181,7 +181,7 @@
                     var firstResult = [[${firstResult}]];   //当前页码
                     //批量删除
                     $(".sdelete").click(function () {
-                        if (confirm("确定删除么？")) {
+                        if (confirm("此次删除不可逆，确定删除么？")) {
                             var arry = new Array();
                             var title = $(".titles").text();
                             $("[name=items]:checkbox").each(function () {
