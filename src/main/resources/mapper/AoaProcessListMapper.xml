@@ -55,7 +55,7 @@
 
     <select id="queryMyApplyFor" resultMap="BaseResultMap">
 
-        SELECT * from aoa_process_list WHERE process_user_id={processUserId}
+        SELECT * from aoa_process_list WHERE process_user_id= #{processUserId}
 
     </select>
 
