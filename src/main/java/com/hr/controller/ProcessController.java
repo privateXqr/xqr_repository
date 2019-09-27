@@ -1,15 +1,13 @@
 package com.hr.controller;
 
-import com.hr.entity.AoaBursement;
-import com.hr.entity.AoaEvection;
-import com.hr.entity.AoaOvertime;
-import com.hr.entity.AoaProcessList;
+import com.hr.entity.*;
 import com.hr.service.IAoaProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -86,9 +84,13 @@ public class ProcessController {
 
     //查询所有我的申请
     @RequestMapping("queryMyApplyFor")
-    public String queryMyApplyFor(ModelMap map,AoaProcessList ProcessList,AoaProcessList aoaProcessList){
+    public String queryMyApplyFor(ModelMap map, AoaProcessList ProcessList, AoaProcessList aoaProcessList, HttpServletRequest request){
 
-        System.out.println(ProcessList);
+        AoaUser user = (AoaUser) request.getSession().getAttribute("aoaUser");
+
+        aoaProcessList.setProcessUserId(user.getUserId());
+
+        System.out.println(aoaProcessList);
 
         List<AoaProcessList> aoaProcessLists = iAoaProcessService.queryMyApplyFor(aoaProcessList);
 
