@@ -366,3 +366,12 @@ margin-left: 30px;
     margin-left: 5%;
     text-align: left;
 }
+
+.alert-success{
+  position: absolute;
+  display: block;
+  width: 90%;
+  margin-top: 10%;
+  margin-left: 5%;
+  text-align: left;
+}

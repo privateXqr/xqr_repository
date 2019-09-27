@@ -1,22 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hr.mapper.IAoaTaskListMapper">
-  <resultMap id="BaseResultMap" type="com.hr.entity.AoaTaskList">
-    <id column="task_id" jdbcType="BIGINT" property="taskId" />
-    <result column="comment" jdbcType="VARCHAR" property="comment" />
-    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
-    <result column="is_cancel" jdbcType="INTEGER" property="isCancel" />
-    <result column="is_top" jdbcType="INTEGER" property="isTop" />
-    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
-    <result column="star_time" jdbcType="TIMESTAMP" property="starTime" />
-    <result column="status_id" jdbcType="INTEGER" property="statusId" />
-    <result column="task_describe" jdbcType="VARCHAR" property="taskDescribe" />
-    <result column="ticking" jdbcType="VARCHAR" property="ticking" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="type_id" jdbcType="BIGINT" property="typeId" />
-    <result column="task_push_user_id" jdbcType="BIGINT" property="taskPushUserId" />
-    <result column="reciverlist" jdbcType="VARCHAR" property="reciverlist" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.hr.entity.AoaTaskList">
+        <id column="task_id" jdbcType="BIGINT" property="taskId"/>
+        <result column="comment" jdbcType="VARCHAR" property="comment"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="is_cancel" jdbcType="INTEGER" property="isCancel"/>
+        <result column="is_top" jdbcType="INTEGER" property="isTop"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime"/>
+        <result column="star_time" jdbcType="TIMESTAMP" property="starTime"/>
+        <result column="status_id" jdbcType="INTEGER" property="statusId"/>
+        <result column="task_describe" jdbcType="VARCHAR" property="taskDescribe"/>
+        <result column="ticking" jdbcType="VARCHAR" property="ticking"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="type_id" jdbcType="BIGINT" property="typeId"/>
+        <result column="task_push_user_id" jdbcType="BIGINT" property="taskPushUserId"/>
+        <result column="reciverlist" jdbcType="VARCHAR" property="reciverlist"/>
+    </resultMap>
+
+    <resultMap id="task_user_dept_map" type="com.hr.entity.AoaTaskList" extends="BaseResultMap">
+
+        <association property="aoaUser" column="userId" javaType="com.hr.entity.AoaUser">
+            <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        </association>
+
+        <association property="aoaDept" column="deptId" javaType="com.hr.entity.AoaDept">
+            <result column="dept_name" jdbcType="VARCHAR" property="deptName"/>
+        </association>
+
+        <collection property="listAoaTaskUser" ofType="com.hr.entity.AoaTaskUser" column="taskId">
+            <id column="pk_id" jdbcType="BIGINT" property="pkId"/>
+            <result column="status_id" jdbcType="BIGINT" property="statusId"/>
+            <result column="task_id" jdbcType="BIGINT" property="taskId"/>
+            <result column="task_recive_user_id" jdbcType="BIGINT" property="taskReciveUserId"/>
+        </collection>
+
+    </resultMap>
+
+    <sql id="queryAoaTaskListWhere">
+        <where>
+            <if test="userId != null">
+                and atu.task_recive_user_id = #{userId}
+            </if>
+        </where>
+    </sql>
+
+    <select id="queryAoaTaskList" resultMap="task_user_dept_map">
+
+        SELECT atl.type_id,atl.title,atl.star_time,
+        au.user_name,ad.dept_name,atu.status_id,
+        atl.task_id
+        from aoa_task_list atl
+        left join aoa_task_user atu
+        on atl.task_id = atu.task_id
+        left join aoa_user au
+        on atl.task_push_user_id = au.user_id
+        left JOIN aoa_dept ad
+        on au.dept_id = ad.dept_id
+        <include refid="queryAoaTaskListWhere"></include>
+        <if test="firstResult != null and maxResult != null">
+            limit #{firstResult},#{maxResult}
+        </if>
+    </select>
+
+    <select id="getCountForTaskList" resultType="java.lang.Long">
+
+        SELECT count(atl.task_id)
+        from aoa_task_list atl
+        left join aoa_task_user atu
+        on atl.task_id = atu.task_id
+        left join aoa_user au
+        on atl.task_push_user_id = au.user_id
+        left JOIN aoa_dept ad
+        on au.dept_id = ad.dept_id
+        <include refid="queryAoaTaskListWhere"></include>
+    </select>
 
 </mapper>

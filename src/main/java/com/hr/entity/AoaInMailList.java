@@ -3,6 +3,7 @@ package com.hr.entity;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class AoaInMailList implements Serializable {
     private Long mailId;
@@ -33,9 +34,17 @@ public class AoaInMailList implements Serializable {
 
     private String mailInPushName;
 
-    private AoaMailReciver aoaMailReciver;
+    private List<AoaMailReciver> listAoaMailReciver;
 
     private AoaAttachmentList aoaAttachmentList;
+
+    public List<AoaMailReciver> getListAoaMailReciver() {
+        return listAoaMailReciver;
+    }
+
+    public void setListAoaMailReciver(List<AoaMailReciver> listAoaMailReciver) {
+        this.listAoaMailReciver = listAoaMailReciver;
+    }
 
     public AoaAttachmentList getAoaAttachmentList() {
         return aoaAttachmentList;
@@ -51,14 +60,6 @@ public class AoaInMailList implements Serializable {
 
     public void setMailInPushName(String mailInPushName) {
         this.mailInPushName = mailInPushName;
-    }
-
-    public AoaMailReciver getAoaMailReciver() {
-        return aoaMailReciver;
-    }
-
-    public void setAoaMailReciver(AoaMailReciver aoaMailReciver) {
-        this.aoaMailReciver = aoaMailReciver;
     }
 
     public Long getMailId() {

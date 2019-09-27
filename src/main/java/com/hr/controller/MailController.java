@@ -349,6 +349,7 @@ public class MailController {
                 count = aoaInMailListService.getCountForOutMailBox(paramMap);
                 url = "mail/maildraftbox";
                 break;
+            //垃圾箱
             case "rubbish":
                 paramMap.put("isDel", 1);
                 listAoaInMailList = aoaInMailListService.queryAoaInMailList(paramMap);

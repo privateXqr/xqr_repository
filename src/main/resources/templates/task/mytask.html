@@ -1,0 +1,241 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="thistable">
+<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+<script type="text/javascript" th:src="@{/easyui/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/common/box.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/common/checkbox.css}"/>
+<script type="text/javascript" th:src="@{/js/task/taskmanage.js}"></script>
+<style type="text/css">
+    a {
+        color: black;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .bgc-w {
+        background-color: #fff;
+    }
+
+    .block {
+        display: inline-block;
+        width: 20px;
+    }
+
+    .co {
+        color: blue;
+    }
+
+    .bl {
+        color: black;
+    }
+
+    .commen {
+        cursor: pointer;
+    }
+</style>
+<div>
+    <div class="row" style="padding-top: 10px;">
+        <div class="col-md-2">
+            <h1 style="font-size: 24px; margin: 0;" class="">我的任务</h1>
+        </div>
+        <div class="col-md-10 text-right">
+            <a href="##"><span class="glyphicon glyphicon-home"></span> 首页</a> > <a
+                disabled="disabled">我的任务</a>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 15px;">
+        <div class="col-md-12">
+            <!--id="container"-->
+
+            <div class="bgc-w box box-primary">
+                <!--盒子头-->
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <a href="addtask" class="label " style="padding: 5px;"> <span
+                                class="glyphicon glyphicon-plus"></span>
+                        </a>
+                    </h3>
+                    <div class="box-tools">
+                        <div class="input-group" style="width: 150px;">
+                            <input name = "" type="text" class="form-control input-sm cha"
+                                   placeholder="查找..."/>
+                            <div class="input-group-btn chazhao">
+                                <a class="btn btn-sm btn-default"><span
+                                        class="glyphicon glyphicon-search"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--盒子身体-->
+                <div class="box-body no-padding">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <tr>
+
+                                <th scope="col">类型</th>
+                                <th scope="col">标题</th>
+                                <th scope="col">发布时间</th>
+                                <th scope="col">发布人</th>
+                                <th scope="col">部门</th>
+                                <th scope="col">状态</th>
+                                <th scope="col">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="aoaTaskList:${listAoaTaskList}">
+                                <td th:switch="${aoaTaskList.typeId}">
+                                    <span th:case="3">公事</span>
+                                    <span th:case="4">私事</span>
+                                </td>
+                                <td><span th:text="${aoaTaskList.title}"></span></td>
+                                <td><span th:text="${#dates.format(aoaTaskList.starTime,'yyyy-MM-dd hh:mm:ss')}"></span>
+                                </td>
+                                <td><span th:text="${aoaTaskList.aoaUser.userName}"></span></td>
+                                <td><span th:text="${aoaTaskList.aoaDept.deptName}"></span></td>
+                                <td th:switch="${aoaTaskList.listAoaTaskUser.get(0).statusId}">
+                                    <span th:case="3" class="label label-warning">新任务</span>
+                                    <span th:case="4" class="label label-info">已接收</span>
+                                    <span th:case="5" class="label label-primary">进行中</span>
+                                    <span th:case="6" class="label label-danger">已提交</span>
+                                    <span th:case="7" class="label label-success">已完成</span>
+                                </td>
+                                <td><a href="mytasksee.html?id=52"
+                                       class="label xiugai"><span class="glyphicon glyphicon-search"></span>
+                                    查看</a></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--盒子尾-->
+                <div class="box-footer no-padding" style="margin-top: -20px;">
+                    <div style="padding: 5px;">
+                        <div id="page"
+                             style="background: #fff; border: 0px; margin-top: 0px; padding: 2px; height: 25px;">
+                            <div style="width: 40%; float: left;">
+                                <div class="pageInfo" style="margin-left: 5px;">
+                                    共<span th:text="${count}"></span>条 | 每页<span
+                                        th:text="${count != 0 ? maxResult : 0}"></span>条
+                                    | 共<span th:text="${total}">1</span>页
+                                </div>
+                            </div>
+                            <div style="width: 60%; float: left;">
+                                <div class="pageOperation">
+                                    <a class="btn btn-sm btn-default no-padding tablefirst"
+                                       th:href="@{/task/queryTaskList(firstResult=1,forUser=true)}"
+                                       style="width: 30px; height: 20px;"> <span
+                                            class="glyphicon glyphicon-backward"></span></a>
+                                    <a class="btn btn-sm btn-default no-padding tableup"
+                                       th:href="@{/task/queryTaskList(firstResult=${firstResult - 1 < 1 ? 1 : firstResult - 1},forUser=true)}"
+                                       style="width: 30px; height: 20px;"> <span
+                                            class="glyphicon glyphicon-triangle-left"></span></a>
+                                    <a class="btn btn-default no-padding"
+                                       style="width: 30px; height: 20px;"> <span
+                                            th:text="${count != 0 ? firstResult : 0}"></span> </a>
+                                    <!--判断是否是最后一页  -->
+                                    <a class="btn btn-sm btn-default no-padding tabledown"
+                                       style="width: 30px; height: 20px;"
+                                       th:href="@{/task/queryTaskList(firstResult=${firstResult + 1 >= total ? total : firstResult + 1},forUser=true)}"> <span
+                                            class="glyphicon glyphicon-triangle-right"></span></a>
+                                    <a class="btn btn-sm btn-default no-padding tablelast"
+                                       style="width: 30px; height: 20px;"
+                                       th:href="@{/task/queryTaskList(firstResult=${total},forUser=true)}"> <span
+                                            class="glyphicon glyphicon-forward"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script th:inline="javascript">
+                    var firstResult = [[${firstResult}]];
+                    var total = [[${total}]];
+
+                    /* 分页插件按钮的点击事件 */
+                    /* url是从后台接收过来的链接，sort是记录排序规则 */
+                    // $('.tablefirst').on('click', function () {
+                    //     $.get('/task/queryTaskList', {"firstResult": 1, "forUser": true},function (data) {
+                    //         $(".thistable").html(data);
+                    //     });
+                    // });
+                    // $('.tableup').on('click', function () {
+                    //     $.get('/task/queryTaskList', {
+                    //         "firstResult": firstResult - 1 < 1 ? 1 : firstResult - 1,
+                    //         "forUser": true
+                    //     });
+                    // });
+                    // $('.tabledown').on('click', function () {
+                    //     $.get('/task/queryTaskList', {
+                    //         "firstResult": firstResult + 1 > total ? total : firstResult + 1,
+                    //         "forUser": true
+                    //     },function (data) {
+                    //         $(".thistable").html(data);
+                    //     });
+                    // });
+                    // $('.tablelast').on('click', function () {
+                    //     $.get('/task/queryTaskList', {
+                    //         "firstResult": total,
+                    //         "forUser": true
+                    //     });
+                    // });
+
+                    /*类型、状态、时间的排序  */
+                    $('.thistype').on('click', function () {
+                        if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+                            $('.thistable').load('mychaxun?type=0&icon=glyphicon-triangle-top');
+                        } else {
+                            $('.thistable').load('mychaxun?type=1&icon=glyphicon-triangle-bottom');
+                        }
+                    });
+                    $('.thisstatus').on('click', function () {
+                        if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+                            $('.thistable').load('mychaxun?status=0&icon=glyphicon-triangle-top');
+                        } else {
+                            $('.thistable').load('mychaxun?status=1&icon=glyphicon-triangle-bottom');
+                        }
+                    });
+                    $('.thistime').on('click', function () {
+                        if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+                            $('.thistable').load('mychaxun?time=0&icon=glyphicon-triangle-top');
+                        } else {
+                            $('.thistable').load('mychaxun?time=1&icon=glyphicon-triangle-bottom');
+                        }
+                    });
+                    $('.thisvisit').on('click', function () {
+                        if ($(this).children().hasClass('glyphicon-triangle-bottom')) {
+                            $('.thistable').load('mychaxun?visitnum=0&icon=glyphicon-triangle-top');
+                        } else {
+                            $('.thistable').load('mychaxun?visitnum=1&icon=glyphicon-triangle-bottom');
+                        }
+                    });
+                    /* 查找 */
+                    $('.baseKetsubmit').on('click', function () {
+                        var baseKey = $('.baseKey').val();
+                        console.log(baseKey);
+                        $('.thistable').load('mychaxun?baseKey=' + baseKey + '');
+                    });
+                </script>
+            </div>
+            <script>
+                $(function () {
+
+                    /* 分页插件按钮的点击事件 */
+
+                    $('.baseKetsubmit').on('click', function () {
+                        var baseKey = $('.baseKey').val();
+                        $('.thistable').load('mychaxun?baseKey=baseKey');
+                    });
+
+                    $(".chazhao").click(function () {
+                        var con = $(".cha").val();
+                        $(".thistable").load("mychaxun", {title: con});
+                    });
+                })
+            </script>
+        </div>
+    </div>
+</div>
+</html>

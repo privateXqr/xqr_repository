@@ -3,6 +3,7 @@ package com.hr.entity;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class AoaTaskList implements Serializable {
     private Long taskId;
@@ -34,6 +35,36 @@ public class AoaTaskList implements Serializable {
     private Long taskPushUserId;
 
     private String reciverlist;
+
+    private List<AoaTaskUser> listAoaTaskUser;
+
+    private AoaUser aoaUser;
+
+    private AoaDept aoaDept;
+
+    public List<AoaTaskUser> getListAoaTaskUser() {
+        return listAoaTaskUser;
+    }
+
+    public void setListAoaTaskUser(List<AoaTaskUser> listAoaTaskUser) {
+        this.listAoaTaskUser = listAoaTaskUser;
+    }
+
+    public AoaUser getAoaUser() {
+        return aoaUser;
+    }
+
+    public void setAoaUser(AoaUser aoaUser) {
+        this.aoaUser = aoaUser;
+    }
+
+    public AoaDept getAoaDept() {
+        return aoaDept;
+    }
+
+    public void setAoaDept(AoaDept aoaDept) {
+        this.aoaDept = aoaDept;
+    }
 
     public Long getTaskId() {
         return taskId;

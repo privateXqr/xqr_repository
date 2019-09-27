@@ -19,11 +19,15 @@
     </resultMap>
 
     <resultMap id="mail_reciver_map" type="com.hr.entity.AoaInMailList" extends="BaseResultMap">
-        <association property="aoaMailReciver" column="mailNumberId"
-                     javaType="com.hr.entity.AoaMailReciver">
+        
+        <collection property="listAoaMailReciver" ofType="com.hr.entity.AoaMailReciver" column="mailId">
+            <id column="pk_id" jdbcType="BIGINT" property="pkId"/>
             <result column="is_read" jdbcType="INTEGER" property="isRead"/>
+            <result column="mail_id" jdbcType="BIGINT" property="mailId"/>
+            <result column="mail_reciver_id" jdbcType="BIGINT" property="mailReciverId"/>
             <result column="is_star" jdbcType="INTEGER" property="isStar"/>
-        </association>
+            <result column="is_del" jdbcType="INTEGER" property="isDel"/>
+        </collection>
 
     </resultMap>
 

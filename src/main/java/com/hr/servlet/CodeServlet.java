@@ -39,7 +39,7 @@ public class CodeServlet extends HttpServlet {
         gh.fillRect(0, 0, width - 1, height - 1);
 
         // 再设置画笔颜色
-        gh.setColor(Color.BLACK);
+        gh.setColor(Color.darkGray);
         // 画边框
         gh.drawRect(0, 0, width, height);
 
@@ -66,7 +66,7 @@ public class CodeServlet extends HttpServlet {
             gh.setColor(color);
 
             // ★★★★★ 画出验证码
-            gh.drawString(String.valueOf(c), i * 15, 35);
+            gh.drawString(String.valueOf(c), i * 18, 37);
         }
 
         // 将最终验证码字符串传递给前台

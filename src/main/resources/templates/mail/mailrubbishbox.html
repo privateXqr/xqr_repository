@@ -49,7 +49,7 @@
                                 <span class="labels"><label><input name="items" type="checkbox"><i>✓</i></label></span>
                             </td>
                             <td class="em"><span class="glyphicon "
-                                                 th:classappend="${aoaInMailList.aoaMailReciver.isStar == 1 ? 'glyphicon-star' : 'glyphicon-star-empty'}"
+                                                 th:classappend="${aoaInMailList.listAoaMailReciver.get(0).isStar == 1 ? 'glyphicon-star' : 'glyphicon-star-empty'}"
                                                  style="width: 25px;"></span></td>
                             <td th:switch="${aoaInMailList.mailType}">
                                 <span class="label label-primary" th:case="16">邮件</span>
