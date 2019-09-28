@@ -94,6 +94,7 @@
         left join aoa_mail_reciver amr on aiml.mail_id = amr.mail_id
         left join aoa_attachment_list aal on aiml.mail_file_id = aal.attachment_id
         <include refid="queryInMailWhere"></include>
+        order by aiml.mail_create_time desc,aiml.mail_id
         <if test="firstResult != null and maxResult != null">
             limit #{firstResult},#{maxResult}
         </if>

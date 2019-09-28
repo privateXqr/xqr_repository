@@ -37,8 +37,9 @@ public interface IAoaNoticeUserRelationService {
     /**
      * 修改用户的通知为已读
      *
-     * @param userId 用户ID
+     * @param userId   用户ID
+     * @param noticeId 通知ID
      * @return
      */
-    public Integer updateNoticeForRead(@Param("userId") Long userId);
+    public Integer updateNoticeForRead(@Param("userId") Long userId, @Param("noticeId") Long noticeId);
 }

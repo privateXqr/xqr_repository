@@ -31,15 +31,16 @@
         select count(relatin_id)
         from aoa_notice_user_relation
         where relatin_user_id = #{userId}
-        and is_read = 1
+        and is_read = 0
 
     </select>
 
     <update id="updateNoticeForRead">
 
         update aoa_notice_user_relation
-        set is_read = 0
+        set is_read = 1
         where relatin_user_id = #{userId}
+        and relatin_notice_id = #{noticeId}
 
     </update>
 

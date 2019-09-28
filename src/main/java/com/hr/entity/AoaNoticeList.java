@@ -3,6 +3,7 @@ package com.hr.entity;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class AoaNoticeList implements Serializable {
     private Long noticeId;
@@ -28,6 +29,16 @@ public class AoaNoticeList implements Serializable {
     private AoaUser aoaUser;
 
     private AoaDept aoaDept;
+
+    private List<AoaNoticeUserRelation> listAoaNoticeUserRelation;
+
+    public List<AoaNoticeUserRelation> getListAoaNoticeUserRelation() {
+        return listAoaNoticeUserRelation;
+    }
+
+    public void setListAoaNoticeUserRelation(List<AoaNoticeUserRelation> listAoaNoticeUserRelation) {
+        this.listAoaNoticeUserRelation = listAoaNoticeUserRelation;
+    }
 
     public AoaDept getAoaDept() {
         return aoaDept;

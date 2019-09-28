@@ -23,13 +23,21 @@
         <association property="aoaDept" column="dept_id" javaType="com.hr.entity.AoaDept">
             <result column="dept_name" jdbcType="VARCHAR" property="deptName"/>
         </association>
+        
+        <collection property="listAoaNoticeUserRelation" ofType="com.hr.entity.AoaNoticeUserRelation" column="relatinNoticeId">
+            <id column="relatin_id" jdbcType="BIGINT" property="relatinId"/>
+            <result column="is_read" jdbcType="INTEGER" property="isRead"/>
+            <result column="relatin_notice_id" jdbcType="BIGINT" property="relatinNoticeId"/>
+            <result column="relatin_user_id" jdbcType="BIGINT" property="relatinUserId"/>
+        </collection>
 
     </resultMap>
 
     <!--主要查询 通知列表 高级查询-->
     <select id="queryAoaNoticeList" resultMap="noticeMap">
 
-        select anl.*,au.user_name,ad.dept_name
+        select anl.*,au.user_name,ad.dept_name,
+        anur.is_read
         from aoa_notice_list anl
         left join aoa_notice_user_relation anur
         on anl.notice_id = anur.relatin_notice_id
@@ -45,7 +53,7 @@
                 and anl.title like "%"#{title}"%"
             </if>
         </where>
-        order by is_top desc
+        order by is_top DESC,anl.notice_time DESC ,anl.notice_id
         <if test="firstResult != null and maxResult != null">
             limit #{firstResult},#{maxResult}
         </if>

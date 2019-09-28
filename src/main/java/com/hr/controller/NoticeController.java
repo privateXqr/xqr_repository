@@ -35,7 +35,7 @@ public class NoticeController {
 
     private Integer firstResult = 1;    //当前页码
 
-    private Integer maxResult = 1;      //每页查询多少条
+    private Integer maxResult = 5;      //每页查询多少条
 
     private Boolean forUser = false;   //是否根据用户进行操作
 
@@ -70,12 +70,10 @@ public class NoticeController {
         if (forUser) {  //根据当前登陆用户查询
             paramMap.put("userId", aoaUser.getUserId());
 
-            //当用户点击查看通知时，修改用户所有通知信息的状态为已读
-            aoaNoticeUserRelationService.updateNoticeForRead(aoaUser.getUserId());
         }
 
-        if (title != null && !"".equals(title)){
-            paramMap.put("title",title);
+        if (title != null && !"".equals(title)) {
+            paramMap.put("title", title);
             map.addAttribute("title", title);
         }
         paramMap.put("firstResult", (firstResult - 1) * maxResult);
@@ -124,11 +122,17 @@ public class NoticeController {
      * @return
      */
     @RequestMapping("queryNoticeById")
-    public String queryNoticeById(ModelMap map, Long noticeId) {
+    public String queryNoticeById(ModelMap map, HttpSession session, Long noticeId) {
 
         String url = "/notice/informshow";
 
+        AoaUser aoaUser = (AoaUser) session.getAttribute("aoaUser");
+
+        //查询指定通知
         AoaNoticeList aoaNoticeList = aoaNoticeListService.queryAoaNoticeListById(noticeId);
+
+        //修改已读状态
+        aoaNoticeUserRelationService.updateNoticeForRead(aoaUser.getUserId(), noticeId);
 
         map.addAttribute("aoaNoticeList", aoaNoticeList);
 

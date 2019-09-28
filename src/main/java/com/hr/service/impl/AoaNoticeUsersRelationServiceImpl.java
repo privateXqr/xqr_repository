@@ -20,7 +20,7 @@ public class AoaNoticeUsersRelationServiceImpl implements IAoaNoticeUserRelation
 
     @Override
     public Integer addAoaNoticeUserRelation(Long noticeId, List<Long> listUserId) {
-        return aoaNoticeUserRelationMapper.addAoaNoticeUserRelation(noticeId,listUserId);
+        return aoaNoticeUserRelationMapper.addAoaNoticeUserRelation(noticeId, listUserId);
     }
 
     @Override
@@ -35,9 +35,10 @@ public class AoaNoticeUsersRelationServiceImpl implements IAoaNoticeUserRelation
         return aoaNoticeUserRelationMapper.queryUnreadNoticeForUser(userId);
     }
 
+
     @Override
     @CacheEvict(value = {"queryAoaNoticeListById", "getNoticeCount", "queryAoaNoticeList"}, allEntries = true)
-    public Integer updateNoticeForRead(Long userId) {
-        return aoaNoticeUserRelationMapper.updateNoticeForRead(userId);
+    public Integer updateNoticeForRead(Long userId, Long noticeId) {
+        return aoaNoticeUserRelationMapper.updateNoticeForRead(userId,noticeId);
     }
 }

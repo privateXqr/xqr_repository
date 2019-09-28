@@ -127,7 +127,9 @@
                                 <span class="label label-warning" th:case="21">重要</span>
                                 <span class="label label-danger" th:case="22">紧急</span>
                             </td>
-                            <td class="c"><span th:text="${aoaNoticeList.title}"></span></td>
+                            <td class="c"><span th:text="${aoaNoticeList.title}"
+                                                th:style="'font-weight:'+${aoaNoticeList.listAoaNoticeUserRelation.get(0).isRead == 0 ? 'bold' : 'normal'}"></span>
+                            </td>
                             <td><span th:text="${aoaNoticeList.noticeTime}"></span></td>
                             <td><span th:text="${aoaNoticeList.aoaUser.userName}"></span></td>
                             <td><span th:text="${aoaNoticeList.aoaDept.deptName}"></span></td>
@@ -197,22 +199,22 @@
                 /* url是从后台接收过来的链接，sort是记录排序规则 */
                 $('.tablefirst').on('click', function () {
                     if (!true) {
-                        $('.thistable').load('/notice/queryNoticeByUser?firstResult=1&title='+[[${title}]]+'&forUser=true');
+                        $('.thistable').load('/notice/queryNoticeByUser?firstResult=1&title=' + [[${title}]] + '&forUser=true');
                     }
                 });
                 $('.tableup').on('click', function () {
                     if (!true) {
-                        $('.thistable').load('/notice/queryNoticeByUser?firstResult='+[[${firstResult - 1 < 1 ? 1 : firstResult - 1}]]+'&title='+[[${title}]]+'&forUser=true');
+                        $('.thistable').load('/notice/queryNoticeByUser?firstResult=' + [[${firstResult - 1 < 1 ? 1 : firstResult - 1}]] + '&title=' + [[${title}]] + '&forUser=true');
                     }
                 });
                 $('.tabledown').on('click', function () {
                     if (!true) {
-                        $('.thistable').load('/notice/queryNoticeByUser?firstResult='+[[${firstResult + 1 > total ? total : firstResult + 1}]]+'&title='+[[${title}]]+'&forUser=true');
+                        $('.thistable').load('/notice/queryNoticeByUser?firstResult=' + [[${firstResult + 1 > total ? total : firstResult + 1}]] + '&title=' + [[${title}]] + '&forUser=true');
                     }
                 });
                 $('.tablelast').on('click', function () {
                     if (!true) {
-                        $('.thistable').load('/notice/queryNoticeByUser?firstResult='+[[${total}]]+'&title=\'+[[${title}]]+\'&forUser=true');
+                        $('.thistable').load('/notice/queryNoticeByUser?firstResult=' + [[${total}]] + '&title=\'+[[${title}]]+\'&forUser=true');
                     }
 
                 });
